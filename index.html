@@ -102,7 +102,7 @@
     <div class="fixed top-[-10%] left-[-10%] w-80 h-80 bg-brand-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob z-[0] dark:bg-brand-900 dark:opacity-20 pointer-events-none"></div>
     <div class="fixed top-[20%] right-[-10%] w-80 h-80 bg-accent-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob animation-delay-2000 z-[0] dark:bg-accent-900 dark:opacity-20 pointer-events-none"></div>
 
-    <!-- 🏠 DASHBOARD HEADER -->
+    <!-- ðŸ  DASHBOARD HEADER -->
     <header class="fixed top-0 left-0 right-0 h-16 glass-panel z-50 flex items-center justify-between px-4 sm:px-6 transition-all duration-300 border-b border-white/20 dark:border-white/5">
         <div class="flex items-center gap-3">
             <div class="p-1.5 bg-gradient-to-br from-brand-400 to-accent-500 rounded-lg shadow-sm hidden sm:flex">
@@ -141,10 +141,14 @@
                     <i class="fa-solid fa-tags"></i> EXIF Editor
                 </button>
                 <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800" data-target="tab-img-conv">
-                    <i class="fa-solid fa-shuffle"></i> Image Format
+                    <i class="fa-solid fa-shuffle"></i> Format Convert
                 </button>
                 <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800" data-target="tab-img-merge">
                     <i class="fa-solid fa-object-group"></i> Merge Photos
+                </button>
+                <!-- à¤¨à¤¯à¤¾ à¤Ÿà¥ˆà¤¬: Watermark -->
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800" data-target="tab-img-watermark">
+                    <i class="fa-solid fa-copyright"></i> Watermark
                 </button>
 
             </div>
@@ -248,7 +252,7 @@
             </div>
         </div>
 
-        <!-- TOOL 3: PHOTO COMPRESSOR -->
+        <!-- TOOL 3: PHOTO COMPRESSOR (With EXIF Fix) -->
         <div id="tab-img-comp" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-compress text-brand-500 mr-2"></i>Batch Photo Compressor</h2>
             
@@ -285,7 +289,7 @@
                         </div>
                     </div>
                 </div>
-                
+                <p class="text-xs text-brand-500 dark:text-brand-400 font-medium mb-4 text-center"><i class="fa-solid fa-circle-info mr-1"></i>EXIF Metadata (Date/Time/Location) is preserved automatically for JPEGs.</p>
                 <div class="flex flex-col sm:flex-row gap-3 mb-6">
                     <button id="comp-add-more" onclick="document.getElementById('comp-input').click()" class="w-full sm:w-1/3 py-3.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition font-bold border border-slate-300 dark:border-slate-600 border-dashed"><i class="fa-solid fa-plus mr-2"></i>Add More</button>
                     <button id="comp-download-all" class="w-full sm:w-2/3 py-3.5 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-download mr-2"></i>Download All Compressed</button>
@@ -295,7 +299,7 @@
             </div>
         </div>
 
-        <!-- TOOL 4: PHOTO CROPPER -->
+        <!-- TOOL 4: PHOTO CROPPER (With EXIF Fix) -->
         <div id="tab-img-crop" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-crop-simple text-brand-500 mr-2"></i>Smart Photo Cropper</h2>
             
@@ -335,7 +339,7 @@
                             <input type="range" id="crop-quality-slider" min="10" max="100" value="100" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer">
                         </div>
                         <div class="mt-auto flex flex-col gap-3">
-                            <button id="crop-download" class="w-full py-4 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-crop mr-2"></i>Crop & Download</button>
+                            <button id="crop-download" class="w-full py-4 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-crop mr-2"></i>Crop & Download (EXIF Safe)</button>
                             <button onclick="document.getElementById('crop-input').click()" class="w-full py-3 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition font-bold">Choose Another</button>
                         </div>
                     </div>
@@ -374,7 +378,7 @@
             </div>
         </div>
 
-        <!-- TOOL 6: IMAGE CONVERTER -->
+        <!-- TOOL 6: IMAGE CONVERTER (With EXIF Fix) -->
         <div id="tab-img-conv" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-shuffle text-brand-500 mr-2"></i>Image Format Converter</h2>
             
@@ -408,7 +412,7 @@
                                 <span>Output Quality</span><span id="img-conv-quality-val" class="text-brand-500 font-bold bg-brand-500/10 px-2 py-0.5 rounded">80%</span>
                             </h3>
                             <input type="range" id="img-conv-quality" min="10" max="100" value="80" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer">
-                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-3 font-medium">Note: Quality slider only affects JPG/WEBP. PNG/BMP are lossless.</p>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-3 font-medium">Note: Quality slider affects JPG/WEBP. EXIF saved for JPG outputs.</p>
                         </div>
                     </div>
                     
@@ -420,7 +424,7 @@
             </div>
         </div>
 
-        <!-- TOOL 7: PHOTO MERGE -->
+        <!-- TOOL 7: PHOTO MERGE (With EXIF Fix) -->
         <div id="tab-img-merge" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-object-group text-brand-500 mr-2"></i>Merge Two Photos</h2>
             
@@ -431,6 +435,7 @@
                     <div id="merge-drop-1" class="drop-zone p-8 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50 h-56 flex flex-col justify-center items-center relative overflow-hidden" onclick="document.getElementById('merge-input-1').click()">
                         <i class="fa-solid fa-image text-4xl text-brand-500 mb-3 drop-shadow-sm"></i>
                         <p class="font-bold text-slate-700 dark:text-slate-300">Select Image 1</p>
+                        <p class="text-[10px] text-slate-500">(EXIF is taken from here)</p>
                         <img id="merge-preview-1" class="hidden absolute inset-0 w-full h-full object-contain p-2 bg-slate-900 rounded-xl">
                     </div>
                 </div>
@@ -467,6 +472,72 @@
                     <img id="merge-result-preview" class="max-w-full max-h-[500px] object-contain rounded-xl">
                 </div>
                 <button id="merge-download-btn" class="w-full py-4 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-download mr-2"></i>Download Merged Photo</button>
+            </div>
+        </div>
+
+        <!-- TOOL 8: NEW WATERMARK TOOL -->
+        <div id="tab-img-watermark" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-copyright text-brand-500 mr-2"></i>Add Text Watermark</h2>
+            
+            <input type="file" id="wm-input" class="hidden" accept="image/*">
+            <div id="wm-init-ui" class="drop-zone p-12 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50" onclick="document.getElementById('wm-input').click()">
+                <i class="fa-solid fa-pen-nib text-5xl text-brand-500 mb-4 drop-shadow-sm"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white">Select Photo</h3>
+                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm font-medium">Add customizable text to your image</p>
+            </div>
+            
+            <div id="wm-workspace" class="hidden flex flex-col lg:flex-row gap-6 mt-4">
+                <!-- Preview area -->
+                <div class="w-full lg:w-2/3 bg-slate-900 rounded-2xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center relative border border-slate-700">
+                    <canvas id="wm-preview-canvas" class="max-w-full max-h-[500px] object-contain rounded-xl shadow-lg"></canvas>
+                </div>
+                
+                <!-- Controls -->
+                <div class="w-full lg:w-1/3 flex flex-col gap-4">
+                    <div class="bg-slate-100 dark:bg-slate-800/80 p-5 rounded-2xl shadow-sm flex-grow">
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Watermark Text</label>
+                        <input type="text" id="wm-text" placeholder="Enter text here..." value="AEX TOOLS" class="w-full px-4 py-3 mb-4 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-bold shadow-sm transition">
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Text Color</label>
+                                <input type="color" id="wm-color" value="#ffffff" class="w-full h-10 rounded-lg cursor-pointer bg-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Position</label>
+                                <div class="relative">
+                                    <select id="wm-position" class="w-full appearance-none py-2 px-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white text-sm font-bold transition cursor-pointer">
+                                        <option value="bottom-right">Bottom Right</option>
+                                        <option value="bottom-left">Bottom Left</option>
+                                        <option value="top-right">Top Right</option>
+                                        <option value="top-left">Top Left</option>
+                                        <option value="center">Center</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500"><i class="fa-solid fa-chevron-down text-xs"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h3 class="font-bold text-slate-600 dark:text-slate-300 mb-2 text-xs uppercase tracking-wider flex justify-between">
+                                <span>Font Size</span><span id="wm-size-val" class="text-brand-500 font-bold">50</span>
+                            </h3>
+                            <input type="range" id="wm-size" min="10" max="200" value="50" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-slate-600 dark:text-slate-300 mb-2 text-xs uppercase tracking-wider flex justify-between">
+                                <span>Opacity</span><span id="wm-opacity-val" class="text-brand-500 font-bold">80%</span>
+                            </h3>
+                            <input type="range" id="wm-opacity" min="10" max="100" value="80" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                    
+                    <div class="mt-auto flex flex-col gap-3">
+                        <button id="wm-download" class="w-full py-4 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-download mr-2"></i>Apply & Download</button>
+                        <button onclick="document.getElementById('wm-input').click()" class="w-full py-3 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition font-bold">Choose Another</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -542,14 +613,36 @@
             loader.style.display = show ? 'flex' : 'none';
         }
 
-        const triggerDownload = (blob, filename) => {
-            const url = URL.createObjectURL(blob); const a = document.createElement('a');
-            a.href = url; a.download = filename; document.body.appendChild(a); a.click(); document.body.removeChild(a);
-            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        const triggerDownload = (blobOrUrl, filename) => {
+            const a = document.createElement('a'); a.download = filename;
+            if (typeof blobOrUrl === 'string') {
+                a.href = blobOrUrl;
+            } else {
+                const url = URL.createObjectURL(blobOrUrl);
+                a.href = url;
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+            }
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
         };
 
         const globalCanvas = document.getElementById('hidden-canvas');
         const globalCtx = globalCanvas.getContext('2d', { willReadFrequently: true });
+
+        // --- UNIVERSAL EXIF PRESERVATION FUNCTION (à¤¦à¥‹à¤· à¤¨à¤¿à¤µà¤¾à¤°à¤£) ---
+        // à¤¯à¤¹ à¤«à¤‚à¤•à¥à¤¶à¤¨ à¤ªà¥à¤°à¤¾à¤¨à¥€ à¤‡à¤®à¥‡à¤œ à¤•à¤¾ EXIF à¤¡à¥‡à¤Ÿà¤¾ à¤¨à¤ˆ à¤¬à¤¨à¥€ à¤‡à¤®à¥‡à¤œ (DataURL) à¤®à¥‡à¤‚ à¤¡à¤¾à¤²à¤¤à¤¾ à¤¹à¥ˆ
+        function transferExif(originalDataUrl, newDataUrl, targetMime = 'image/jpeg') {
+            if (targetMime !== 'image/jpeg' || !originalDataUrl || !newDataUrl) return newDataUrl;
+            try {
+                if (!originalDataUrl.startsWith('data:image/jpeg')) return newDataUrl; // Only JPEGs have standard easily transferable EXIF here
+                const exifObj = piexif.load(originalDataUrl);
+                if (exifObj.thumbnail) delete exifObj.thumbnail; // Size optimization
+                const exifStr = piexif.dump(exifObj);
+                return piexif.insert(exifStr, newDataUrl);
+            } catch (e) {
+                console.warn("EXIF transfer skipped/failed.", e);
+                return newDataUrl;
+            }
+        }
 
         // Prevent Default Drag Drops globally
         window.addEventListener('dragover', e => e.preventDefault(), false);
@@ -583,7 +676,6 @@
             zone.addEventListener('dragleave', (e) => { e.preventDefault(); zone.classList.remove('dragover'); });
             zone.addEventListener('drop', (e) => {
                 e.preventDefault(); zone.classList.remove('dragover');
-                // Find input associated with this zone
                 let inputId = zone.id.replace('-drop-zone', '-input').replace('-init-ui', '-input').replace('-drop-', '-input-');
                 const input = document.getElementById(inputId);
                 if(input && e.dataTransfer.files.length) { input.files = e.dataTransfer.files; input.dispatchEvent(new Event('change')); }
@@ -726,7 +818,6 @@
             if(orgFinalBlob) triggerDownload(orgFinalBlob, fname);
         });
 
-
         // ======================================================================
         // TOOL 2: PDF CONVERTER
         // ======================================================================
@@ -855,11 +946,10 @@
                 const file = files[i]; if (!file.type.match(/image.*/)) continue;
                 const id = 'img_' + Math.random().toString(36).substr(2, 9), reader = new FileReader();
                 reader.onload = (e) => {
-                    const dataUrl = e.target.result; let exifData = null;
-                    if (file.type === "image/jpeg") try { exifData = piexif.load(dataUrl); } catch(err) {}
+                    const dataUrl = e.target.result;
                     const imgObj = new Image();
                     imgObj.onload = async () => {
-                        const item = { id, file, name: file.name, origSize: file.size, imgObj, exif: exifData, compressedDataUrl: null, format: file.type, originalDataUrl: dataUrl };
+                        const item = { id, file, name: file.name, origSize: file.size, imgObj, compressedDataUrl: null, format: file.type, originalDataUrl: dataUrl };
                         batchFiles.push(item); createGalleryItemUI(id, dataUrl, file.name, file.size); await compressSingle(item);
                     }; imgObj.src = dataUrl;
                 }; reader.readAsDataURL(file);
@@ -888,16 +978,17 @@
         async function recompressAll() { for (let item of batchFiles) await compressSingle(item); if(batchFiles.length) showToast('Updated'); }
         async function compressSingle(item) {
             const l = document.getElementById(`loader-${item.id}`); if(l) l.classList.remove('hidden'); await yieldThread();
-            let newData = '', tMime = item.format === 'image/png' ? 'image/jpeg' : item.format, injectExif = false, exStr = null, tKb = parseInt(compTargetKb.value);
-            if (item.exif && tMime === 'image/jpeg' && (compressMode === 'quality' || tKb >= 50)) {
-                try { let te = JSON.parse(JSON.stringify(item.exif)); if(te.thumbnail) delete te.thumbnail; exStr = piexif.dump(te); injectExif = true; } catch(e) {}
-            }
+            let newData = '', tMime = item.format === 'image/png' ? 'image/jpeg' : item.format, tKb = parseInt(compTargetKb.value);
+            
             const gen = (sc, qu) => {
                 globalCanvas.width = Math.max(1, item.imgObj.width * sc); globalCanvas.height = Math.max(1, item.imgObj.height * sc);
-                globalCtx.clearRect(0,0,globalCanvas.width,globalCanvas.height); if(tMime==='image/jpeg'){ globalCtx.fillStyle='#FFF'; globalCtx.fillRect(0,0,globalCanvas.width,globalCanvas.height); }
+                globalCtx.clearRect(0,0,globalCanvas.width,globalCanvas.height); 
+                if(tMime==='image/jpeg'){ globalCtx.fillStyle='#FFF'; globalCtx.fillRect(0,0,globalCanvas.width,globalCanvas.height); }
                 globalCtx.drawImage(item.imgObj,0,0,globalCanvas.width,globalCanvas.height);
-                let d = globalCanvas.toDataURL(tMime, qu); if(injectExif && exStr) try{ d=piexif.insert(exStr, d); }catch(e){} return d;
+                let d = globalCanvas.toDataURL(tMime, qu);
+                return transferExif(item.originalDataUrl, d, tMime); // EXIF Fix
             };
+
             if(compressMode==='quality'){
                 let q = parseInt(compSlider.value); newData = (q===100 && tMime===item.format) ? item.originalDataUrl : gen(1.0, q/100);
             } else {
@@ -919,14 +1010,14 @@
         window.downloadSingleComp = function(id) {
             const item = batchFiles.find(b => b.id === id); if (!item || !item.compressedDataUrl) return;
             const ext = item.format === 'image/png' ? '.jpg' : `.${item.name.split('.').pop()}`;
-            const link = document.createElement('a'); link.href = item.compressedDataUrl; link.download = item.name.replace(/\.[^/.]+$/, "") + "_aex" + ext; link.click();
+            triggerDownload(item.compressedDataUrl, item.name.replace(/\.[^/.]+$/, "") + "_aex" + ext);
         }
 
         // ======================================================================
-        // TOOL 4: CROPPER
+        // TOOL 4: CROPPER (EXIF FIXED)
         // ======================================================================
         const cropInput = document.getElementById('crop-input'), cropInitUI = document.getElementById('crop-init-ui'), cropWorkspace = document.getElementById('crop-workspace'), cropImage = document.getElementById('crop-image'), cropDownloadBtn = document.getElementById('crop-download'), cropRatioSelect = document.getElementById('crop-ratio-select'), cropQualitySlider = document.getElementById('crop-quality-slider'), cropQualityVal = document.getElementById('crop-quality-val');
-        let cropper, cropOriginalMime = 'image/jpeg', cropOriginalName = 'image';
+        let cropper, cropOriginalMime = 'image/jpeg', cropOriginalName = 'image', cropOriginalDataUrl = '';
         
         cropQualitySlider.addEventListener('input', (e) => cropQualityVal.textContent = `${e.target.value}%`);
         cropInput.addEventListener('change', (e) => {
@@ -934,7 +1025,8 @@
                 const file = e.target.files[0]; cropOriginalMime = file.type; cropOriginalName = file.name.replace(/\.[^/.]+$/, "");
                 const reader = new FileReader();
                 reader.onload = (ev) => {
-                    cropInitUI.classList.add('hidden'); cropWorkspace.classList.remove('hidden'); cropImage.src = ev.target.result;
+                    cropOriginalDataUrl = ev.target.result;
+                    cropInitUI.classList.add('hidden'); cropWorkspace.classList.remove('hidden'); cropImage.src = cropOriginalDataUrl;
                     if (cropper) cropper.destroy(); cropper = new Cropper(cropImage, { viewMode: 1, background: false, zoomable: true, guides: true });
                 }; reader.readAsDataURL(file);
             }
@@ -944,9 +1036,13 @@
             if (!cropper) return;
             const cropCanvas = cropper.getCroppedCanvas();
             const outputQuality = parseInt(cropQualitySlider.value) / 100;
-            const dataUrl = cropCanvas.toDataURL(cropOriginalMime, outputQuality);
+            let dataUrl = cropCanvas.toDataURL(cropOriginalMime, outputQuality);
+            
+            // EXIF Fix: Transfer original EXIF to cropped image
+            dataUrl = transferExif(cropOriginalDataUrl, dataUrl, cropOriginalMime);
+
             let ext = 'jpg'; if(cropOriginalMime.includes('png')) ext = 'png'; if(cropOriginalMime.includes('webp')) ext = 'webp';
-            const link = document.createElement('a'); link.download = `${cropOriginalName}_aex.${ext}`; link.href = dataUrl; link.click(); showToast('Cropped successfully!');
+            triggerDownload(dataUrl, `${cropOriginalName}_aex.${ext}`); showToast('Cropped & Metadata preserved!');
         });
 
         // ======================================================================
@@ -982,23 +1078,26 @@
             }
             try {
                 if(metaExifObj.thumbnail) delete metaExifObj.thumbnail;
-                const exifStr = piexif.dump(metaExifObj), newDataUrl = piexif.insert(exifStr, metaCurrentDataUrl), link = document.createElement('a');
-                link.download = metaFileName.replace(/\.[^/.]+$/, "") + "_meta.jpg"; link.href = newDataUrl; link.click(); showToast("Saved successfully!");
+                const exifStr = piexif.dump(metaExifObj), newDataUrl = piexif.insert(exifStr, metaCurrentDataUrl);
+                triggerDownload(newDataUrl, metaFileName.replace(/\.[^/.]+$/, "") + "_meta.jpg"); showToast("Saved successfully!");
             } catch (e) { showToast("Error saving metadata", "error"); }
         });
 
         // ======================================================================
-        // TOOL 6: FORMAT CONVERTER
+        // TOOL 6: FORMAT CONVERTER (EXIF FIXED)
         // ======================================================================
         const imgConvInput = document.getElementById('img-conv-input'), imgConvInitUI = document.getElementById('img-conv-init-ui'), imgConvWorkspace = document.getElementById('img-conv-workspace'), imgConvPreview = document.getElementById('img-conv-preview'), imgConvDownloadBtn = document.getElementById('img-conv-download'), imgConvQualitySlider = document.getElementById('img-conv-quality'), imgConvQualityVal = document.getElementById('img-conv-quality-val');
-        let imgConvObj = null, imgConvFileName = '';
+        let imgConvObj = null, imgConvFileName = '', imgConvOriginalDataUrl = '';
         
         imgConvQualitySlider.addEventListener('input', (e) => imgConvQualityVal.textContent = `${e.target.value}%`);
         imgConvInput.addEventListener('change', (e) => { if(e.target.files.length) handleImgConvFile(e.target.files[0]); });
         
         function handleImgConvFile(file) {
             if (!file.type.match(/image.*/)) return; imgConvFileName = file.name; const reader = new FileReader();
-            reader.onload = (e) => { imgConvObj = new Image(); imgConvObj.onload = () => { imgConvPreview.src = e.target.result; imgConvInitUI.classList.add('hidden'); imgConvWorkspace.classList.remove('hidden'); }; imgConvObj.src = e.target.result; };
+            reader.onload = (e) => { 
+                imgConvOriginalDataUrl = e.target.result;
+                imgConvObj = new Image(); imgConvObj.onload = () => { imgConvPreview.src = imgConvOriginalDataUrl; imgConvInitUI.classList.add('hidden'); imgConvWorkspace.classList.remove('hidden'); }; imgConvObj.src = imgConvOriginalDataUrl; 
+            };
             reader.readAsDataURL(file);
         }
         imgConvDownloadBtn.addEventListener('click', () => {
@@ -1009,18 +1108,21 @@
             if (targetFormat === 'image/jpeg') { globalCtx.fillStyle = '#FFFFFF'; globalCtx.fillRect(0, 0, globalCanvas.width, globalCanvas.height); }
             globalCtx.drawImage(imgConvObj, 0, 0, globalCanvas.width, globalCanvas.height);
             
-            const link = document.createElement('a'); link.download = imgConvFileName.replace(/\.[^/.]+$/, "") + "_aex." + ext; 
-            link.href = globalCanvas.toDataURL(targetFormat, outputQuality); link.click(); showToast("Converted & Downloaded!");
+            let dataUrl = globalCanvas.toDataURL(targetFormat, outputQuality);
+            // EXIF Fix: Transfer if target is JPEG
+            dataUrl = transferExif(imgConvOriginalDataUrl, dataUrl, targetFormat);
+
+            triggerDownload(dataUrl, imgConvFileName.replace(/\.[^/.]+$/, "") + "_aex." + ext); showToast("Converted & Downloaded!");
         });
 
         // ======================================================================
-        // TOOL 7: PHOTO MERGE
+        // TOOL 7: PHOTO MERGE (EXIF FIXED)
         // ======================================================================
         const mergeInput1 = document.getElementById('merge-input-1'), mergePreview1 = document.getElementById('merge-preview-1'), mergeDrop1 = document.getElementById('merge-drop-1');
         const mergeInput2 = document.getElementById('merge-input-2'), mergePreview2 = document.getElementById('merge-preview-2'), mergeDrop2 = document.getElementById('merge-drop-2');
         const mergeDirection = document.getElementById('merge-direction'), mergeBtn = document.getElementById('merge-btn'), mergeResultContainer = document.getElementById('merge-result-container'), mergeResultPreview = document.getElementById('merge-result-preview'), mergeDownloadBtn = document.getElementById('merge-download-btn');
 
-        let mergeImgObj1 = null, mergeImgObj2 = null, mergedDataUrl = null;
+        let mergeImgObj1 = null, mergeImgObj2 = null, mergedDataUrl = null, mergeOriginalDataUrl1 = null;
 
         function handleMergeFile(file, isFirst) {
             if (!file.type.match(/image.*/)) return showToast("Select valid images", "error");
@@ -1030,10 +1132,11 @@
                 img.onload = () => {
                     if(isFirst) {
                         mergeImgObj1 = img; mergePreview1.src = e.target.result; mergePreview1.classList.remove('hidden');
-                        mergeDrop1.querySelector('i').classList.add('hidden'); mergeDrop1.querySelector('p').classList.add('hidden');
+                        mergeOriginalDataUrl1 = e.target.result; // For EXIF
+                        mergeDrop1.querySelectorAll('i, p').forEach(el => el.classList.add('hidden'));
                     } else {
                         mergeImgObj2 = img; mergePreview2.src = e.target.result; mergePreview2.classList.remove('hidden');
-                        mergeDrop2.querySelector('i').classList.add('hidden'); mergeDrop2.querySelector('p').classList.add('hidden');
+                        mergeDrop2.querySelectorAll('i, p').forEach(el => el.classList.add('hidden'));
                     }
                     if(mergeImgObj1 && mergeImgObj2) mergeBtn.disabled = false;
                 }; img.src = e.target.result;
@@ -1057,17 +1160,103 @@
                 globalCtx.clearRect(0, 0, globalCanvas.width, globalCanvas.height);
                 globalCtx.drawImage(mergeImgObj1, 0, 0); globalCtx.drawImage(mergeImgObj2, 0, mergeImgObj1.height, mergeImgObj1.width, img2NewHeight);
             }
+            
             mergedDataUrl = globalCanvas.toDataURL('image/jpeg', 1.0); 
+            // EXIF Fix: Transfer EXIF from first image to the merged output
+            mergedDataUrl = transferExif(mergeOriginalDataUrl1, mergedDataUrl, 'image/jpeg');
+
             mergeResultPreview.src = mergedDataUrl; mergeResultContainer.classList.remove('hidden'); showToast("Merged!");
         });
 
         mergeDownloadBtn.addEventListener('click', () => {
-            if(!mergedDataUrl) return;
-            const link = document.createElement('a'); link.download = `AEX_Merged.jpg`; link.href = mergedDataUrl; link.click();
+            if(!mergedDataUrl) return; triggerDownload(mergedDataUrl, `AEX_Merged.jpg`);
+        });
+
+        // ======================================================================
+        // TOOL 8: WATERMARK GENERATOR (NEW)
+        // ======================================================================
+        const wmInput = document.getElementById('wm-input'), wmInitUI = document.getElementById('wm-init-ui'), wmWorkspace = document.getElementById('wm-workspace'), wmPreviewCanvas = document.getElementById('wm-preview-canvas'), wmText = document.getElementById('wm-text'), wmColor = document.getElementById('wm-color'), wmSize = document.getElementById('wm-size'), wmSizeVal = document.getElementById('wm-size-val'), wmOpacity = document.getElementById('wm-opacity'), wmOpacityVal = document.getElementById('wm-opacity-val'), wmPosition = document.getElementById('wm-position'), wmDownloadBtn = document.getElementById('wm-download');
+        let wmImgObj = null, wmOriginalDataUrl = '', wmFileName = '';
+        const wmCtx = wmPreviewCanvas.getContext('2d');
+
+        wmSize.addEventListener('input', (e) => { wmSizeVal.textContent = e.target.value; renderWatermark(); });
+        wmOpacity.addEventListener('input', (e) => { wmOpacityVal.textContent = `${e.target.value}%`; renderWatermark(); });
+        wmText.addEventListener('input', renderWatermark);
+        wmColor.addEventListener('input', renderWatermark);
+        wmPosition.addEventListener('change', renderWatermark);
+
+        wmInput.addEventListener('change', (e) => {
+            if(e.target.files.length) {
+                const file = e.target.files[0];
+                if (!file.type.match(/image.*/)) return;
+                wmFileName = file.name;
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    wmOriginalDataUrl = ev.target.result;
+                    wmImgObj = new Image();
+                    wmImgObj.onload = () => {
+                        wmInitUI.classList.add('hidden'); wmWorkspace.classList.remove('hidden');
+                        renderWatermark();
+                    };
+                    wmImgObj.src = wmOriginalDataUrl;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function renderWatermark() {
+            if(!wmImgObj) return;
+            // Set canvas size to image size
+            wmPreviewCanvas.width = wmImgObj.width; wmPreviewCanvas.height = wmImgObj.height;
+            // Draw original image
+            wmCtx.drawImage(wmImgObj, 0, 0);
+
+            const text = wmText.value;
+            if(!text) return;
+
+            const fontSize = parseInt(wmSize.value) * (wmImgObj.width / 1000); // Scale font size based on image width
+            const opacity = parseInt(wmOpacity.value) / 100;
+            
+            // Convert hex color to rgba
+            const hex = wmColor.value.replace('#', '');
+            const r = parseInt(hex.substring(0,2), 16), g = parseInt(hex.substring(2,4), 16), b = parseInt(hex.substring(4,6), 16);
+
+            wmCtx.font = `bold ${fontSize}px Poppins, sans-serif`;
+            wmCtx.fillStyle = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+            wmCtx.textAlign = "left"; wmCtx.textBaseline = "top";
+
+            const padding = fontSize * 0.5;
+            const textMetrics = wmCtx.measureText(text);
+            const textWidth = textMetrics.width;
+            
+            let x, y;
+            switch(wmPosition.value) {
+                case 'top-left': x = padding; y = padding; break;
+                case 'top-right': x = wmPreviewCanvas.width - textWidth - padding; y = padding; break;
+                case 'bottom-left': x = padding; y = wmPreviewCanvas.height - fontSize - padding; break;
+                case 'bottom-right': x = wmPreviewCanvas.width - textWidth - padding; y = wmPreviewCanvas.height - fontSize - padding; break;
+                case 'center': x = (wmPreviewCanvas.width - textWidth) / 2; y = (wmPreviewCanvas.height - fontSize) / 2; break;
+            }
+
+            // Optional shadow for better visibility
+            wmCtx.shadowColor = `rgba(0, 0, 0, ${opacity * 0.8})`;
+            wmCtx.shadowBlur = fontSize * 0.1;
+            wmCtx.shadowOffsetX = 2; wmCtx.shadowOffsetY = 2;
+
+            wmCtx.fillText(text, x, y);
+        }
+
+        wmDownloadBtn.addEventListener('click', () => {
+            if(!wmImgObj) return;
+            // Save from the preview canvas
+            let finalDataUrl = wmPreviewCanvas.toDataURL('image/jpeg', 0.95);
+            // EXIF Fix!
+            finalDataUrl = transferExif(wmOriginalDataUrl, finalDataUrl, 'image/jpeg');
+
+            triggerDownload(finalDataUrl, wmFileName.replace(/\.[^/.]+$/, "") + "_watermark.jpg");
+            showToast("Watermark Added & Downloaded!");
         });
 
     </script>
 </body>
 </html>
-
-```
