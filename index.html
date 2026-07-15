@@ -20,523 +20,606 @@
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
                         stylish: ['Outfit', 'sans-serif'], 
-                        mono: ['Fira Code', 'monospace'],
                     },
                     colors: {
-                        brand: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#3b82f6', 600: '#2563eb', 900: '#1e3a8a' }, 
-                        accent: { 500: '#06b6d4', 600: '#0891b2' }
+                        brand: { 500: '#8b5cf6', 600: '#7c3aed' }, 
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; }
-        .dark body { background-color: #0f172a; color: #f8fafc; }
-        body { background-color: #f1f5f9; color: #1e293b; }
-
-        /* Premium Glassmorphism (AEX Style) */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            overflow-x: hidden; 
+            background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 50%, #e0e7ff 100%);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
         }
-        .dark .glass-panel {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        .dark body { 
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+            color: #f8fafc; 
         }
 
-        .glass-button {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        .dark .glass-button {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .glass-button:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
-        .dark .glass-button:hover { box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        /* Floating Blobs */
+        @keyframes float1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(40px, 50px); } }
+        @keyframes float2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-50px, 40px); } }
+        @keyframes float3 { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -50px); } }
+        .blob1 { animation: float1 12s ease-in-out infinite; }
+        .blob2 { animation: float2 14s ease-in-out infinite; }
+        .blob3 { animation: float3 10s ease-in-out infinite; }
+
+        /* Glass Panels */
+        .glass-3d-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            border-left: 1px solid rgba(255, 255, 255, 0.6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 32px;
+            box-shadow: 0 25px 45px rgba(31, 38, 135, 0.1), inset 0 4px 10px rgba(255, 255, 255, 0.4), inset 0 -4px 8px rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .dark .glass-3d-panel {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.2));
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+            border-right: 1px solid rgba(0, 0, 0, 0.4);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 4px 10px rgba(255, 255, 255, 0.05), inset 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Glass Buttons */
+        .glass-btn-3d {
+            background: linear-gradient(135deg, #d8b4fe, #b07cf0);
+            border-top: 2px solid rgba(255, 255, 255, 0.9);
+            border-left: 2px solid rgba(255, 255, 255, 0.8);
+            border-bottom: 2px solid rgba(176, 124, 240, 0.5);
+            border-right: 2px solid rgba(176, 124, 240, 0.5);
+            color: white;
+            box-shadow: 0 10px 20px rgba(176, 124, 240, 0.35), inset 0 4px 6px rgba(255, 255, 255, 0.6), inset 0 -4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .dark .glass-btn-3d {
+            background: linear-gradient(135deg, #8b5cf6, #5b21b6);
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            border-right: 2px solid rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4), inset 0 4px 6px rgba(255, 255, 255, 0.1);
+        }
+        .glass-btn-3d:active { transform: translateY(2px) scale(0.98); }
+
+        /* Glass Insets */
+        .glass-inset {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.7);
+            border-right: 1.5px solid rgba(255, 255, 255, 0.7);
+            box-shadow: inset 0 6px 12px rgba(31, 38, 135, 0.05), 0 2px 5px rgba(255, 255, 255, 0.4);
+        }
+        .dark .glass-inset {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.4); border-radius: 4px; }
-        .dark ::-webkit-scrollbar-thumb { background: rgba(71, 85, 105, 0.5); }
+        ::-webkit-scrollbar-thumb { background: rgba(176, 124, 240, 0.6); border-radius: 4px; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Tools Custom CSS */
-        .drop-zone { transition: all 0.3s ease; border: 2px dashed #94a3b8; border-radius: 1rem; }
-        .dark .drop-zone { border-color: #475569; }
-        .drop-zone.dragover { background-color: rgba(59, 130, 246, 0.1); border-color: #3b82f6; transform: scale(1.02); }
+        .drop-zone { transition: all 0.3s ease; border: 2px dashed #a78bfa; border-radius: 1.5rem; background: rgba(255,255,255,0.1); }
+        .dark .drop-zone { border-color: #6d28d9; background: rgba(0,0,0,0.2); }
+        .drop-zone.dragover { background-color: rgba(139, 92, 246, 0.15); border-color: #8b5cf6; transform: scale(1.02); }
         
-        .radio-custom:checked + label { background-color: #3b82f6; color: white; box-shadow: 0 4px 10px rgba(59,130,246,0.3); }
-        .dark .radio-custom:checked + label { background-color: #2563eb; }
+        input[type=range] { accent-color: #8b5cf6; }
         
-        input[type=range] { accent-color: #3b82f6; }
-        
-        .org-page-item { transition: transform 0.2s, box-shadow 0.2s; }
-        .org-page-item * { pointer-events: none; } 
-        .org-page-item.dragging { opacity: 0.5; transform: scale(0.95); }
-        .org-page-item.drag-over { border-color: #3b82f6; transform: scale(1.05); }
-        .org-page-item.deleted .canvas-container { opacity: 0.3; filter: grayscale(100%); }
-
-        .loader { border: 4px solid rgba(255,255,255,0.1); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; border-top-color: #3b82f6; }
+        .loader { border: 4px solid rgba(255,255,255,0.1); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; border-top-color: #8b5cf6; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        
+        /* Tabs Slider Animation */
+        #tabsSlider { transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; }
+        .tabs-closed { max-height: 0; opacity: 0; pointer-events: none; padding-top: 0; padding-bottom: 0; overflow: hidden; }
+        .tabs-open { max-height: 250px; opacity: 1; pointer-events: auto; padding-top: 1rem; padding-bottom: 1rem; overflow: visible; }
+
+        .tab-btn.active-tab {
+            background: linear-gradient(135deg, #d8b4fe, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .dark .tab-btn.active-tab {
+            background: linear-gradient(135deg, #8b5cf6, #5b21b6);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 flex flex-col relative min-h-screen transition-colors duration-300 selection:bg-brand-500 selection:text-white">
+<body class="text-slate-800 flex flex-col relative transition-colors duration-300 selection:bg-brand-500 selection:text-white">
 
-    <!-- Subtle Background Blobs -->
-    <div class="fixed top-[-10%] left-[-10%] w-80 h-80 bg-brand-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob z-[0] dark:bg-brand-900 dark:opacity-20 pointer-events-none"></div>
-    <div class="fixed top-[20%] right-[-10%] w-80 h-80 bg-accent-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob animation-delay-2000 z-[0] dark:bg-accent-900 dark:opacity-20 pointer-events-none"></div>
+    <div class="fixed top-[-5%] left-[-10%] w-[50vw] h-[50vw] bg-[#c4b5fd]/60 dark:bg-[#4c1d95]/40 rounded-full mix-blend-multiply filter blur-[90px] z-[0] pointer-events-none blob1"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-[#bae6fd]/60 dark:bg-[#1e3a8a]/40 rounded-full mix-blend-multiply filter blur-[100px] z-[0] pointer-events-none blob2"></div>
+    <div class="fixed top-[30%] left-[40%] w-[40vw] h-[40vw] bg-[#fbc2eb]/50 dark:bg-[#831843]/40 rounded-full mix-blend-multiply filter blur-[80px] z-[0] pointer-events-none blob3"></div>
 
-    <!-- ðŸ  DASHBOARD HEADER -->
-    <header class="fixed top-0 left-0 right-0 h-16 glass-panel z-50 flex items-center justify-between px-4 sm:px-6 transition-all duration-300 border-b border-white/20 dark:border-white/5">
+    <header class="fixed top-0 left-0 right-0 h-20 z-50 flex items-center justify-between px-4 sm:px-8 bg-white/10 dark:bg-black/10 backdrop-blur-md border-b border-white/20 dark:border-white/5">
         <div class="flex items-center gap-3">
-            <div class="p-1.5 bg-gradient-to-br from-brand-400 to-accent-500 rounded-lg shadow-sm hidden sm:flex">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-            </div>
-            <h1 class="text-2xl sm:text-3xl tracking-widest font-stylish font-bold text-slate-800 dark:text-white pt-0.5">AEX<span class="text-brand-500">TOOLS</span></h1>
+            <h1 class="text-3xl tracking-widest font-stylish font-extrabold text-slate-800 dark:text-white drop-shadow-sm">AEX<span class="text-brand-600 dark:text-brand-400">TOOLS</span></h1>
         </div>
-
         <div class="flex items-center gap-3">
-            <button onclick="toggleTheme()" class="glass-button p-2.5 rounded-full text-slate-700 dark:text-gray-200" title="Toggle Theme">
-                <svg id="sunIcon" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                <svg id="moonIcon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            <button onclick="toggleTheme()" class="glass-inset w-10 h-10 flex items-center justify-center rounded-full text-brand-600 dark:text-brand-300 hover:scale-105 transition-transform shadow-sm">
+                <i id="sunIcon" class="fa-solid fa-sun hidden text-lg"></i>
+                <i id="moonIcon" class="fa-solid fa-moon text-lg"></i>
+            </button>
+            <button onclick="toggleTabs()" class="glass-inset w-10 h-10 flex items-center justify-center rounded-full text-brand-600 dark:text-brand-300 hover:scale-105 transition-transform shadow-sm">
+                <i class="fa-solid fa-grip text-lg"></i>
             </button>
         </div>
     </header>
 
-    <main class="flex-grow pt-20 pb-12 px-3 sm:px-4 max-w-6xl mx-auto w-full relative z-10 flex flex-col">
-        
-        <!-- Tab Navigation (AEX Style Scrollable Pills) -->
-        <div id="stickyTabsWrapper" class="sticky top-16 z-40 mb-6 transition-transform duration-300 pt-2 w-full">
-            <div class="flex p-2.5 gap-3 glass-panel rounded-full overflow-x-auto w-fit max-w-full mx-auto shadow-lg no-scrollbar border border-white/20 dark:border-white/5">
-                
-                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold active-tab bg-gradient-to-br from-brand-500 to-cyan-500 text-white shadow-[0_5px_15px_rgba(59,130,246,0.4)]" data-target="tab-pdf-org">
-                    <i class="fa-solid fa-file-pdf"></i> PDF Organize
-                </button>
-                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800" data-target="tab-pdf-conv">
-                    <i class="fa-solid fa-file-export"></i> PDF Converter
-                </button>
-                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800" data-target="tab-img-comp">
+    <div id="tabsSlider" class="fixed top-20 left-0 right-0 z-40 bg-white/30 dark:bg-slate-900/40 backdrop-blur-xl border-b border-white/30 dark:border-white/5 shadow-lg tabs-closed">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-rows-2 grid-flow-col gap-x-3 gap-y-3 overflow-x-auto no-scrollbar items-center" style="grid-auto-columns: max-content;">
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold active-tab" data-target="tab-img-comp">
                     <i class="fa-solid fa-compress"></i> Compress
                 </button>
-                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800" data-target="tab-img-crop">
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-img-adjust">
+                    <i class="fa-solid fa-sliders"></i> Adjust Image
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-img-to-pdf">
+                    <i class="fa-solid fa-file-import"></i> Image to PDF
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-pdf-org">
+                    <i class="fa-solid fa-file-pdf"></i> Organize PDF
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-pdf-merge">
+                    <i class="fa-solid fa-layer-group"></i> Merge PDF
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-pdf-to-img">
+                    <i class="fa-solid fa-file-export"></i> PDF to JPG
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-img-crop">
                     <i class="fa-solid fa-crop-simple"></i> Cropper
                 </button>
-                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800" data-target="tab-img-meta">
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-img-curve">
+                    <i class="fa-solid fa-circle-notch"></i> Round Corners
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-img-meta">
                     <i class="fa-solid fa-tags"></i> EXIF Editor
                 </button>
-                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800" data-target="tab-img-conv">
-                    <i class="fa-solid fa-shuffle"></i> Format Convert
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-img-conv">
+                    <i class="fa-solid fa-shuffle"></i> Convert
                 </button>
-                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800" data-target="tab-img-merge">
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-img-merge">
                     <i class="fa-solid fa-object-group"></i> Merge Photos
                 </button>
-                <!-- à¤¨à¤¯à¤¾ à¤Ÿà¥ˆà¤¬: Watermark -->
-                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800" data-target="tab-img-watermark">
+                <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-800/50" data-target="tab-img-watermark">
                     <i class="fa-solid fa-copyright"></i> Watermark
                 </button>
-
             </div>
         </div>
+    </div>
 
-        <!-- TOOL 1: PDF ORGANIZE & MERGE -->
-        <div id="tab-pdf-org" class="tab-content glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
-            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-layer-group text-brand-500 mr-2"></i>Organize & Delete PDF Pages</h2>
+    <main class="flex-grow pt-28 pb-12 px-3 sm:px-4 max-w-5xl mx-auto w-full relative z-10 flex flex-col items-center justify-center">
+        
+        <!-- TOOL 1: AUTO PHOTO COMPRESSOR -->
+        <div id="tab-img-comp" class="tab-content glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-compress text-brand-500 mr-2 drop-shadow"></i>Auto Compress</h2>
             
-            <div class="flex justify-center mb-8">
-                <div class="bg-slate-200 dark:bg-slate-800 p-1.5 rounded-2xl inline-flex shadow-inner">
-                    <input type="radio" name="org_mode" id="mode_organize" value="organize" class="hidden radio-custom" checked>
-                    <label for="mode_organize" class="px-6 py-2.5 rounded-xl cursor-pointer font-bold text-slate-600 dark:text-slate-300 transition-all text-sm sm:text-base">Organize / Delete</label>
-                    <input type="radio" name="org_mode" id="mode_merge" value="merge" class="hidden radio-custom">
-                    <label for="mode_merge" class="px-6 py-2.5 rounded-xl cursor-pointer font-bold text-slate-600 dark:text-slate-300 transition-all text-sm sm:text-base">Merge PDFs</label>
-                </div>
-            </div>
-
-            <input type="file" id="org-input" class="hidden" accept="application/pdf" multiple>
-            <div id="org-init-ui" class="drop-zone p-12 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50" onclick="document.getElementById('org-input').click()">
-                <i id="org-icon" class="fa-solid fa-file-pdf text-5xl text-brand-500 mb-4 drop-shadow-sm"></i>
-                <h3 id="org-title" class="text-xl font-bold text-slate-800 dark:text-white">Select PDF Document</h3>
-                <p id="org-desc" class="text-slate-500 dark:text-slate-400 mt-2 text-sm font-medium">Visually delete pages or reorder them via drag & drop</p>
+            <div id="comp-drop-zone" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('comp-input').click()">
+                <i class="fa-solid fa-images text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Photos</h3>
+                <input type="file" id="comp-input" class="hidden" accept="image/jpeg, image/png, image/webp" multiple>
             </div>
             
-            <div id="org-workspace" class="hidden">
-                <div class="bg-slate-100 dark:bg-slate-800/80 p-5 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center mb-6">
-                    <div>
-                        <p class="font-bold text-slate-800 dark:text-white truncate max-w-md text-lg" id="org-file-name">Selected File.pdf</p>
-                        <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">Click to delete. Drag to reorder.</p>
+            <div id="comp-workspace" class="hidden mt-4">
+                <div class="glass-inset p-5 rounded-3xl flex flex-col md:flex-row gap-6 items-center mb-6">
+                    <div class="w-full md:w-1/3">
+                        <div class="flex bg-white/30 dark:bg-black/30 p-1.5 rounded-2xl border border-white/20">
+                            <button id="mode-quality-btn" class="flex-1 py-2 text-sm font-bold rounded-xl bg-brand-500 text-white shadow-md transition-all">Quality</button>
+                            <button id="mode-size-btn" class="flex-1 py-2 text-sm font-bold rounded-xl text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-all">Size</button>
+                        </div>
                     </div>
-                    <div class="mt-4 md:mt-0 flex gap-3 w-full md:w-auto">
-                        <button onclick="document.getElementById('org-input').click()" class="flex-1 md:flex-none px-5 py-2.5 bg-slate-200 dark:bg-slate-700 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-600 text-sm font-bold transition-colors">Change File</button>
-                        <button id="org-process-btn" class="flex-1 md:flex-none px-6 py-2.5 bg-brand-500 text-white rounded-xl hover:bg-brand-600 font-bold shadow-md transition-all active:scale-95"><i class="fa-solid fa-save mr-2"></i>Apply</button>
-                    </div>
-                </div>
-
-                <div id="org-page-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-6"></div>
-
-                <div id="org-merge-ui" class="hidden mb-6 bg-slate-100 dark:bg-slate-800/80 p-8 rounded-2xl text-center">
-                    <p class="text-slate-600 dark:text-slate-300 mb-6 font-medium">All selected PDFs will be merged into a single document.</p>
-                    <button id="org-merge-process-btn" class="px-10 py-3.5 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-object-group mr-2"></i>Merge PDFs Now</button>
-                </div>
-
-                <div id="org-result-box" class="hidden bg-green-500/10 border border-green-500/30 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-center shadow-inner gap-4">
-                    <div class="text-center sm:text-left">
-                        <h4 class="font-bold text-green-600 dark:text-green-400 mb-1 text-lg"><i class="fa-solid fa-circle-check mr-2"></i>Document Ready!</h4>
-                        <p class="text-sm font-medium text-green-700 dark:text-green-500/80">New File Size: <span id="org-new-size" class="font-bold text-slate-800 dark:text-white"></span></p>
-                    </div>
-                    <button id="org-download-btn" class="w-full sm:w-auto px-8 py-3 bg-brand-500 text-white rounded-xl hover:bg-brand-600 font-bold shadow-lg transition-all active:scale-95"><i class="fa-solid fa-download mr-2"></i>Download</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- TOOL 2: PDF CONVERTER -->
-        <div id="tab-pdf-conv" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
-            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-file-export text-brand-500 mr-2"></i>PDF Format Converter</h2>
-            
-            <div class="flex justify-center mb-8">
-                <div class="bg-slate-200 dark:bg-slate-800 p-1.5 rounded-2xl inline-flex shadow-inner">
-                    <input type="radio" name="conv_mode" id="mode_pdf2img" value="pdf2img" class="hidden radio-custom" checked>
-                    <label for="mode_pdf2img" class="px-6 py-2.5 rounded-xl cursor-pointer font-bold text-slate-600 dark:text-slate-300 transition-all text-sm sm:text-base">PDF to JPG</label>
-                    <input type="radio" name="conv_mode" id="mode_img2pdf" value="img2pdf" class="hidden radio-custom">
-                    <label for="mode_img2pdf" class="px-6 py-2.5 rounded-xl cursor-pointer font-bold text-slate-600 dark:text-slate-300 transition-all text-sm sm:text-base">Image to PDF</label>
-                </div>
-            </div>
-
-            <div id="conv-drop-zone" class="drop-zone p-12 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50" onclick="document.getElementById('conv-input').click()">
-                <i id="conv-icon" class="fa-solid fa-file-image text-5xl text-brand-500 mb-4 drop-shadow-sm"></i>
-                <h3 id="conv-title" class="text-xl font-bold text-slate-800 dark:text-white">Select PDF File</h3>
-                <input type="file" id="conv-input" class="hidden" accept="application/pdf">
-                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm font-medium">Drag & Drop is supported</p>
-            </div>
-
-            <div id="conv-workspace" class="hidden mt-6">
-                <div class="bg-slate-100 dark:bg-slate-800/80 p-6 rounded-2xl shadow-sm flex flex-col md:flex-row gap-6 items-center mb-6">
-                    <div class="flex-1 w-full border-b md:border-b-0 md:border-r border-slate-300 dark:border-slate-700 pb-4 md:pb-0 pr-0 md:pr-4 text-center md:text-left">
-                        <p class="font-bold text-slate-800 dark:text-white mb-1 truncate text-lg" id="conv-file-name">Selected File</p>
-                        <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Size: <span id="conv-orig-size" class="font-bold text-slate-700 dark:text-slate-200"></span></p>
-                    </div>
-                    <div class="flex-1 w-full">
-                        <h3 class="font-bold text-slate-600 dark:text-slate-300 mb-3 text-xs uppercase tracking-wider flex justify-between">
-                            <span>Image Quality Output</span><span id="conv-quality-val" class="text-brand-500 font-bold bg-brand-500/10 px-2 py-0.5 rounded">80%</span>
-                        </h3>
-                        <input type="range" id="conv-quality-slider" min="10" max="100" value="80" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer">
+                    <div class="w-full md:w-2/3 relative h-14 flex items-center">
+                        <div id="control-quality" class="w-full absolute transition-opacity duration-300">
+                            <label class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-3 uppercase tracking-wider">
+                                <span>Quality</span><span id="comp-quality-val" class="text-brand-600 dark:text-brand-300 font-bold bg-white/50 dark:bg-black/50 px-2 py-0.5 rounded shadow-sm">80%</span>
+                            </label>
+                            <input type="range" id="comp-slider" min="10" max="100" value="80" class="w-full h-2 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+                        <div id="control-size" class="w-full absolute opacity-0 pointer-events-none transition-opacity duration-300">
+                            <label class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase tracking-wider"><span>Target Size (KB)</span></label>
+                            <input type="number" id="comp-target-kb" placeholder="e.g. 50" value="50" class="w-full px-4 py-2.5 glass-inset font-bold outline-none text-slate-800 dark:text-white">
+                        </div>
                     </div>
                 </div>
                 
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <button onclick="document.getElementById('conv-input').click()" class="w-full sm:w-1/3 py-3.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition font-bold">Choose Another</button>
-                    <button id="conv-process-btn" class="w-full sm:w-2/3 py-3.5 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-gears mr-2"></i>Start Conversion</button>
-                </div>
-
-                <div id="conv-result-box" class="hidden mt-6 bg-green-500/10 border border-green-500/30 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-center shadow-inner gap-4">
-                    <div class="text-center sm:text-left">
-                        <h4 class="font-bold text-green-600 dark:text-green-400 mb-1 text-lg"><i class="fa-solid fa-circle-check mr-2"></i>Conversion Complete!</h4>
-                        <p class="text-sm font-medium text-green-700 dark:text-green-500/80">New File Size: <span id="conv-new-size" class="font-bold text-slate-800 dark:text-white"></span></p>
-                    </div>
-                    <button id="conv-download-btn" class="w-full sm:w-auto px-8 py-3 bg-brand-500 text-white rounded-xl hover:bg-brand-600 font-bold shadow-lg transition-all active:scale-95"><i class="fa-solid fa-download mr-2"></i>Download</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- TOOL 3: PHOTO COMPRESSOR (With EXIF Fix) -->
-        <div id="tab-img-comp" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
-            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-compress text-brand-500 mr-2"></i>Batch Photo Compressor</h2>
-            
-            <div id="comp-drop-zone" class="drop-zone p-12 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50">
-                <i class="fa-solid fa-images text-5xl text-brand-500 mb-4 drop-shadow-sm"></i>
-                <h3 class="text-xl font-bold text-slate-800 dark:text-white">Select Multiple Photos</h3>
-                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm font-medium">Drag & Drop supported (JPG, PNG, WEBP)</p>
-                <input type="file" id="comp-input" class="hidden" accept="image/jpeg, image/png, image/webp" multiple>
-                <button onclick="document.getElementById('comp-input').click()" class="mt-6 px-8 py-3 bg-brand-500 text-white font-bold rounded-xl shadow-md hover:bg-brand-600 transition-all active:scale-95">Browse Files</button>
-            </div>
-            
-            <div id="comp-workspace" class="hidden mt-6">
-                <div class="bg-slate-100 dark:bg-slate-800/80 p-6 rounded-2xl shadow-sm flex flex-col md:flex-row gap-6 items-center mb-6">
-                    <div class="w-full md:w-1/3 flex flex-col">
-                        <label class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">Compression Mode</label>
-                        <div class="flex bg-slate-200 dark:bg-slate-900 p-1.5 rounded-xl shadow-inner">
-                            <button id="mode-quality-btn" class="flex-1 py-2 text-sm font-bold rounded-lg bg-brand-500 text-white shadow-md transition-all">Quality</button>
-                            <button id="mode-size-btn" class="flex-1 py-2 text-sm font-bold rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white transition-all">Target Size</button>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-2/3 relative h-16 flex items-center mt-2 md:mt-0">
-                        <div id="control-quality" class="w-full absolute transition-opacity duration-300">
-                            <label class="flex justify-between text-xs font-bold text-slate-500 dark:text-slate-400 mb-3 uppercase tracking-wider">
-                                <span>Image Quality</span><span id="comp-quality-val" class="text-brand-500 font-bold bg-brand-500/10 px-2 py-0.5 rounded">80%</span>
-                            </label>
-                            <input type="range" id="comp-slider" min="10" max="100" value="80" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer">
-                        </div>
-                        <div id="control-size" class="w-full absolute opacity-0 pointer-events-none transition-opacity duration-300">
-                            <label class="flex justify-between text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider"><span>Exact Target Size (in KB)</span></label>
-                            <div class="flex gap-2">
-                                <input type="number" id="comp-target-kb" placeholder="e.g. 50" value="50" class="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white rounded-xl outline-none focus:border-brand-500 transition-colors font-bold">
-                                <button id="apply-size-btn" class="px-6 py-2.5 bg-slate-800 dark:bg-slate-700 text-white font-bold text-sm rounded-xl hover:bg-slate-700 dark:hover:bg-slate-600 transition-colors shadow-sm">Apply</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-xs text-brand-500 dark:text-brand-400 font-medium mb-4 text-center"><i class="fa-solid fa-circle-info mr-1"></i>EXIF Metadata (Date/Time/Location) is preserved automatically for JPEGs.</p>
-                <div class="flex flex-col sm:flex-row gap-3 mb-6">
-                    <button id="comp-add-more" onclick="document.getElementById('comp-input').click()" class="w-full sm:w-1/3 py-3.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition font-bold border border-slate-300 dark:border-slate-600 border-dashed"><i class="fa-solid fa-plus mr-2"></i>Add More</button>
-                    <button id="comp-download-all" class="w-full sm:w-2/3 py-3.5 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-download mr-2"></i>Download All Compressed</button>
+                <div class="flex gap-4 mb-6">
+                    <button onclick="document.getElementById('comp-input').click()" class="flex-1 py-3.5 glass-inset font-bold text-slate-800 dark:text-white rounded-2xl shadow-sm hover:scale-[1.02] transition-transform">Add More</button>
+                    <button id="comp-download-all" class="flex-1 py-3.5 glass-btn-3d font-bold text-lg rounded-2xl"><i class="fa-solid fa-download mr-2"></i>Save All</button>
                 </div>
                 
                 <div id="comp-gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
             </div>
         </div>
 
-        <!-- TOOL 4: PHOTO CROPPER (With EXIF Fix) -->
-        <div id="tab-img-crop" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
-            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-crop-simple text-brand-500 mr-2"></i>Smart Photo Cropper</h2>
+        <!-- TOOL 2: ADJUST IMAGE -->
+        <div id="tab-img-adjust" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-sliders text-brand-500 mr-2 drop-shadow"></i>Adjust Colors</h2>
             
-            <input type="file" id="crop-input" class="hidden" accept="image/*">
-            <div id="crop-init-ui" class="drop-zone p-12 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50" onclick="document.getElementById('crop-input').click()">
-                <i class="fa-regular fa-image text-5xl text-brand-500 mb-4 drop-shadow-sm"></i>
-                <h3 class="text-xl font-bold text-slate-800 dark:text-white">Select Photo to Crop</h3>
-                <button class="mt-6 px-8 py-3 bg-brand-500 text-white font-bold rounded-xl shadow-md hover:bg-brand-600 transition-all active:scale-95">Browse Files</button>
+            <input type="file" id="adj-input" class="hidden" accept="image/*">
+            <div id="adj-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('adj-input').click()">
+                <i class="fa-solid fa-wand-magic-sparkles text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Image</h3>
             </div>
             
+            <div id="adj-workspace" class="hidden flex flex-col lg:flex-row gap-6 mt-4">
+                <div class="w-full lg:w-3/5 glass-inset rounded-3xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center p-4">
+                    <img id="adj-preview" src="" class="max-w-full max-h-[500px] object-contain rounded-xl shadow-lg transition-all duration-100">
+                </div>
+                <div class="w-full lg:w-2/5 flex flex-col gap-4">
+                    <div class="glass-inset p-6 rounded-3xl flex-grow flex flex-col gap-4">
+                        
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase"><span>Brightness</span><span id="adj-bri-val">100%</span></div>
+                            <input type="range" id="adj-bri" min="0" max="200" value="100" class="w-full h-1.5 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase"><span>Contrast</span><span id="adj-con-val">100%</span></div>
+                            <input type="range" id="adj-con" min="0" max="200" value="100" class="w-full h-1.5 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase"><span>Saturation</span><span id="adj-sat-val">100%</span></div>
+                            <input type="range" id="adj-sat" min="0" max="200" value="100" class="w-full h-1.5 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase"><span>Hue Rotate</span><span id="adj-hue-val">0°</span></div>
+                            <input type="range" id="adj-hue" min="0" max="360" value="0" class="w-full h-1.5 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase"><span>Sepia</span><span id="adj-sep-val">0%</span></div>
+                            <input type="range" id="adj-sep" min="0" max="100" value="0" class="w-full h-1.5 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="document.getElementById('adj-input').click()" class="flex-1 py-4 glass-inset text-slate-800 dark:text-white rounded-2xl hover:scale-[1.02] transition-transform font-bold text-sm">Change</button>
+                        <button id="adj-download-btn" class="w-2/3 py-4 glass-btn-3d font-bold text-lg rounded-2xl"><i class="fa-solid fa-download mr-2"></i>Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOOL 3: IMAGE TO PDF -->
+        <div id="tab-img-to-pdf" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-file-import text-brand-500 mr-2 drop-shadow"></i>Images to PDF</h2>
+            
+            <input type="file" id="i2p-input" class="hidden" accept="image/*" multiple>
+            <div id="i2p-drop-zone" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('i2p-input').click()">
+                <i class="fa-solid fa-images text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Images</h3>
+            </div>
+
+            <div id="i2p-workspace" class="hidden mt-4">
+                <div class="glass-inset p-6 rounded-3xl flex flex-col lg:flex-row gap-6 items-center mb-6">
+                    <div class="w-full lg:w-1/3 text-center lg:text-left">
+                        <p class="font-bold text-slate-800 dark:text-white text-xl" id="i2p-file-name">0 Images</p>
+                    </div>
+                    <div class="w-full lg:w-2/3 flex flex-col sm:flex-row gap-4 items-center">
+                        <div class="flex-1 w-full">
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase tracking-wide">Format</label>
+                            <select id="i2p-page-size" class="w-full appearance-none py-3 px-4 glass-inset focus:outline-none text-slate-800 dark:text-white font-bold transition text-sm">
+                                <option value="original">Original Size</option>
+                                <option value="a4">Standard A4</option>
+                            </select>
+                        </div>
+                        <div class="flex-1 w-full">
+                            <!-- UPDATE 1: PDF COMPRESSION SLIDER -->
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase tracking-wide flex justify-between">
+                                <span>Image Quality</span><span id="i2p-quality-val" class="text-brand-600 dark:text-brand-300">80%</span>
+                            </label>
+                            <input type="range" id="i2p-quality-slider" min="10" max="100" value="80" class="w-full h-2 mt-2 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button onclick="document.getElementById('i2p-input').click()" class="px-6 py-4 glass-inset font-bold text-slate-800 dark:text-white rounded-2xl shadow-sm hover:scale-[1.02] transition-transform">Reselect</button>
+                    <button id="i2p-process-btn" class="flex-1 py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-file-pdf mr-2"></i>Create PDF</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOOL 4: PDF ORGANIZE -->
+        <div id="tab-pdf-org" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-file-pdf text-brand-500 mr-2 drop-shadow"></i>Organize Pages</h2>
+            
+            <input type="file" id="org-input" class="hidden" accept="application/pdf">
+            <div id="org-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('org-input').click()">
+                <i class="fa-solid fa-file-pdf text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select PDF</h3>
+            </div>
+            
+            <div id="org-workspace" class="hidden">
+                <div class="glass-inset p-5 rounded-3xl flex flex-col md:flex-row justify-between items-center mb-6">
+                    <div>
+                        <p class="font-bold text-slate-800 dark:text-white truncate max-w-md text-xl" id="org-file-name">File.pdf</p>
+                    </div>
+                    <div class="mt-4 md:mt-0 flex gap-4 w-full md:w-auto">
+                        <button onclick="document.getElementById('org-input').click()" class="px-5 py-3 glass-inset text-sm font-bold rounded-2xl hover:scale-[1.02] transition-transform text-slate-800 dark:text-white">Change</button>
+                        <button id="org-process-btn" class="px-6 py-3 glass-btn-3d font-bold text-sm rounded-2xl"><i class="fa-solid fa-save mr-2"></i>Apply Changes</button>
+                    </div>
+                </div>
+                <div id="org-page-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-6"></div>
+                
+                <div id="org-result-box" class="hidden glass-inset bg-green-500/10 p-5 rounded-3xl flex justify-between items-center mt-4 border-green-500/30">
+                    <p class="font-bold text-green-700 dark:text-green-400">Ready to download!</p>
+                    <button id="org-download-btn" class="px-6 py-3 bg-green-500 text-white rounded-2xl hover:bg-green-600 font-bold shadow-lg transition-all active:scale-95"><i class="fa-solid fa-download mr-2"></i>Download</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOOL 5: PDF MERGE -->
+        <div id="tab-pdf-merge" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-layer-group text-brand-500 mr-2 drop-shadow"></i>Merge PDFs</h2>
+            <input type="file" id="merge-pdf-input" class="hidden" accept="application/pdf" multiple>
+            <div id="merge-pdf-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('merge-pdf-input').click()">
+                <i class="fa-solid fa-layer-group text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select PDFs</h3>
+            </div>
+            <div id="merge-pdf-workspace" class="hidden">
+                <div class="glass-inset p-6 rounded-3xl flex justify-between items-center mb-8">
+                    <p class="font-bold text-slate-800 dark:text-white text-xl" id="merge-pdf-file-name">0 Files</p>
+                    <button onclick="document.getElementById('merge-pdf-input').click()" class="px-6 py-3 glass-inset rounded-2xl font-bold hover:scale-[1.02] text-slate-800 dark:text-white transition-transform">Reselect</button>
+                </div>
+                <button id="merge-pdf-process-btn" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-object-group mr-2"></i>Merge</button>
+            </div>
+        </div>
+
+        <!-- TOOL 6: PDF TO JPG -->
+        <div id="tab-pdf-to-img" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-file-export text-brand-500 mr-2 drop-shadow"></i>PDF to JPG</h2>
+            <input type="file" id="p2i-input" class="hidden" accept="application/pdf">
+            <div id="p2i-drop-zone" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('p2i-input').click()">
+                <i class="fa-solid fa-file-image text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select PDF</h3>
+            </div>
+            <div id="p2i-workspace" class="hidden mt-4">
+                <div class="glass-inset p-6 rounded-3xl flex flex-col md:flex-row gap-6 items-center mb-6">
+                    <div class="flex-1 w-full text-center md:text-left border-b md:border-b-0 md:border-r border-white/20 pb-4 md:pb-0 pr-0 md:pr-4">
+                        <p class="font-bold text-slate-800 dark:text-white text-xl truncate" id="p2i-file-name">File</p>
+                    </div>
+                    <div class="flex-1 w-full">
+                        <h3 class="font-bold text-slate-600 dark:text-slate-300 mb-3 text-xs uppercase tracking-wider flex justify-between">
+                            <span>Image Quality</span><span id="p2i-quality-val" class="text-brand-600 dark:text-brand-300 font-bold">80%</span>
+                        </h3>
+                        <input type="range" id="p2i-quality-slider" min="10" max="100" value="80" class="w-full h-2 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <button onclick="document.getElementById('p2i-input').click()" class="px-6 py-4 glass-inset text-slate-800 dark:text-white rounded-2xl hover:scale-[1.02] transition-transform font-bold">Change</button>
+                    <button id="p2i-process-btn" class="flex-1 py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-gears mr-2"></i>Extract ZIP</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOOL 7: PHOTO CROPPER -->
+        <div id="tab-img-crop" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-crop-simple text-brand-500 mr-2 drop-shadow"></i>Smart Cropper</h2>
+            <input type="file" id="crop-input" class="hidden" accept="image/*">
+            <div id="crop-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('crop-input').click()">
+                <i class="fa-regular fa-image text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Photo</h3>
+            </div>
             <div id="crop-workspace" class="hidden">
                 <div class="flex flex-col lg:flex-row gap-6">
-                    <div class="w-full lg:w-2/3 bg-slate-900 rounded-2xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center relative border border-slate-700">
+                    <div class="w-full lg:w-2/3 glass-inset rounded-3xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center relative">
                         <img id="crop-image" src="" alt="To crop" class="max-w-full max-h-full">
                     </div>
                     <div class="w-full lg:w-1/3 flex flex-col gap-5">
-                        <div class="bg-slate-100 dark:bg-slate-800/80 p-6 rounded-2xl shadow-sm">
-                            <h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-3 uppercase tracking-wider">Aspect Ratio</h3>
-                            <div class="relative">
-                                <select id="crop-ratio-select" class="w-full appearance-none py-3 px-4 border border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-900 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-bold transition cursor-pointer">
-                                    <option value="NaN">Free (Custom)</option>
-                                    <option value="1">1:1 (Square)</option>
-                                    <option value="1.3333333333">4:3 (Standard)</option>
-                                    <option value="0.75">3:4 (Portrait)</option>
-                                    <option value="1.7777777777">16:9 (Widescreen)</option>
-                                    <option value="0.5625">9:16 (Story/Reels)</option>
-                                    <option value="1.5">3:2 (Classic)</option>
-                                    <option value="0.8">4:5 (Insta Portrait)</option>
-                                </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500"><i class="fa-solid fa-chevron-down"></i></div>
-                            </div>
+                        <div class="glass-inset p-6 rounded-3xl">
+                            <h3 class="text-xs font-bold text-slate-600 dark:text-slate-300 mb-3 uppercase tracking-wider">Aspect Ratio</h3>
+                            <select id="crop-ratio-select" class="w-full appearance-none py-3 px-4 glass-inset focus:outline-none text-slate-800 dark:text-white font-bold transition text-sm">
+                                <option value="NaN">Free</option>
+                                <option value="1">1:1 (Square)</option>
+                                <option value="1.3333333333">4:3</option>
+                                <option value="0.5625">9:16 (Story)</option>
+                            </select>
                         </div>
-                        <div class="bg-slate-100 dark:bg-slate-800/80 p-6 rounded-2xl shadow-sm">
-                            <h3 class="font-bold text-slate-600 dark:text-slate-300 mb-3 text-xs uppercase tracking-wider flex justify-between">
-                                <span>Output Quality</span><span id="crop-quality-val" class="text-brand-500 font-bold bg-brand-500/10 px-2 py-0.5 rounded">100%</span>
-                            </h3>
-                            <input type="range" id="crop-quality-slider" min="10" max="100" value="100" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer">
-                        </div>
-                        <div class="mt-auto flex flex-col gap-3">
-                            <button id="crop-download" class="w-full py-4 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-crop mr-2"></i>Crop & Download (EXIF Safe)</button>
-                            <button onclick="document.getElementById('crop-input').click()" class="w-full py-3 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition font-bold">Choose Another</button>
+                        <div class="mt-auto flex flex-col gap-4">
+                            <button id="crop-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-crop mr-2"></i>Crop</button>
+                            <button onclick="document.getElementById('crop-input').click()" class="w-full py-3 glass-inset text-slate-800 dark:text-white rounded-2xl font-bold hover:scale-[1.02] transition-transform">Change</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TOOL 5: METADATA EDITOR -->
-        <div id="tab-img-meta" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
-            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-tags text-brand-500 mr-2"></i>EXIF Metadata Editor</h2>
-            
-            <input type="file" id="meta-input" class="hidden" accept="image/jpeg">
-            <div id="meta-init-ui" class="drop-zone p-12 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50" onclick="document.getElementById('meta-input').click()">
-                <i class="fa-solid fa-camera-retro text-5xl text-brand-500 mb-4 drop-shadow-sm"></i>
-                <h3 class="text-xl font-bold text-slate-800 dark:text-white">Select JPEG Photo</h3>
-                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm font-medium">View or Edit Date and Time EXIF data</p>
+        <!-- TOOL 8: ROUND CORNERS -->
+        <div id="tab-img-curve" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-circle-notch text-brand-500 mr-2 drop-shadow"></i>Round Corners</h2>
+            <input type="file" id="curve-input" class="hidden" accept="image/*">
+            <div id="curve-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('curve-input').click()">
+                <i class="fa-solid fa-shapes text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Photo</h3>
             </div>
-            
+            <div id="curve-workspace" class="hidden flex flex-col lg:flex-row gap-6 mt-4">
+                <div class="w-full lg:w-2/3 glass-inset rounded-3xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center relative checkerboard-bg">
+                    <style>.checkerboard-bg { background-image: linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%), linear-gradient(-45deg, rgba(0,0,0,0.1) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.1) 75%), linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.1) 75%); background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px; }</style>
+                    <canvas id="curve-preview-canvas" class="max-w-full max-h-[500px] object-contain drop-shadow-2xl"></canvas>
+                </div>
+                <div class="w-full lg:w-1/3 flex flex-col gap-4">
+                    <div class="glass-inset p-6 rounded-3xl flex-grow">
+                        <h3 class="font-bold text-slate-600 dark:text-slate-300 mb-4 text-xs uppercase tracking-wider flex justify-between">
+                            <span>Border Radius</span><span id="curve-radius-val" class="text-brand-600 dark:text-brand-300 font-bold">50px</span>
+                        </h3>
+                        <input type="range" id="curve-radius" min="0" max="500" value="50" class="w-full h-2 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
+                    </div>
+                    <div class="mt-auto flex flex-col gap-4">
+                        <button id="curve-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-download mr-2"></i>Save PNG</button>
+                        <button onclick="document.getElementById('curve-input').click()" class="w-full py-3 glass-inset text-slate-800 dark:text-white rounded-2xl hover:scale-[1.02] transition-transform font-bold">Change</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOOL 9: METADATA EDITOR -->
+        <div id="tab-img-meta" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-tags text-brand-500 mr-2 drop-shadow"></i>EXIF Metadata</h2>
+            <input type="file" id="meta-input" class="hidden" accept="image/jpeg">
+            <div id="meta-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('meta-input').click()">
+                <i class="fa-solid fa-camera-retro text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select JPEG</h3>
+            </div>
             <div id="meta-workspace" class="hidden flex flex-col lg:flex-row gap-6">
-                <div class="w-full lg:w-2/3 bg-slate-900 rounded-2xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center relative p-4 border border-slate-700">
+                <div class="w-full lg:w-2/3 glass-inset rounded-3xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center p-4">
                     <img id="meta-preview" class="max-w-full max-h-[500px] object-contain rounded-xl shadow-lg" src="">
                 </div>
                 <div class="w-full lg:w-1/3 flex flex-col gap-5">
-                    <div class="bg-slate-100 dark:bg-slate-800/80 p-6 rounded-2xl shadow-sm flex-grow">
-                        <h3 class="font-bold text-slate-800 dark:text-white text-lg mb-6 flex items-center"><i class="fa-regular fa-calendar-days mr-2 text-brand-500"></i>Edit Date & Time</h3>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Original Camera Date</label>
-                            <input type="datetime-local" step="1" id="meta-datetime" class="w-full px-4 py-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-bold shadow-sm transition">
-                        </div>
+                    <div class="glass-inset p-6 rounded-3xl flex-grow">
+                        <h3 class="font-bold text-slate-800 dark:text-white text-lg mb-6 flex items-center"><i class="fa-regular fa-calendar-days mr-2 text-brand-500"></i>Date & Time</h3>
+                        <input type="datetime-local" step="1" id="meta-datetime" class="w-full px-4 py-3.5 glass-inset focus:outline-none text-slate-800 dark:text-white font-bold transition text-sm">
                     </div>
-                    <div class="mt-auto flex flex-col gap-3">
-                        <button id="meta-download" class="w-full py-4 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-floppy-disk mr-2"></i>Save & Download</button>
-                        <button onclick="document.getElementById('meta-input').click()" class="w-full py-3 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition font-bold">Choose Another</button>
+                    <div class="mt-auto flex flex-col gap-4">
+                        <button id="meta-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-floppy-disk mr-2"></i>Save</button>
+                        <button onclick="document.getElementById('meta-input').click()" class="w-full py-3 glass-inset text-slate-800 dark:text-white rounded-2xl hover:scale-[1.02] transition-transform font-bold">Change</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TOOL 6: IMAGE CONVERTER (With EXIF Fix) -->
-        <div id="tab-img-conv" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
-            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-shuffle text-brand-500 mr-2"></i>Image Format Converter</h2>
-            
+        <!-- TOOL 10: CONVERT FORMAT -->
+        <div id="tab-img-conv" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-shuffle text-brand-500 mr-2 drop-shadow"></i>Convert Format</h2>
             <input type="file" id="img-conv-input" class="hidden" accept="image/*">
-            <div id="img-conv-init-ui" class="drop-zone p-12 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50" onclick="document.getElementById('img-conv-input').click()">
-                <i class="fa-solid fa-photo-film text-5xl text-brand-500 mb-4 drop-shadow-sm"></i>
-                <h3 class="text-xl font-bold text-slate-800 dark:text-white">Select Photo to Convert</h3>
-                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm font-medium">Supports JPG, PNG, WEBP, BMP, GIF</p>
+            <div id="img-conv-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('img-conv-input').click()">
+                <i class="fa-solid fa-photo-film text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Image</h3>
             </div>
-            
             <div id="img-conv-workspace" class="hidden flex flex-col lg:flex-row gap-6 mt-4">
-                <div class="w-full lg:w-2/3 bg-slate-900 rounded-2xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center relative p-4 border border-slate-700">
+                <div class="w-full lg:w-2/3 glass-inset rounded-3xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center p-4">
                     <img id="img-conv-preview" src="" class="max-w-full max-h-[500px] object-contain rounded-xl shadow-lg">
                 </div>
                 <div class="w-full lg:w-1/3 flex flex-col gap-5">
-                    <div class="bg-slate-100 dark:bg-slate-800/80 p-6 rounded-2xl shadow-sm flex-grow">
-                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Target Format</label>
-                        <div class="relative mb-8">
-                            <select id="img-conv-format" class="w-full appearance-none py-3.5 px-4 border border-slate-300 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-900 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-bold transition cursor-pointer">
-                                <option value="image/jpeg">JPG / JPEG</option>
-                                <option value="image/png">PNG</option>
-                                <option value="image/webp">WEBP</option>
-                                <option value="image/bmp">BMP</option>
-                                <option value="image/gif">GIF</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500"><i class="fa-solid fa-chevron-down"></i></div>
-                        </div>
-                        
-                        <div>
-                            <h3 class="font-bold text-slate-600 dark:text-slate-300 mb-3 text-xs uppercase tracking-wider flex justify-between">
-                                <span>Output Quality</span><span id="img-conv-quality-val" class="text-brand-500 font-bold bg-brand-500/10 px-2 py-0.5 rounded">80%</span>
-                            </h3>
-                            <input type="range" id="img-conv-quality" min="10" max="100" value="80" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer">
-                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-3 font-medium">Note: Quality slider affects JPG/WEBP. EXIF saved for JPG outputs.</p>
-                        </div>
+                    <div class="glass-inset p-6 rounded-3xl flex-grow">
+                        <!-- UPDATE 9: Slider removed entirely as requested, preserving optimal quality instead -->
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase tracking-wide">Target Format</label>
+                        <select id="img-conv-format" class="w-full appearance-none py-3.5 px-4 mb-2 glass-inset focus:outline-none text-slate-800 dark:text-white font-bold transition text-sm">
+                            <option value="image/jpeg">JPG / JPEG</option>
+                            <option value="image/png">PNG</option>
+                            <option value="image/webp">WEBP</option>
+                        </select>
+                        <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-2">* Converts format without increasing size.</p>
                     </div>
-                    
-                    <div class="mt-auto flex flex-col gap-3">
-                        <button id="img-conv-download" class="w-full py-4 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-bolt mr-2"></i>Convert & Download</button>
-                        <button onclick="document.getElementById('img-conv-input').click()" class="w-full py-3 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition font-bold">Choose Another</button>
-                    </div>
+                    <button id="img-conv-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-bolt mr-2"></i>Convert</button>
                 </div>
             </div>
         </div>
 
-        <!-- TOOL 7: PHOTO MERGE (With EXIF Fix) -->
-        <div id="tab-img-merge" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
-            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-object-group text-brand-500 mr-2"></i>Merge Two Photos</h2>
-            
+        <!-- TOOL 11: PHOTO MERGE -->
+        <div id="tab-img-merge" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-object-group text-brand-500 mr-2 drop-shadow"></i>Merge Photos</h2>
             <div class="flex flex-col md:flex-row gap-6 mb-6">
-                <!-- Image 1 -->
                 <div class="flex-1">
                     <input type="file" id="merge-input-1" class="hidden" accept="image/*">
-                    <div id="merge-drop-1" class="drop-zone p-8 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50 h-56 flex flex-col justify-center items-center relative overflow-hidden" onclick="document.getElementById('merge-input-1').click()">
-                        <i class="fa-solid fa-image text-4xl text-brand-500 mb-3 drop-shadow-sm"></i>
-                        <p class="font-bold text-slate-700 dark:text-slate-300">Select Image 1</p>
-                        <p class="text-[10px] text-slate-500">(EXIF is taken from here)</p>
-                        <img id="merge-preview-1" class="hidden absolute inset-0 w-full h-full object-contain p-2 bg-slate-900 rounded-xl">
+                    <div id="merge-drop-1" class="drop-zone p-8 text-center cursor-pointer hover:scale-[1.01] h-56 flex flex-col justify-center items-center relative overflow-hidden" onclick="document.getElementById('merge-input-1').click()">
+                        <i class="fa-solid fa-image text-4xl text-brand-500 mb-3 drop-shadow-md"></i>
+                        <p class="font-bold text-slate-800 dark:text-white">Image 1</p>
+                        <img id="merge-preview-1" class="hidden absolute inset-0 w-full h-full object-contain p-2 rounded-xl">
                     </div>
                 </div>
-                <!-- Image 2 -->
                 <div class="flex-1">
                     <input type="file" id="merge-input-2" class="hidden" accept="image/*">
-                    <div id="merge-drop-2" class="drop-zone p-8 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50 h-56 flex flex-col justify-center items-center relative overflow-hidden" onclick="document.getElementById('merge-input-2').click()">
-                        <i class="fa-solid fa-images text-4xl text-brand-500 mb-3 drop-shadow-sm"></i>
-                        <p class="font-bold text-slate-700 dark:text-slate-300">Select Image 2</p>
-                        <img id="merge-preview-2" class="hidden absolute inset-0 w-full h-full object-contain p-2 bg-slate-900 rounded-xl">
+                    <div id="merge-drop-2" class="drop-zone p-8 text-center cursor-pointer hover:scale-[1.01] h-56 flex flex-col justify-center items-center relative overflow-hidden" onclick="document.getElementById('merge-input-2').click()">
+                        <i class="fa-solid fa-images text-4xl text-brand-500 mb-3 drop-shadow-md"></i>
+                        <p class="font-bold text-slate-800 dark:text-white">Image 2</p>
+                        <img id="merge-preview-2" class="hidden absolute inset-0 w-full h-full object-contain p-2 rounded-xl">
                     </div>
                 </div>
             </div>
-
-            <div class="bg-slate-100 dark:bg-slate-800/80 p-5 rounded-2xl shadow-sm mb-6 flex flex-col sm:flex-row items-center gap-4 justify-between">
+            <div class="glass-inset p-5 rounded-3xl mb-6 flex flex-col sm:flex-row items-center gap-4 justify-between">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
-                    <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Merge Direction</label>
-                    <div class="relative w-full sm:w-64">
-                        <select id="merge-direction" class="w-full appearance-none py-3 px-4 border border-slate-300 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-900 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-bold transition cursor-pointer">
-                            <option value="horizontal">Horizontal (Side by Side)</option>
-                            <option value="vertical">Vertical (Top & Bottom)</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500"><i class="fa-solid fa-chevron-down"></i></div>
-                    </div>
+                    <label class="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wide">Direction</label>
+                    <select id="merge-direction" class="w-full sm:w-64 appearance-none py-3 px-4 glass-inset focus:outline-none text-slate-800 dark:text-white font-bold text-sm">
+                        <option value="horizontal">Horizontal</option>
+                        <option value="vertical">Vertical</option>
+                    </select>
                 </div>
-                <button id="merge-btn" class="w-full sm:w-auto px-8 py-3.5 bg-brand-500 text-white font-bold rounded-xl hover:bg-brand-600 transition shadow-md disabled:opacity-50 disabled:cursor-not-allowed active:scale-95" disabled>
-                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Merge Photos
-                </button>
+                <button id="merge-btn" class="w-full sm:w-auto px-10 py-3.5 glass-btn-3d font-bold text-lg rounded-2xl disabled:opacity-50" disabled>Merge</button>
             </div>
-
-            <div id="merge-result-container" class="hidden flex flex-col mt-8 border-t border-slate-200 dark:border-slate-700 pt-8">
-                <h3 class="font-bold text-slate-800 dark:text-white mb-4 text-center text-lg font-stylish">Merged Result</h3>
-                <div class="bg-slate-900 p-4 rounded-2xl w-full flex justify-center mb-6 overflow-hidden shadow-inner border border-slate-800">
-                    <img id="merge-result-preview" class="max-w-full max-h-[500px] object-contain rounded-xl">
-                </div>
-                <button id="merge-download-btn" class="w-full py-4 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-download mr-2"></i>Download Merged Photo</button>
+            
+            <!-- UPDATE 5: Result container added here -->
+            <div id="merge-result-container" class="hidden mt-6 glass-inset p-4 rounded-3xl text-center">
+                <h3 class="font-bold text-slate-800 dark:text-white mb-2">Merged Image</h3>
+                <img id="merge-result-preview" class="max-w-full max-h-[400px] mx-auto rounded-xl shadow-lg object-contain bg-white/10 dark:bg-black/10">
             </div>
         </div>
 
-        <!-- TOOL 8: NEW WATERMARK TOOL -->
-        <div id="tab-img-watermark" class="tab-content hidden glass-panel p-6 sm:p-8 rounded-[2rem] shadow-xl border border-white/20 dark:border-white/5 animate-fade-in">
-            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4 font-stylish"><i class="fa-solid fa-copyright text-brand-500 mr-2"></i>Add Text Watermark</h2>
-            
+        <!-- TOOL 12: WATERMARK -->
+        <div id="tab-img-watermark" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-copyright text-brand-500 mr-2 drop-shadow"></i>Watermark</h2>
             <input type="file" id="wm-input" class="hidden" accept="image/*">
-            <div id="wm-init-ui" class="drop-zone p-12 text-center bg-slate-100/50 dark:bg-slate-800/50 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-slate-700/50" onclick="document.getElementById('wm-input').click()">
-                <i class="fa-solid fa-pen-nib text-5xl text-brand-500 mb-4 drop-shadow-sm"></i>
-                <h3 class="text-xl font-bold text-slate-800 dark:text-white">Select Photo</h3>
-                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm font-medium">Add customizable text to your image</p>
+            <div id="wm-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('wm-input').click()">
+                <i class="fa-solid fa-pen-nib text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Photo</h3>
             </div>
-            
             <div id="wm-workspace" class="hidden flex flex-col lg:flex-row gap-6 mt-4">
-                <!-- Preview area -->
-                <div class="w-full lg:w-2/3 bg-slate-900 rounded-2xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center relative border border-slate-700">
+                <div class="w-full lg:w-2/3 glass-inset rounded-3xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center">
                     <canvas id="wm-preview-canvas" class="max-w-full max-h-[500px] object-contain rounded-xl shadow-lg"></canvas>
                 </div>
-                
-                <!-- Controls -->
                 <div class="w-full lg:w-1/3 flex flex-col gap-4">
-                    <div class="bg-slate-100 dark:bg-slate-800/80 p-5 rounded-2xl shadow-sm flex-grow">
-                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Watermark Text</label>
-                        <input type="text" id="wm-text" placeholder="Enter text here..." value="AEX TOOLS" class="w-full px-4 py-3 mb-4 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-bold shadow-sm transition">
+                    <div class="glass-inset p-6 rounded-3xl flex-grow">
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase tracking-wide">Text</label>
+                        <input type="text" id="wm-text" value="AEX TOOLS" class="w-full px-4 py-3 mb-4 glass-inset focus:outline-none text-slate-800 dark:text-white font-bold text-sm">
                         
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
-                                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Text Color</label>
+                                <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase tracking-wide">Color</label>
                                 <input type="color" id="wm-color" value="#ffffff" class="w-full h-10 rounded-lg cursor-pointer bg-transparent">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Position</label>
-                                <div class="relative">
-                                    <select id="wm-position" class="w-full appearance-none py-2 px-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white text-sm font-bold transition cursor-pointer">
-                                        <option value="bottom-right">Bottom Right</option>
-                                        <option value="bottom-left">Bottom Left</option>
-                                        <option value="top-right">Top Right</option>
-                                        <option value="top-left">Top Left</option>
-                                        <option value="center">Center</option>
-                                    </select>
-                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500"><i class="fa-solid fa-chevron-down text-xs"></i></div>
-                                </div>
+                                <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase tracking-wide">Position</label>
+                                <select id="wm-position" class="w-full appearance-none py-2 px-3 glass-inset focus:outline-none text-slate-800 dark:text-white text-sm font-bold">
+                                    <option value="bottom-right">Bottom Right</option>
+                                    <option value="bottom-left">Bottom Left</option>
+                                    <option value="top-right">Top Right</option>
+                                    <option value="top-left">Top Left</option>
+                                    <option value="center">Center</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="mb-4">
                             <h3 class="font-bold text-slate-600 dark:text-slate-300 mb-2 text-xs uppercase tracking-wider flex justify-between">
-                                <span>Font Size</span><span id="wm-size-val" class="text-brand-500 font-bold">50</span>
+                                <span>Size</span><span id="wm-size-val" class="text-brand-600 dark:text-brand-300 font-bold">50</span>
                             </h3>
-                            <input type="range" id="wm-size" min="10" max="200" value="50" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer">
+                            <input type="range" id="wm-size" min="10" max="200" value="50" class="w-full h-2 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
                         </div>
-
-                        <div>
+                        
+                        <!-- OPACITY SLIDER -->
+                        <div class="mb-2">
                             <h3 class="font-bold text-slate-600 dark:text-slate-300 mb-2 text-xs uppercase tracking-wider flex justify-between">
-                                <span>Opacity</span><span id="wm-opacity-val" class="text-brand-500 font-bold">80%</span>
+                                <span>Opacity</span><span id="wm-opacity-val" class="text-brand-600 dark:text-brand-300 font-bold">90%</span>
                             </h3>
-                            <input type="range" id="wm-opacity" min="10" max="100" value="80" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer">
+                            <input type="range" id="wm-opacity" min="10" max="100" value="90" class="w-full h-2 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
                         </div>
                     </div>
-                    
-                    <div class="mt-auto flex flex-col gap-3">
-                        <button id="wm-download" class="w-full py-4 bg-brand-500 text-white rounded-xl hover:bg-brand-600 transition font-bold shadow-lg text-lg active:scale-95"><i class="fa-solid fa-download mr-2"></i>Apply & Download</button>
-                        <button onclick="document.getElementById('wm-input').click()" class="w-full py-3 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition font-bold">Choose Another</button>
-                    </div>
+                    <button id="wm-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-download mr-2"></i>Download</button>
                 </div>
             </div>
         </div>
@@ -546,23 +629,19 @@
     <!-- Global Utilities -->
     <div id="toast-container" class="fixed bottom-10 right-4 sm:right-10 z-[600] flex flex-col gap-3 pointer-events-none"></div>
     
-    <div id="global-loader" class="fixed inset-0 bg-slate-100/80 dark:bg-slate-900/80 backdrop-blur-sm z-[600] flex-col justify-center items-center transition-colors" style="display: none;">
+    <div id="global-loader" class="fixed inset-0 bg-slate-100/60 dark:bg-slate-900/80 backdrop-blur-md z-[600] flex-col justify-center items-center transition-colors" style="display: none;">
         <div class="loader mb-4" id="spinner-icon"></div>
-        <p class="text-xl font-bold text-slate-800 dark:text-white font-stylish tracking-wide" id="loader-text">Processing...</p>
-        <p class="text-sm font-medium text-slate-500 mt-2">Please wait, do not close.</p>
+        <p class="text-xl font-bold text-slate-800 dark:text-white font-stylish tracking-wide drop-shadow-md" id="loader-text">Processing...</p>
     </div>
 
-    <!-- Hidden Canvas for Image Processing -->
     <canvas id="hidden-canvas" class="hidden"></canvas>
 
-    <!-- Libraries (PDF & Photo Tools) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/piexifjs/1.0.6/piexif.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 
-    <!-- Unified Logic Script -->
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -584,6 +663,20 @@
             setDarkMode(true);
         } else { setDarkMode(false); }
 
+        // --- TABS TOGGLE ---
+        let isTabsOpen = false;
+        function toggleTabs() {
+            const slider = document.getElementById('tabsSlider');
+            isTabsOpen = !isTabsOpen;
+            if (isTabsOpen) {
+                slider.classList.remove('tabs-closed');
+                slider.classList.add('tabs-open');
+            } else {
+                slider.classList.remove('tabs-open');
+                slider.classList.add('tabs-closed');
+            }
+        }
+
         // --- UTILS ---
         const yieldThread = () => new Promise(resolve => setTimeout(resolve, 10));
         const formatBytes = (bytes, decimals = 2) => {
@@ -595,6 +688,12 @@
             if(!b64) return 0; let p = b64.endsWith("==") ? 2 : (b64.endsWith("=") ? 1 : 0);
             return Math.floor(((b64.length - (b64.indexOf(',') + 1)) * 3 / 4) - p);
         };
+
+        const generate10DigitName = (ext) => {
+            let num = '';
+            for(let i=0; i<10; i++) num += Math.floor(Math.random() * 10);
+            return `${num}.${ext}`;
+        }
 
         function showToast(message, type = 'success', duration = 3000) {
             const container = document.getElementById('toast-container');
@@ -615,36 +714,31 @@
 
         const triggerDownload = (blobOrUrl, filename) => {
             const a = document.createElement('a'); a.download = filename;
-            if (typeof blobOrUrl === 'string') {
-                a.href = blobOrUrl;
-            } else {
-                const url = URL.createObjectURL(blobOrUrl);
-                a.href = url;
-                setTimeout(() => URL.revokeObjectURL(url), 1000);
-            }
+            if (typeof blobOrUrl === 'string') { a.href = blobOrUrl; } 
+            else { const url = URL.createObjectURL(blobOrUrl); a.href = url; setTimeout(() => URL.revokeObjectURL(url), 1000); }
             document.body.appendChild(a); a.click(); document.body.removeChild(a);
         };
 
         const globalCanvas = document.getElementById('hidden-canvas');
         const globalCtx = globalCanvas.getContext('2d', { willReadFrequently: true });
 
-        // --- UNIVERSAL EXIF PRESERVATION FUNCTION (à¤¦à¥‹à¤· à¤¨à¤¿à¤µà¤¾à¤°à¤£) ---
-        // à¤¯à¤¹ à¤«à¤‚à¤•à¥à¤¶à¤¨ à¤ªà¥à¤°à¤¾à¤¨à¥€ à¤‡à¤®à¥‡à¤œ à¤•à¤¾ EXIF à¤¡à¥‡à¤Ÿà¤¾ à¤¨à¤ˆ à¤¬à¤¨à¥€ à¤‡à¤®à¥‡à¤œ (DataURL) à¤®à¥‡à¤‚ à¤¡à¤¾à¤²à¤¤à¤¾ à¤¹à¥ˆ
+        // UPDATE 2: EXIF PRESERVATION IMPROVED
         function transferExif(originalDataUrl, newDataUrl, targetMime = 'image/jpeg') {
             if (targetMime !== 'image/jpeg' || !originalDataUrl || !newDataUrl) return newDataUrl;
             try {
-                if (!originalDataUrl.startsWith('data:image/jpeg')) return newDataUrl; // Only JPEGs have standard easily transferable EXIF here
+                if (!originalDataUrl.startsWith('data:image/jpeg')) return newDataUrl; 
                 const exifObj = piexif.load(originalDataUrl);
-                if (exifObj.thumbnail) delete exifObj.thumbnail; // Size optimization
+                // Skip if no EXIF present
+                if (Object.keys(exifObj).length === 0 || (!exifObj['0th'] && !exifObj['Exif'])) return newDataUrl; 
+                if (exifObj.thumbnail) delete exifObj.thumbnail; 
                 const exifStr = piexif.dump(exifObj);
                 return piexif.insert(exifStr, newDataUrl);
             } catch (e) {
-                console.warn("EXIF transfer skipped/failed.", e);
+                console.warn("EXIF transfer skipped: No valid metadata found.");
                 return newDataUrl;
             }
         }
 
-        // Prevent Default Drag Drops globally
         window.addEventListener('dragover', e => e.preventDefault(), false);
         window.addEventListener('drop', e => e.preventDefault(), false);
 
@@ -654,23 +748,22 @@
         function switchTab(targetId) {
             tabBtns.forEach(btn => {
                 if (btn.dataset.target === targetId) {
-                    btn.classList.add('bg-gradient-to-br', 'from-brand-500', 'to-cyan-500', 'text-white', 'shadow-[0_5px_15px_rgba(59,130,246,0.4)]');
-                    btn.classList.remove('text-slate-600', 'dark:text-slate-300', 'hover:bg-slate-200', 'dark:hover:bg-slate-800');
+                    btn.classList.add('active-tab');
+                    btn.classList.remove('text-slate-700', 'dark:text-slate-200', 'hover:bg-white/50', 'dark:hover:bg-slate-800/50');
                 } else {
-                    btn.classList.remove('bg-gradient-to-br', 'from-brand-500', 'to-cyan-500', 'text-white', 'shadow-[0_5px_15px_rgba(59,130,246,0.4)]');
-                    btn.classList.add('text-slate-600', 'dark:text-slate-300', 'hover:bg-slate-200', 'dark:hover:bg-slate-800');
+                    btn.classList.remove('active-tab');
+                    btn.classList.add('text-slate-700', 'dark:text-slate-200', 'hover:bg-white/50', 'dark:hover:bg-slate-800/50');
                 }
             });
             tabContents.forEach(content => {
                 if(content.id === targetId) { content.classList.remove('hidden'); content.classList.add('animate-fade-in'); }
                 else { content.classList.add('hidden'); content.classList.remove('animate-fade-in'); }
             });
-            localStorage.setItem('aexActiveToolTab', targetId);
+            if(isTabsOpen) toggleTabs(); 
         }
         tabBtns.forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.target)));
-        window.addEventListener('DOMContentLoaded', () => switchTab(localStorage.getItem('aexActiveToolTab') || 'tab-pdf-org'));
+        window.addEventListener('DOMContentLoaded', () => { switchTab('tab-img-comp'); }); 
 
-        // Bind all Drop Zones
         document.querySelectorAll('.drop-zone').forEach(zone => {
             zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('dragover'); });
             zone.addEventListener('dragleave', (e) => { e.preventDefault(); zone.classList.remove('dragover'); });
@@ -683,261 +776,30 @@
         });
 
         // ======================================================================
-        // TOOL 1: PDF ORGANIZE & MERGE
-        // ======================================================================
-        const orgInput = document.getElementById('org-input'), orgWorkspace = document.getElementById('org-workspace'), orgInitUI = document.getElementById('org-init-ui');
-        const orgResBox = document.getElementById('org-result-box'), orgDlBtn = document.getElementById('org-download-btn');
-        const orgModes = document.querySelectorAll('input[name="org_mode"]');
-        const orgGrid = document.getElementById('org-page-grid'), orgMergeUI = document.getElementById('org-merge-ui');
-        let orgFiles = [], orgMode = 'organize', orgFinalBlob = null, globalOrgPdfData = null, draggedItem = null;
-
-        orgModes.forEach(r => r.addEventListener('change', (e) => {
-            orgMode = e.target.value;
-            orgWorkspace.classList.add('hidden'); orgInitUI.classList.remove('hidden'); orgFiles = []; orgInput.value = '';
-            orgResBox.classList.add('hidden');
-            const title = document.getElementById('org-title'), icon = document.getElementById('org-icon'), desc = document.getElementById('org-desc');
-            if(orgMode === 'organize') {
-                title.innerText = "Select PDF Document"; icon.className = "fa-solid fa-file-pdf text-5xl text-brand-500 mb-4 drop-shadow-sm";
-                desc.innerText = "Visually delete pages or reorder them via drag & drop"; orgInput.multiple = false;
-            } else {
-                title.innerText = "Select PDFs to Merge"; icon.className = "fa-solid fa-layer-group text-5xl text-brand-500 mb-4 drop-shadow-sm";
-                desc.innerText = "Select multiple PDFs and combine them into one"; orgInput.multiple = true;
-            }
-        }));
-
-        orgInput.addEventListener('change', async (e) => {
-            if(!e.target.files.length) return;
-            orgFiles = Array.from(e.target.files);
-            orgResBox.classList.add('hidden'); orgInitUI.classList.add('hidden'); orgWorkspace.classList.remove('hidden');
-            
-            if(orgMode === 'organize') {
-                document.getElementById('org-file-name').innerText = orgFiles[0].name;
-                orgGrid.classList.remove('hidden'); orgMergeUI.classList.add('hidden');
-                document.getElementById('org-process-btn').classList.remove('hidden');
-                
-                toggleLoader(true, 'Extracting Pages...');
-                try {
-                    const arrayBuffer = await orgFiles[0].arrayBuffer();
-                    globalOrgPdfData = new Uint8Array(arrayBuffer); 
-                    const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
-                    orgGrid.innerHTML = '';
-                    
-                    for(let i = 1; i <= pdf.numPages; i++) {
-                        const page = await pdf.getPage(i);
-                        const viewport = page.getViewport({ scale: 0.4 });
-                        globalCanvas.width = viewport.width; globalCanvas.height = viewport.height;
-                        await page.render({ canvasContext: globalCtx, viewport: viewport }).promise;
-                        
-                        const div = document.createElement('div');
-                        div.className = "org-page-item relative bg-white dark:bg-slate-800 p-2 rounded-xl border-2 border-transparent cursor-pointer hover:border-brand-500 flex flex-col items-center shadow-sm";
-                        div.draggable = true; div.dataset.pageIndex = i - 1; 
-                        
-                        div.innerHTML = `
-                            <div class="canvas-container w-full h-32 sm:h-40 bg-slate-100 dark:bg-slate-900 rounded-lg flex items-center justify-center overflow-hidden mb-2">
-                                <img src="${globalCanvas.toDataURL()}" class="max-w-full max-h-full object-contain pointer-events-none" />
-                            </div>
-                            <span class="font-bold text-slate-500 dark:text-slate-400 text-sm">Page <span class="pg-num">${i}</span></span>
-                            <div class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center hidden delete-icon shadow-md z-10"><i class="fa-solid fa-trash text-xs"></i></div>
-                            <div class="absolute inset-0 bg-red-500/10 rounded-xl hidden deleted-overlay border-2 border-red-500 z-0"></div>
-                        `;
-                        
-                        div.addEventListener('click', function() {
-                            this.classList.toggle('deleted');
-                            this.querySelector('.deleted-overlay').classList.toggle('hidden');
-                            this.querySelector('.delete-icon').classList.toggle('hidden');
-                        });
-                        div.addEventListener('dragstart', function() { draggedItem = this; setTimeout(() => this.classList.add('dragging'), 0); });
-                        div.addEventListener('dragend', function() { this.classList.remove('dragging'); draggedItem = null; updatePageNumbers(); });
-                        div.addEventListener('dragover', function(e) { e.preventDefault(); this.classList.add('drag-over'); });
-                        div.addEventListener('dragleave', function() { this.classList.remove('drag-over'); });
-                        div.addEventListener('drop', function(e) {
-                            e.preventDefault(); this.classList.remove('drag-over');
-                            if(this !== draggedItem) {
-                                let allItems = Array.from(orgGrid.children), draggedIdx = allItems.indexOf(draggedItem), droppedIdx = allItems.indexOf(this);
-                                if(draggedIdx < droppedIdx) this.after(draggedItem); else this.before(draggedItem);
-                            }
-                        });
-
-                        orgGrid.appendChild(div); page.cleanup(); await yieldThread();
-                    }
-                    try { await pdf.destroy(); } catch(e){}
-                } catch (err) { showToast('Cannot load PDF', 'error'); }
-                toggleLoader(false);
-
-            } else {
-                document.getElementById('org-file-name').innerText = `${orgFiles.length} Files Selected`;
-                orgGrid.classList.add('hidden'); orgMergeUI.classList.remove('hidden');
-                document.getElementById('org-process-btn').classList.add('hidden');
-            }
-        });
-
-        function updatePageNumbers() {
-            orgGrid.querySelectorAll('.org-page-item').forEach((item, idx) => { item.querySelector('.pg-num').innerText = idx + 1; });
-        }
-
-        document.getElementById('org-process-btn').addEventListener('click', async () => {
-            toggleLoader(true, 'Saving Document...'); orgResBox.classList.add('hidden');
-            try {
-                if(!globalOrgPdfData) throw new Error("File lost.");
-                const srcPdf = await PDFLib.PDFDocument.load(globalOrgPdfData), newPdf = await PDFLib.PDFDocument.create();
-                const items = document.querySelectorAll('.org-page-item:not(.deleted)');
-                if(!items.length) throw new Error('Empty PDF.');
-
-                const indicesToCopy = Array.from(items).map(item => parseInt(item.dataset.pageIndex));
-                const copiedPages = await newPdf.copyPages(srcPdf, indicesToCopy);
-                copiedPages.forEach(p => newPdf.addPage(p));
-                
-                orgFinalBlob = new Blob([await newPdf.save()], {type: "application/pdf"});
-                document.getElementById('org-new-size').innerText = formatBytes(orgFinalBlob.size);
-                orgResBox.classList.remove('hidden'); showToast('Success!');
-            } catch (err) { showToast(err.message, 'error'); }
-            toggleLoader(false);
-        });
-
-        document.getElementById('org-merge-process-btn').addEventListener('click', async () => {
-            toggleLoader(true, 'Merging...'); orgResBox.classList.add('hidden');
-            try {
-                const mergedPdf = await PDFLib.PDFDocument.create();
-                for(let file of orgFiles) {
-                    try {
-                        const pdfDoc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
-                        const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
-                        copiedPages.forEach(p => mergedPdf.addPage(p));
-                    } catch(err) { showToast(`Skipped encrypted file`, 'error'); }
-                    await yieldThread(); 
-                }
-                orgFinalBlob = new Blob([await mergedPdf.save()], {type: "application/pdf"});
-                document.getElementById('org-new-size').innerText = formatBytes(orgFinalBlob.size);
-                orgResBox.classList.remove('hidden'); showToast('Merged successfully!');
-            } catch (err) { showToast('Merge Error.', 'error'); }
-            toggleLoader(false);
-        });
-        
-        orgDlBtn.addEventListener('click', () => {
-            let fname = orgMode === 'organize' ? orgFiles[0].name.replace('.pdf', '_updated.pdf') : 'Merged_AEX.pdf';
-            if(orgFinalBlob) triggerDownload(orgFinalBlob, fname);
-        });
-
-        // ======================================================================
-        // TOOL 2: PDF CONVERTER
-        // ======================================================================
-        const convInput = document.getElementById('conv-input'), convWorkspace = document.getElementById('conv-workspace'), convDropZone = document.getElementById('conv-drop-zone');
-        const modeConvRadios = document.querySelectorAll('input[name="conv_mode"]');
-        const convQualitySlider = document.getElementById('conv-quality-slider'), convQualityVal = document.getElementById('conv-quality-val');
-        const convResBox = document.getElementById('conv-result-box'), convDlBtn = document.getElementById('conv-download-btn');
-        let convFiles = [], convMode = 'pdf2img', convFinalBlob = null, convFinalName = '';
-
-        convQualitySlider.addEventListener('input', (e) => convQualityVal.textContent = `${e.target.value}%`);
-
-        modeConvRadios.forEach(radio => radio.addEventListener('change', (e) => {
-            convMode = e.target.value;
-            convWorkspace.classList.add('hidden'); convDropZone.classList.remove('hidden'); convFiles = []; convInput.value = '';
-            convResBox.classList.add('hidden');
-            const title = document.getElementById('conv-title'), icon = document.getElementById('conv-icon');
-            if(convMode === 'pdf2img') {
-                title.innerText = "Select PDF File"; icon.className = "fa-solid fa-file-image text-5xl text-brand-500 mb-4 drop-shadow-sm";
-                convInput.accept = "application/pdf"; convInput.multiple = false;
-            } else {
-                title.innerText = "Select Images"; icon.className = "fa-solid fa-images text-5xl text-brand-500 mb-4 drop-shadow-sm";
-                convInput.accept = "image/*"; convInput.multiple = true;
-            }
-        }));
-
-        convInput.addEventListener('change', (e) => {
-            if(!e.target.files.length) return;
-            convFiles = Array.from(e.target.files);
-            convDropZone.classList.add('hidden'); convWorkspace.classList.remove('hidden'); convResBox.classList.add('hidden');
-            document.getElementById('conv-orig-size').innerText = formatBytes(convFiles.reduce((acc, f) => acc + f.size, 0));
-            document.getElementById('conv-file-name').innerText = convMode === 'pdf2img' ? convFiles[0].name : `${convFiles.length} Images`;
-        });
-
-        const processImageForPdf = (file, quality) => {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    if(file.type === 'image/png') resolve({ dataUrl: e.target.result, isPng: true });
-                    else {
-                        const img = new Image();
-                        img.onload = () => {
-                            globalCanvas.width = img.width; globalCanvas.height = img.height;
-                            globalCtx.drawImage(img, 0, 0);
-                            resolve({ dataUrl: globalCanvas.toDataURL('image/jpeg', quality), isPng: false });
-                        }; img.onerror = reject; img.src = e.target.result;
-                    }
-                }; reader.onerror = reject; reader.readAsDataURL(file);
-            });
-        };
-
-        document.getElementById('conv-process-btn').addEventListener('click', async () => {
-            if(!convFiles.length) return;
-            toggleLoader(true, 'Converting...'); convResBox.classList.add('hidden');
-            const quality = parseInt(convQualitySlider.value) / 100;
-            
-            try {
-                if(convMode === 'pdf2img') {
-                    const pdfData = new Uint8Array(await convFiles[0].arrayBuffer());
-                    const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
-                    const zip = new JSZip();
-                    for(let i = 1; i <= pdf.numPages; i++) {
-                        const page = await pdf.getPage(i);
-                        const viewport = page.getViewport({ scale: Math.max(1.0, quality * 2.5) });
-                        globalCanvas.height = viewport.height; globalCanvas.width = viewport.width;
-                        globalCtx.fillStyle = '#FFFFFF'; globalCtx.fillRect(0, 0, globalCanvas.width, globalCanvas.height);
-                        await page.render({ canvasContext: globalCtx, viewport: viewport }).promise;
-                        zip.file(`page_${i}.jpg`, globalCanvas.toDataURL('image/jpeg', quality).split(',')[1], {base64: true});
-                        page.cleanup(); await yieldThread();
-                    }
-                    try { await pdf.destroy(); } catch(e){}
-                    convFinalBlob = await zip.generateAsync({type:"blob"});
-                    convFinalName = convFiles[0].name.replace('.pdf', '_images.zip');
-                } 
-                else {
-                    const newPdfDoc = await PDFLib.PDFDocument.create();
-                    for(let file of convFiles) {
-                        const res = await processImageForPdf(file, quality);
-                        const b64 = res.dataUrl.split(',')[1];
-                        const img = res.isPng ? await newPdfDoc.embedPng(b64) : await newPdfDoc.embedJpg(b64);
-                        const dims = img.scale(1);
-                        const page = newPdfDoc.addPage([dims.width, dims.height]);
-                        page.drawImage(img, { x: 0, y: 0, width: dims.width, height: dims.height });
-                        await yieldThread();
-                    }
-                    convFinalBlob = new Blob([await newPdfDoc.save()], {type: "application/pdf"});
-                    convFinalName = "AEX_Converted.pdf";
-                }
-                document.getElementById('conv-new-size').innerText = formatBytes(convFinalBlob.size);
-                convResBox.classList.remove('hidden'); showToast('Conversion Complete');
-            } catch (err) { showToast('Error!', 'error'); }
-            toggleLoader(false);
-        });
-        
-        convDlBtn.addEventListener('click', () => { if(convFinalBlob) triggerDownload(convFinalBlob, convFinalName); });
-
-        // ======================================================================
-        // TOOL 3: BATCH COMPRESSOR
+        // TOOL 1: AUTO COMPRESSOR
         // ======================================================================
         const compDropZone = document.getElementById('comp-drop-zone'), compInput = document.getElementById('comp-input'), compWorkspace = document.getElementById('comp-workspace'), compGallery = document.getElementById('comp-gallery');
-        const modeQualityBtn = document.getElementById('mode-quality-btn'), modeSizeBtn = document.getElementById('mode-size-btn'), controlQuality = document.getElementById('control-quality'), controlSize = document.getElementById('control-size'), compSlider = document.getElementById('comp-slider'), compQualityVal = document.getElementById('comp-quality-val'), compTargetKb = document.getElementById('comp-target-kb'), applySizeBtn = document.getElementById('apply-size-btn');
+        const modeQualityBtn = document.getElementById('mode-quality-btn'), modeSizeBtn = document.getElementById('mode-size-btn'), controlQuality = document.getElementById('control-quality'), controlSize = document.getElementById('control-size'), compSlider = document.getElementById('comp-slider'), compQualityVal = document.getElementById('comp-quality-val'), compTargetKb = document.getElementById('comp-target-kb'), compDownloadAllBtn = document.getElementById('comp-download-all');
         let batchFiles = [], compressMode = 'quality';
 
         function setCompressMode(mode) {
             compressMode = mode;
             if(mode === 'quality') {
-                modeQualityBtn.classList.add('bg-brand-500', 'text-white', 'shadow-md'); modeQualityBtn.classList.remove('text-slate-600', 'dark:text-slate-400');
-                modeSizeBtn.classList.remove('bg-brand-500', 'text-white', 'shadow-md'); modeSizeBtn.classList.add('text-slate-600', 'dark:text-slate-400');
+                modeQualityBtn.classList.add('bg-brand-500', 'text-white', 'shadow-md'); modeQualityBtn.classList.remove('text-slate-700', 'dark:text-slate-300');
+                modeSizeBtn.classList.remove('bg-brand-500', 'text-white', 'shadow-md'); modeSizeBtn.classList.add('text-slate-700', 'dark:text-slate-300');
                 controlQuality.style.opacity = '1'; controlQuality.style.pointerEvents = 'auto'; controlSize.style.opacity = '0'; controlSize.style.pointerEvents = 'none';
             } else {
-                modeSizeBtn.classList.add('bg-brand-500', 'text-white', 'shadow-md'); modeSizeBtn.classList.remove('text-slate-600', 'dark:text-slate-400');
-                modeQualityBtn.classList.remove('bg-brand-500', 'text-white', 'shadow-md'); modeQualityBtn.classList.add('text-slate-600', 'dark:text-slate-400');
+                modeSizeBtn.classList.add('bg-brand-500', 'text-white', 'shadow-md'); modeSizeBtn.classList.remove('text-slate-700', 'dark:text-slate-300');
+                modeQualityBtn.classList.remove('bg-brand-500', 'text-white', 'shadow-md'); modeQualityBtn.classList.add('text-slate-700', 'dark:text-slate-300');
                 controlSize.style.opacity = '1'; controlSize.style.pointerEvents = 'auto'; controlQuality.style.opacity = '0'; controlQuality.style.pointerEvents = 'none';
             }
         }
         modeQualityBtn.addEventListener('click', () => { setCompressMode('quality'); recompressAll(); });
-        modeSizeBtn.addEventListener('click', () => setCompressMode('size'));
+        modeSizeBtn.addEventListener('click', () => { setCompressMode('size'); });
+        compTargetKb.addEventListener('change', () => { if(compressMode === 'size' && !isNaN(parseInt(compTargetKb.value))) recompressAll(); });
         compInput.addEventListener('change', (e) => handleBatchFiles(e.target.files));
-        compSlider.addEventListener('input', (e) => compQualityVal.textContent = `${e.target.value}%`);
+        compSlider.addEventListener('input', (e) => { compQualityVal.textContent = `${e.target.value}%`; });
         compSlider.addEventListener('change', () => { if(compressMode === 'quality') recompressAll(); });
-        applySizeBtn.addEventListener('click', () => { if(isNaN(parseInt(compTargetKb.value))) return; recompressAll(); });
 
         async function handleBatchFiles(files) {
             if (!files.length) return;
@@ -950,32 +812,38 @@
                     const imgObj = new Image();
                     imgObj.onload = async () => {
                         const item = { id, file, name: file.name, origSize: file.size, imgObj, compressedDataUrl: null, format: file.type, originalDataUrl: dataUrl };
-                        batchFiles.push(item); createGalleryItemUI(id, dataUrl, file.name, file.size); await compressSingle(item);
+                        batchFiles.push(item); createGalleryItemUI(id, dataUrl, file.size);
+                        await compressSingle(item);
                     }; imgObj.src = dataUrl;
                 }; reader.readAsDataURL(file);
             }
         }
-        function createGalleryItemUI(id, src, name, origSize) {
-            const div = document.createElement('div'); div.id = `card-${id}`; div.className = "bg-white dark:bg-slate-800 p-3 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col items-center relative group";
+        
+        function createGalleryItemUI(id, src, origSize) {
+            const div = document.createElement('div'); div.id = `card-${id}`; div.className = "bg-white/40 dark:bg-black/30 p-3 rounded-2xl shadow-inner border border-white/20 dark:border-white/5 flex flex-col items-center relative group";
             div.innerHTML = `
                 <button onclick="removeBatchItem('${id}')" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-md z-10 opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-xmark"></i></button>
-                <div class="h-28 w-full bg-slate-100 dark:bg-slate-900 rounded-xl overflow-hidden flex items-center justify-center mb-3 relative">
+                <div class="h-28 w-full bg-white/30 dark:bg-black/30 rounded-xl overflow-hidden flex items-center justify-center mb-3 relative">
                     <img id="preview-${id}" src="${src}" class="max-h-full object-contain">
                     <div id="loader-${id}" class="absolute inset-0 bg-white/70 dark:bg-slate-900/70 flex items-center justify-center hidden"><div class="loader"></div></div>
                 </div>
-                <p class="text-xs font-bold text-slate-700 dark:text-slate-300 truncate w-full text-center">${name}</p>
-                <div class="w-full bg-slate-50 dark:bg-slate-900 rounded-lg p-2 mt-2">
-                    <div class="flex justify-between text-[10px] text-slate-500 mb-1"><span>Orig:</span><span class="font-bold text-slate-700 dark:text-slate-300">${formatBytes(origSize)}</span></div>
-                    <div class="flex justify-between text-[10px] text-slate-500"><span>New:</span><span id="new-${id}" class="font-bold text-brand-500">...</span></div>
-                </div>
-                <button onclick="downloadSingleComp('${id}')" class="w-full mt-2 py-2 bg-brand-500/10 text-brand-600 dark:text-brand-400 rounded-xl hover:bg-brand-500 hover:text-white transition text-sm font-bold shadow-sm">Save</button>`;
+                <div class="w-full bg-white/50 dark:bg-black/50 rounded-xl p-2 shadow-sm text-center">
+                    <div class="text-[10px] text-slate-500 mb-1">Orig: <span class="font-bold text-slate-700 dark:text-slate-300">${formatBytes(origSize)}</span></div>
+                    <div class="text-[10px] text-slate-500">New: <span id="new-${id}" class="font-bold text-brand-600 dark:text-brand-400">...</span></div>
+                </div>`;
             compGallery.appendChild(div);
         }
+        
         window.removeBatchItem = function(id) {
             batchFiles = batchFiles.filter(item => item.id !== id); document.getElementById(`card-${id}`).remove();
             if(batchFiles.length === 0) { compWorkspace.classList.add('hidden'); compDropZone.classList.remove('hidden'); compInput.value = ''; }
         }
-        async function recompressAll() { for (let item of batchFiles) await compressSingle(item); if(batchFiles.length) showToast('Updated'); }
+
+        async function recompressAll() {
+            if(compressMode === 'size' && isNaN(parseInt(compTargetKb.value))) return;
+            for (let item of batchFiles) await compressSingle(item); 
+        }
+
         async function compressSingle(item) {
             const l = document.getElementById(`loader-${item.id}`); if(l) l.classList.remove('hidden'); await yieldThread();
             let newData = '', tMime = item.format === 'image/png' ? 'image/jpeg' : item.format, tKb = parseInt(compTargetKb.value);
@@ -986,11 +854,13 @@
                 if(tMime==='image/jpeg'){ globalCtx.fillStyle='#FFF'; globalCtx.fillRect(0,0,globalCanvas.width,globalCanvas.height); }
                 globalCtx.drawImage(item.imgObj,0,0,globalCanvas.width,globalCanvas.height);
                 let d = globalCanvas.toDataURL(tMime, qu);
-                return transferExif(item.originalDataUrl, d, tMime); // EXIF Fix
+                return transferExif(item.originalDataUrl, d, tMime); 
             };
 
             if(compressMode==='quality'){
-                let q = parseInt(compSlider.value); newData = (q===100 && tMime===item.format) ? item.originalDataUrl : gen(1.0, q/100);
+                let q = parseInt(compSlider.value); 
+                // Metadata preservation fix ensures original URL metadata is kept
+                newData = (q===100 && tMime===item.format) ? item.originalDataUrl : gen(1.0, q/100);
             } else {
                 let tb = tKb * 1024; if(item.origSize<=tb) newData = item.originalDataUrl;
                 else {
@@ -1001,28 +871,344 @@
                     newData = b || tUrl;
                 }
             }
-            item.compressedDataUrl = newData; document.getElementById(`new-${item.id}`).textContent = formatBytes(getBase64FileSize(newData)); document.getElementById(`preview-${item.id}`).src = newData;
+            item.compressedDataUrl = newData; 
+            document.getElementById(`new-${item.id}`).textContent = formatBytes(getBase64FileSize(newData)); 
+            document.getElementById(`preview-${item.id}`).src = newData;
             if(l) l.classList.add('hidden');
         }
-        document.getElementById('comp-download-all').addEventListener('click', () => {
-            batchFiles.forEach((it, idx) => setTimeout(() => window.downloadSingleComp(it.id), idx*300)); showToast('Downloading All');
+
+        compDownloadAllBtn.addEventListener('click', () => {
+            batchFiles.forEach((it, idx) => { 
+                if(it.compressedDataUrl) {
+                    const ext = it.format === 'image/png' ? 'jpg' : it.name.split('.').pop();
+                    setTimeout(() => triggerDownload(it.compressedDataUrl, generate10DigitName(ext)), idx*300);
+                }
+            }); 
+            showToast('Downloading...');
         });
-        window.downloadSingleComp = function(id) {
-            const item = batchFiles.find(b => b.id === id); if (!item || !item.compressedDataUrl) return;
-            const ext = item.format === 'image/png' ? '.jpg' : `.${item.name.split('.').pop()}`;
-            triggerDownload(item.compressedDataUrl, item.name.replace(/\.[^/.]+$/, "") + "_aex" + ext);
-        }
 
         // ======================================================================
-        // TOOL 4: CROPPER (EXIF FIXED)
+        // TOOL 2: ADJUST IMAGE
         // ======================================================================
-        const cropInput = document.getElementById('crop-input'), cropInitUI = document.getElementById('crop-init-ui'), cropWorkspace = document.getElementById('crop-workspace'), cropImage = document.getElementById('crop-image'), cropDownloadBtn = document.getElementById('crop-download'), cropRatioSelect = document.getElementById('crop-ratio-select'), cropQualitySlider = document.getElementById('crop-quality-slider'), cropQualityVal = document.getElementById('crop-quality-val');
-        let cropper, cropOriginalMime = 'image/jpeg', cropOriginalName = 'image', cropOriginalDataUrl = '';
+        const adjInput = document.getElementById('adj-input'), adjInitUI = document.getElementById('adj-init-ui'), adjWorkspace = document.getElementById('adj-workspace'), adjPreview = document.getElementById('adj-preview');
+        const adjBri = document.getElementById('adj-bri'), adjCon = document.getElementById('adj-con'), adjSat = document.getElementById('adj-sat'), adjHue = document.getElementById('adj-hue'), adjSep = document.getElementById('adj-sep');
+        const adjDownloadBtn = document.getElementById('adj-download-btn');
         
-        cropQualitySlider.addEventListener('input', (e) => cropQualityVal.textContent = `${e.target.value}%`);
+        let adjImgObj = null, adjOriginalDataUrl = '', adjMime = '';
+
+        const applyCSSFilter = () => {
+            const filterStr = `brightness(${adjBri.value}%) contrast(${adjCon.value}%) saturate(${adjSat.value}%) hue-rotate(${adjHue.value}deg) sepia(${adjSep.value}%)`;
+            adjPreview.style.filter = filterStr;
+        };
+
+        [adjBri, adjCon, adjSat, adjHue, adjSep].forEach(slider => {
+            slider.addEventListener('input', (e) => {
+                document.getElementById(`${slider.id}-val`).textContent = slider.id === 'adj-hue' ? `${e.target.value}°` : `${e.target.value}%`;
+                applyCSSFilter();
+            });
+        });
+
+        adjInput.addEventListener('change', (e) => {
+            if(e.target.files.length) {
+                const file = e.target.files[0]; adjMime = file.type;
+                if (!file.type.match(/image.*/)) return;
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    adjOriginalDataUrl = ev.target.result;
+                    adjImgObj = new Image();
+                    adjImgObj.onload = () => {
+                        adjInitUI.classList.add('hidden'); adjWorkspace.classList.remove('hidden');
+                        adjPreview.src = adjOriginalDataUrl;
+                        adjBri.value=100; adjCon.value=100; adjSat.value=100; adjHue.value=0; adjSep.value=0;
+                        document.getElementById('adj-bri-val').textContent="100%"; document.getElementById('adj-con-val').textContent="100%"; document.getElementById('adj-sat-val').textContent="100%"; document.getElementById('adj-hue-val').textContent="0°"; document.getElementById('adj-sep-val').textContent="0%";
+                        applyCSSFilter();
+                    };
+                    adjImgObj.src = adjOriginalDataUrl;
+                }; reader.readAsDataURL(file);
+            }
+        });
+
+        adjDownloadBtn.addEventListener('click', () => {
+            if(!adjImgObj) return;
+            globalCanvas.width = adjImgObj.width; globalCanvas.height = adjImgObj.height;
+            globalCtx.clearRect(0,0,globalCanvas.width,globalCanvas.height);
+            globalCtx.filter = `brightness(${adjBri.value}%) contrast(${adjCon.value}%) saturate(${adjSat.value}%) hue-rotate(${adjHue.value}deg) sepia(${adjSep.value}%)`;
+            globalCtx.drawImage(adjImgObj, 0, 0);
+            
+            // UPDATE 6: Fix bloat size by using 0.85 default quality instead of 1.0
+            let dataUrl = globalCanvas.toDataURL(adjMime, 0.85);
+            dataUrl = transferExif(adjOriginalDataUrl, dataUrl, adjMime);
+            
+            let ext = adjMime.includes('png') ? 'png' : (adjMime.includes('webp') ? 'webp' : 'jpg');
+            triggerDownload(dataUrl, generate10DigitName(ext));
+            showToast("Saved successfully!");
+            globalCtx.filter = "none"; 
+        });
+
+        // ======================================================================
+        // TOOL 3: IMAGE TO PDF
+        // ======================================================================
+        const i2pInput = document.getElementById('i2p-input'), i2pWorkspace = document.getElementById('i2p-workspace'), i2pDropZone = document.getElementById('i2p-drop-zone');
+        const i2pPageSize = document.getElementById('i2p-page-size');
+        const i2pQualitySlider = document.getElementById('i2p-quality-slider'); // NEW SLIDER
+        
+        i2pQualitySlider.addEventListener('input', (e) => {
+            document.getElementById('i2p-quality-val').textContent = `${e.target.value}%`;
+        });
+
+        let i2pFiles = [];
+
+        i2pInput.addEventListener('change', (e) => {
+            if(!e.target.files.length) return;
+            i2pFiles = Array.from(e.target.files);
+            i2pDropZone.classList.add('hidden'); i2pWorkspace.classList.remove('hidden');
+            document.getElementById('i2p-file-name').innerText = `${i2pFiles.length} Images`;
+        });
+
+        const processImageForPdf = (file, qualityScore) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        globalCanvas.width = img.width; globalCanvas.height = img.height;
+                        
+                        // If user wants high quality and it's PNG, keep it PNG
+                        if(qualityScore === 1.0 && file.type === 'image/png') {
+                            resolve({ dataUrl: e.target.result, isPng: true });
+                        } else {
+                            globalCtx.fillStyle = '#FFFFFF'; globalCtx.fillRect(0,0,globalCanvas.width,globalCanvas.height);
+                            globalCtx.drawImage(img, 0, 0);
+                            resolve({ dataUrl: globalCanvas.toDataURL('image/jpeg', qualityScore), isPng: false });
+                        }
+                    }; img.onerror = reject; img.src = e.target.result;
+                }; reader.onerror = reject; reader.readAsDataURL(file);
+            });
+        };
+
+        document.getElementById('i2p-process-btn').addEventListener('click', async () => {
+            if(!i2pFiles.length) return;
+            toggleLoader(true, 'Creating PDF...');
+            const formatMode = i2pPageSize.value;
+            const qualityValue = parseInt(i2pQualitySlider.value) / 100; // Update 1
+            const A4_W = 595.28, A4_H = 841.89;
+
+            try {
+                const newPdfDoc = await PDFLib.PDFDocument.create();
+                for(let file of i2pFiles) {
+                    const res = await processImageForPdf(file, qualityValue);
+                    const b64 = res.dataUrl.split(',')[1];
+                    const img = res.isPng ? await newPdfDoc.embedPng(b64) : await newPdfDoc.embedJpg(b64);
+                    const dims = img.scale(1);
+                    
+                    if (formatMode === 'a4') {
+                        const page = newPdfDoc.addPage([A4_W, A4_H]);
+                        const scale = Math.min(A4_W / dims.width, A4_H / dims.height) * 0.95; 
+                        const drawW = dims.width * scale, drawH = dims.height * scale;
+                        page.drawImage(img, { x: (A4_W - drawW) / 2, y: (A4_H - drawH) / 2, width: drawW, height: drawH });
+                    } else {
+                        const page = newPdfDoc.addPage([dims.width, dims.height]);
+                        page.drawImage(img, { x: 0, y: 0, width: dims.width, height: dims.height });
+                    }
+                    await yieldThread();
+                }
+                const pdfBytes = await newPdfDoc.save();
+                triggerDownload(new Blob([pdfBytes], {type: "application/pdf"}), generate10DigitName("pdf"));
+                showToast('PDF Downloaded!');
+            } catch (err) { showToast('Error', 'error'); }
+            toggleLoader(false);
+        });
+
+        // ======================================================================
+        // TOOL 4: PDF ORGANIZE
+        // ======================================================================
+        const orgInput = document.getElementById('org-input'), orgWorkspace = document.getElementById('org-workspace'), orgInitUI = document.getElementById('org-init-ui'), orgGrid = document.getElementById('org-page-grid');
+        const orgResultBox = document.getElementById('org-result-box'), orgDownloadBtn = document.getElementById('org-download-btn');
+        let orgFileBuffer = null, draggedItem = null, orgFinalBlob = null; 
+
+        orgInput.addEventListener('change', async (e) => {
+            if(!e.target.files.length) return;
+            const file = e.target.files[0];
+            orgInitUI.classList.add('hidden'); orgWorkspace.classList.remove('hidden'); orgResultBox.classList.add('hidden');
+            
+            toggleLoader(true, 'Extracting...');
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                orgFileBuffer = arrayBuffer.slice(0); 
+                
+                const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+                orgGrid.innerHTML = '';
+                
+                for(let i = 1; i <= pdf.numPages; i++) {
+                    const page = await pdf.getPage(i);
+                    const viewport = page.getViewport({ scale: 0.35 });
+                    globalCanvas.width = viewport.width; globalCanvas.height = viewport.height;
+                    await page.render({ canvasContext: globalCtx, viewport: viewport }).promise;
+                    
+                    const div = document.createElement('div');
+                    div.className = "org-page-item relative glass-inset p-2 cursor-pointer hover:scale-105 flex flex-col items-center transition-transform";
+                    div.draggable = true; div.dataset.pageIndex = i - 1; 
+                    
+                    div.innerHTML = `
+                        <div class="w-full h-32 bg-white/30 dark:bg-black/30 rounded-lg flex items-center justify-center overflow-hidden mb-2 pointer-events-none">
+                            <img src="${globalCanvas.toDataURL()}" class="max-w-full max-h-full object-contain" />
+                        </div>
+                        <span class="font-bold text-slate-700 dark:text-slate-300 text-sm pointer-events-none"><span class="pg-num">${i}</span></span>
+                        <div class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center hidden delete-icon shadow-md z-10"><i class="fa-solid fa-trash text-xs"></i></div>
+                        <div class="absolute inset-0 bg-red-500/20 rounded-2xl hidden deleted-overlay border border-red-500 z-0 pointer-events-none"></div>
+                    `;
+                    
+                    div.addEventListener('click', function() {
+                        this.classList.toggle('deleted');
+                        this.querySelector('.deleted-overlay').classList.toggle('hidden');
+                        this.querySelector('.delete-icon').classList.toggle('hidden');
+                    });
+                    div.addEventListener('dragstart', function() { draggedItem = this; setTimeout(() => this.classList.add('dragging'), 0); });
+                    div.addEventListener('dragend', function() { this.classList.remove('dragging'); draggedItem = null; updatePageNumbers(); });
+                    div.addEventListener('dragover', function(e) { e.preventDefault(); this.classList.add('drag-over'); });
+                    div.addEventListener('dragleave', function() { this.classList.remove('drag-over'); });
+                    div.addEventListener('drop', function(e) {
+                        e.preventDefault(); this.classList.remove('drag-over');
+                        if(this !== draggedItem) {
+                            let allItems = Array.from(orgGrid.children), draggedIdx = allItems.indexOf(draggedItem), droppedIdx = allItems.indexOf(this);
+                            if(draggedIdx < droppedIdx) this.after(draggedItem); else this.before(draggedItem);
+                        }
+                    });
+
+                    orgGrid.appendChild(div); page.cleanup(); await yieldThread();
+                }
+                try { await pdf.destroy(); } catch(e){}
+            } catch (err) { showToast('Error extracting PDF', 'error'); }
+            toggleLoader(false);
+        });
+
+        function updatePageNumbers() {
+            orgGrid.querySelectorAll('.org-page-item').forEach((item, idx) => { item.querySelector('.pg-num').innerText = idx + 1; });
+        }
+
+        document.getElementById('org-process-btn').addEventListener('click', async () => {
+            toggleLoader(true, 'Saving...');
+            try {
+                if(!orgFileBuffer) throw new Error("File not loaded.");
+                const srcPdf = await PDFLib.PDFDocument.load(orgFileBuffer);
+                const newPdf = await PDFLib.PDFDocument.create();
+                
+                const items = document.querySelectorAll('.org-page-item:not(.deleted)');
+                if(!items.length) throw new Error('Cannot save empty PDF.');
+
+                const indicesToCopy = Array.from(items).map(item => parseInt(item.dataset.pageIndex));
+                const copiedPages = await newPdf.copyPages(srcPdf, indicesToCopy);
+                copiedPages.forEach(p => newPdf.addPage(p));
+                
+                const pdfBytes = await newPdf.save();
+                orgFinalBlob = new Blob([pdfBytes], {type: "application/pdf"}); 
+                
+                orgResultBox.classList.remove('hidden'); 
+                showToast('Success! Click Download.');
+            } catch (err) { showToast(err.message, 'error'); }
+            toggleLoader(false);
+        });
+
+        orgDownloadBtn.addEventListener('click', () => {
+            if(orgFinalBlob) {
+                triggerDownload(orgFinalBlob, generate10DigitName("pdf"));
+                showToast("PDF downloaded successfully!");
+            } else {
+                showToast("Please Apply Changes First", "error");
+            }
+        });
+
+
+        // ======================================================================
+        // TOOL 5: PDF MERGE
+        // ======================================================================
+        const mergePdfInput = document.getElementById('merge-pdf-input'), mergePdfWorkspace = document.getElementById('merge-pdf-workspace'), mergePdfInitUI = document.getElementById('merge-pdf-init-ui');
+        let mergePdfFiles = [];
+
+        mergePdfInput.addEventListener('change', (e) => {
+            if(!e.target.files.length) return;
+            mergePdfFiles = Array.from(e.target.files);
+            
+            // UPDATE 3: Update file count correctly
+            document.getElementById('merge-pdf-file-name').innerText = mergePdfFiles.length + " Files";
+            
+            mergePdfInitUI.classList.add('hidden'); mergePdfWorkspace.classList.remove('hidden');
+        });
+
+        document.getElementById('merge-pdf-process-btn').addEventListener('click', async () => {
+            if(mergePdfFiles.length < 2) return showToast("Select at least 2 files", "error");
+            toggleLoader(true, 'Merging...');
+            try {
+                const mergedPdf = await PDFLib.PDFDocument.create();
+                for(let file of mergePdfFiles) {
+                    try {
+                        const pdfDoc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
+                        const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
+                        copiedPages.forEach(p => mergedPdf.addPage(p));
+                    } catch(err) { }
+                    await yieldThread(); 
+                }
+                const pdfBytes = await mergedPdf.save();
+                triggerDownload(new Blob([pdfBytes], {type: "application/pdf"}), generate10DigitName("pdf"));
+                showToast('Merged successfully!');
+            } catch (err) { showToast('Error', 'error'); }
+            toggleLoader(false);
+        });
+
+        // ======================================================================
+        // TOOL 6: PDF TO JPG
+        // ======================================================================
+        const p2iInput = document.getElementById('p2i-input'), p2iWorkspace = document.getElementById('p2i-workspace'), p2iDropZone = document.getElementById('p2i-drop-zone'), p2iQualitySlider = document.getElementById('p2i-quality-slider'), p2iQualityVal = document.getElementById('p2i-quality-val');
+        let p2iFile = null;
+
+        p2iQualitySlider.addEventListener('input', (e) => p2iQualityVal.textContent = `${e.target.value}%`);
+
+        p2iInput.addEventListener('change', (e) => {
+            if(!e.target.files.length) return;
+            p2iFile = e.target.files[0];
+            document.getElementById('p2i-file-name').innerText = p2iFile.name;
+            p2iDropZone.classList.add('hidden'); p2iWorkspace.classList.remove('hidden');
+        });
+
+        document.getElementById('p2i-process-btn').addEventListener('click', async () => {
+            if(!p2iFile) return;
+            toggleLoader(true, 'Extracting...'); 
+            const qualityValue = parseInt(p2iQualitySlider.value);
+            // UPDATE 7: Make scale resolution higher for crisp output
+            const scale = 1.0 + (qualityValue / 50.0); // max scale 3.0
+            
+            try {
+                const pdfData = new Uint8Array(await p2iFile.arrayBuffer());
+                const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+                const zip = new JSZip();
+                for(let i = 1; i <= pdf.numPages; i++) {
+                    const page = await pdf.getPage(i);
+                    const viewport = page.getViewport({ scale: scale });
+                    globalCanvas.height = viewport.height; globalCanvas.width = viewport.width;
+                    globalCtx.fillStyle = '#FFFFFF'; globalCtx.fillRect(0, 0, globalCanvas.width, globalCanvas.height);
+                    await page.render({ canvasContext: globalCtx, viewport: viewport }).promise;
+                    
+                    // Keep jpeg quality high internally, rely on scale for "quality/size"
+                    zip.file(`${generate10DigitName("jpg")}`, globalCanvas.toDataURL('image/jpeg', 0.95).split(',')[1], {base64: true});
+                    page.cleanup(); await yieldThread();
+                }
+                try { await pdf.destroy(); } catch(e){}
+                const blob = await zip.generateAsync({type:"blob"});
+                triggerDownload(blob, generate10DigitName("zip"));
+                showToast('Extracted & Downloaded');
+            } catch (err) { showToast('Error!', 'error'); }
+            toggleLoader(false);
+        });
+
+        // ======================================================================
+        // TOOL 7: CROPPER
+        // ======================================================================
+        const cropInput = document.getElementById('crop-input'), cropInitUI = document.getElementById('crop-init-ui'), cropWorkspace = document.getElementById('crop-workspace'), cropImage = document.getElementById('crop-image'), cropDownloadBtn = document.getElementById('crop-download'), cropRatioSelect = document.getElementById('crop-ratio-select');
+        let cropper, cropOriginalMime = 'image/jpeg', cropOriginalDataUrl = '';
+        
         cropInput.addEventListener('change', (e) => {
             if (e.target.files.length) {
-                const file = e.target.files[0]; cropOriginalMime = file.type; cropOriginalName = file.name.replace(/\.[^/.]+$/, "");
+                const file = e.target.files[0]; cropOriginalMime = file.type;
                 const reader = new FileReader();
                 reader.onload = (ev) => {
                     cropOriginalDataUrl = ev.target.result;
@@ -1035,26 +1221,75 @@
         cropDownloadBtn.addEventListener('click', () => {
             if (!cropper) return;
             const cropCanvas = cropper.getCroppedCanvas();
-            const outputQuality = parseInt(cropQualitySlider.value) / 100;
-            let dataUrl = cropCanvas.toDataURL(cropOriginalMime, outputQuality);
-            
-            // EXIF Fix: Transfer original EXIF to cropped image
+            // UPDATE 4: Fix size bloat by using 0.85 default quality
+            let dataUrl = cropCanvas.toDataURL(cropOriginalMime, 0.85);
             dataUrl = transferExif(cropOriginalDataUrl, dataUrl, cropOriginalMime);
-
-            let ext = 'jpg'; if(cropOriginalMime.includes('png')) ext = 'png'; if(cropOriginalMime.includes('webp')) ext = 'webp';
-            triggerDownload(dataUrl, `${cropOriginalName}_aex.${ext}`); showToast('Cropped & Metadata preserved!');
+            let ext = cropOriginalMime.includes('png') ? 'png' : (cropOriginalMime.includes('webp') ? 'webp' : 'jpg');
+            triggerDownload(dataUrl, generate10DigitName(ext)); showToast('Cropped!');
         });
 
         // ======================================================================
-        // TOOL 5: METADATA
+        // TOOL 8: ROUND CORNERS
+        // ======================================================================
+        const curveInput = document.getElementById('curve-input'), curveInitUI = document.getElementById('curve-init-ui'), curveWorkspace = document.getElementById('curve-workspace'), curvePreviewCanvas = document.getElementById('curve-preview-canvas'), curveRadius = document.getElementById('curve-radius'), curveRadiusVal = document.getElementById('curve-radius-val'), curveDownloadBtn = document.getElementById('curve-download');
+        let curveImgObj = null;
+        const curveCtx = curvePreviewCanvas.getContext('2d');
+
+        curveInput.addEventListener('change', (e) => {
+            if(e.target.files.length) {
+                const file = e.target.files[0];
+                if (!file.type.match(/image.*/)) return;
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    curveImgObj = new Image();
+                    curveImgObj.onload = () => {
+                        curveInitUI.classList.add('hidden'); curveWorkspace.classList.remove('hidden');
+                        const maxDim = Math.min(curveImgObj.width, curveImgObj.height) / 2;
+                        curveRadius.max = maxDim; curveRadius.value = Math.min(50, maxDim);
+                        drawCurvedImage();
+                    };
+                    curveImgObj.src = ev.target.result;
+                }; reader.readAsDataURL(file);
+            }
+        });
+
+        curveRadius.addEventListener('input', (e) => { curveRadiusVal.textContent = `${e.target.value}px`; drawCurvedImage(); });
+
+        function drawCurvedImage() {
+            if(!curveImgObj) return;
+            const radius = parseInt(curveRadius.value), w = curveImgObj.width, h = curveImgObj.height;
+            curvePreviewCanvas.width = w; curvePreviewCanvas.height = h;
+            curveCtx.clearRect(0, 0, w, h);
+            curveCtx.beginPath();
+            if (curveCtx.roundRect) { curveCtx.roundRect(0, 0, w, h, radius); } 
+            else {
+                curveCtx.moveTo(radius, 0); curveCtx.lineTo(w - radius, 0); curveCtx.quadraticCurveTo(w, 0, w, radius);
+                curveCtx.lineTo(w, h - radius); curveCtx.quadraticCurveTo(w, h, w - radius, h);
+                curveCtx.lineTo(radius, h); curveCtx.quadraticCurveTo(0, h, 0, h - radius);
+                curveCtx.lineTo(0, radius); curveCtx.quadraticCurveTo(0, 0, radius, 0);
+            }
+            curveCtx.closePath();
+            curveCtx.clip();
+            curveCtx.drawImage(curveImgObj, 0, 0, w, h);
+        }
+
+        curveDownloadBtn.addEventListener('click', () => {
+            if(!curveImgObj) return;
+            // UPDATE 8: Must remain PNG for transparent corners, but we don't scale it up.
+            triggerDownload(curvePreviewCanvas.toDataURL('image/png'), generate10DigitName("png"));
+            showToast("Downloaded!");
+        });
+
+        // ======================================================================
+        // TOOL 9: METADATA
         // ======================================================================
         const metaInput = document.getElementById('meta-input'), metaInitUI = document.getElementById('meta-init-ui'), metaWorkspace = document.getElementById('meta-workspace'), metaPreview = document.getElementById('meta-preview'), metaDatetime = document.getElementById('meta-datetime'), metaDownloadBtn = document.getElementById('meta-download');
-        let metaCurrentDataUrl = '', metaExifObj = null, metaFileName = '';
+        let metaCurrentDataUrl = '', metaExifObj = null;
         
         metaInput.addEventListener('change', (e) => {
             if (e.target.files.length) {
-                const file = e.target.files[0]; if(file.type !== "image/jpeg") return showToast("Only JPEG supported", "error");
-                metaFileName = file.name; const reader = new FileReader();
+                const file = e.target.files[0]; if(file.type !== "image/jpeg") return showToast("Only JPEG", "error");
+                const reader = new FileReader();
                 reader.onload = (ev) => { metaCurrentDataUrl = ev.target.result; metaPreview.src = metaCurrentDataUrl; metaInitUI.classList.add('hidden'); metaWorkspace.classList.remove('hidden'); loadExifToForm(metaCurrentDataUrl); };
                 reader.readAsDataURL(file);
             }
@@ -1065,8 +1300,7 @@
                 if(metaExifObj["Exif"] && metaExifObj["Exif"][piexif.ExifIFD.DateTimeOriginal]) dtString = metaExifObj["Exif"][piexif.ExifIFD.DateTimeOriginal];
                 else if(metaExifObj["0th"] && metaExifObj["0th"][piexif.ImageIFD.DateTime]) dtString = metaExifObj["0th"][piexif.ImageIFD.DateTime];
                 if(dtString) { let parts = dtString.split(" "); if(parts.length === 2) metaDatetime.value = `${parts[0].replace(/:/g, "-")}T${parts[1]}`; } else metaDatetime.value = "";
-                showToast("Loaded successfully");
-            } catch (err) { metaExifObj = {"0th":{}, "Exif":{}, "GPS":{}, "Interop":{}, "1st":{}, "thumbnail":null}; metaDatetime.value = ""; showToast("No EXIF found. Ready to edit."); }
+            } catch (err) { metaExifObj = {"0th":{}, "Exif":{}, "GPS":{}, "Interop":{}, "1st":{}, "thumbnail":null}; metaDatetime.value = ""; }
         }
         metaDownloadBtn.addEventListener('click', () => {
             if (!metaExifObj) return;
@@ -1079,60 +1313,58 @@
             try {
                 if(metaExifObj.thumbnail) delete metaExifObj.thumbnail;
                 const exifStr = piexif.dump(metaExifObj), newDataUrl = piexif.insert(exifStr, metaCurrentDataUrl);
-                triggerDownload(newDataUrl, metaFileName.replace(/\.[^/.]+$/, "") + "_meta.jpg"); showToast("Saved successfully!");
-            } catch (e) { showToast("Error saving metadata", "error"); }
+                triggerDownload(newDataUrl, generate10DigitName("jpg")); showToast("Saved!");
+            } catch (e) { showToast("Error", "error"); }
         });
 
         // ======================================================================
-        // TOOL 6: FORMAT CONVERTER (EXIF FIXED)
+        // TOOL 10: CONVERT FORMAT
         // ======================================================================
-        const imgConvInput = document.getElementById('img-conv-input'), imgConvInitUI = document.getElementById('img-conv-init-ui'), imgConvWorkspace = document.getElementById('img-conv-workspace'), imgConvPreview = document.getElementById('img-conv-preview'), imgConvDownloadBtn = document.getElementById('img-conv-download'), imgConvQualitySlider = document.getElementById('img-conv-quality'), imgConvQualityVal = document.getElementById('img-conv-quality-val');
-        let imgConvObj = null, imgConvFileName = '', imgConvOriginalDataUrl = '';
+        const imgConvInput = document.getElementById('img-conv-input'), imgConvInitUI = document.getElementById('img-conv-init-ui'), imgConvWorkspace = document.getElementById('img-conv-workspace'), imgConvPreview = document.getElementById('img-conv-preview'), imgConvDownloadBtn = document.getElementById('img-conv-download');
+        let imgConvObj = null, imgConvOriginalDataUrl = '';
         
-        imgConvQualitySlider.addEventListener('input', (e) => imgConvQualityVal.textContent = `${e.target.value}%`);
         imgConvInput.addEventListener('change', (e) => { if(e.target.files.length) handleImgConvFile(e.target.files[0]); });
         
         function handleImgConvFile(file) {
-            if (!file.type.match(/image.*/)) return; imgConvFileName = file.name; const reader = new FileReader();
+            if (!file.type.match(/image.*/)) return; const reader = new FileReader();
             reader.onload = (e) => { 
                 imgConvOriginalDataUrl = e.target.result;
                 imgConvObj = new Image(); imgConvObj.onload = () => { imgConvPreview.src = imgConvOriginalDataUrl; imgConvInitUI.classList.add('hidden'); imgConvWorkspace.classList.remove('hidden'); }; imgConvObj.src = imgConvOriginalDataUrl; 
-            };
-            reader.readAsDataURL(file);
+            }; reader.readAsDataURL(file);
         }
         imgConvDownloadBtn.addEventListener('click', () => {
             if (!imgConvObj) return;
-            const targetFormat = document.getElementById('img-conv-format').value, outputQuality = parseInt(imgConvQualitySlider.value) / 100;
+            const targetFormat = document.getElementById('img-conv-format').value;
+            // UPDATE 9: Standard original optimal quality to avoid bloat
+            const outputQuality = 0.85; 
+
             let ext = targetFormat.split('/')[1]; if (ext === 'jpeg') ext = 'jpg';
             globalCanvas.width = imgConvObj.width; globalCanvas.height = imgConvObj.height; globalCtx.clearRect(0, 0, globalCanvas.width, globalCanvas.height);
             if (targetFormat === 'image/jpeg') { globalCtx.fillStyle = '#FFFFFF'; globalCtx.fillRect(0, 0, globalCanvas.width, globalCanvas.height); }
             globalCtx.drawImage(imgConvObj, 0, 0, globalCanvas.width, globalCanvas.height);
             
             let dataUrl = globalCanvas.toDataURL(targetFormat, outputQuality);
-            // EXIF Fix: Transfer if target is JPEG
             dataUrl = transferExif(imgConvOriginalDataUrl, dataUrl, targetFormat);
-
-            triggerDownload(dataUrl, imgConvFileName.replace(/\.[^/.]+$/, "") + "_aex." + ext); showToast("Converted & Downloaded!");
+            triggerDownload(dataUrl, generate10DigitName(ext)); showToast("Converted!");
         });
 
         // ======================================================================
-        // TOOL 7: PHOTO MERGE (EXIF FIXED)
+        // TOOL 11: PHOTO MERGE
         // ======================================================================
         const mergeInput1 = document.getElementById('merge-input-1'), mergePreview1 = document.getElementById('merge-preview-1'), mergeDrop1 = document.getElementById('merge-drop-1');
         const mergeInput2 = document.getElementById('merge-input-2'), mergePreview2 = document.getElementById('merge-preview-2'), mergeDrop2 = document.getElementById('merge-drop-2');
-        const mergeDirection = document.getElementById('merge-direction'), mergeBtn = document.getElementById('merge-btn'), mergeResultContainer = document.getElementById('merge-result-container'), mergeResultPreview = document.getElementById('merge-result-preview'), mergeDownloadBtn = document.getElementById('merge-download-btn');
-
-        let mergeImgObj1 = null, mergeImgObj2 = null, mergedDataUrl = null, mergeOriginalDataUrl1 = null;
+        const mergeDirection = document.getElementById('merge-direction'), mergeBtn = document.getElementById('merge-btn'), mergeResultContainer = document.getElementById('merge-result-container'), mergeResultPreview = document.getElementById('merge-result-preview');
+        let mergeImgObj1 = null, mergeImgObj2 = null, mergeOriginalDataUrl1 = null;
 
         function handleMergeFile(file, isFirst) {
-            if (!file.type.match(/image.*/)) return showToast("Select valid images", "error");
+            if (!file.type.match(/image.*/)) return;
             const reader = new FileReader();
             reader.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
                     if(isFirst) {
                         mergeImgObj1 = img; mergePreview1.src = e.target.result; mergePreview1.classList.remove('hidden');
-                        mergeOriginalDataUrl1 = e.target.result; // For EXIF
+                        mergeOriginalDataUrl1 = e.target.result; 
                         mergeDrop1.querySelectorAll('i, p').forEach(el => el.classList.add('hidden'));
                     } else {
                         mergeImgObj2 = img; mergePreview2.src = e.target.result; mergePreview2.classList.remove('hidden');
@@ -1161,22 +1393,19 @@
                 globalCtx.drawImage(mergeImgObj1, 0, 0); globalCtx.drawImage(mergeImgObj2, 0, mergeImgObj1.height, mergeImgObj1.width, img2NewHeight);
             }
             
-            mergedDataUrl = globalCanvas.toDataURL('image/jpeg', 1.0); 
-            // EXIF Fix: Transfer EXIF from first image to the merged output
+            let mergedDataUrl = globalCanvas.toDataURL('image/jpeg', 0.90); 
             mergedDataUrl = transferExif(mergeOriginalDataUrl1, mergedDataUrl, 'image/jpeg');
 
             mergeResultPreview.src = mergedDataUrl; mergeResultContainer.classList.remove('hidden'); showToast("Merged!");
-        });
-
-        mergeDownloadBtn.addEventListener('click', () => {
-            if(!mergedDataUrl) return; triggerDownload(mergedDataUrl, `AEX_Merged.jpg`);
+            
+            setTimeout(() => triggerDownload(mergedDataUrl, generate10DigitName("jpg")), 500);
         });
 
         // ======================================================================
-        // TOOL 8: WATERMARK GENERATOR (NEW)
+        // TOOL 12: WATERMARK
         // ======================================================================
         const wmInput = document.getElementById('wm-input'), wmInitUI = document.getElementById('wm-init-ui'), wmWorkspace = document.getElementById('wm-workspace'), wmPreviewCanvas = document.getElementById('wm-preview-canvas'), wmText = document.getElementById('wm-text'), wmColor = document.getElementById('wm-color'), wmSize = document.getElementById('wm-size'), wmSizeVal = document.getElementById('wm-size-val'), wmOpacity = document.getElementById('wm-opacity'), wmOpacityVal = document.getElementById('wm-opacity-val'), wmPosition = document.getElementById('wm-position'), wmDownloadBtn = document.getElementById('wm-download');
-        let wmImgObj = null, wmOriginalDataUrl = '', wmFileName = '';
+        let wmImgObj = null, wmOriginalDataUrl = '';
         const wmCtx = wmPreviewCanvas.getContext('2d');
 
         wmSize.addEventListener('input', (e) => { wmSizeVal.textContent = e.target.value; renderWatermark(); });
@@ -1187,9 +1416,7 @@
 
         wmInput.addEventListener('change', (e) => {
             if(e.target.files.length) {
-                const file = e.target.files[0];
-                if (!file.type.match(/image.*/)) return;
-                wmFileName = file.name;
+                const file = e.target.files[0]; if (!file.type.match(/image.*/)) return;
                 const reader = new FileReader();
                 reader.onload = (ev) => {
                     wmOriginalDataUrl = ev.target.result;
@@ -1197,27 +1424,19 @@
                     wmImgObj.onload = () => {
                         wmInitUI.classList.add('hidden'); wmWorkspace.classList.remove('hidden');
                         renderWatermark();
-                    };
-                    wmImgObj.src = wmOriginalDataUrl;
-                };
-                reader.readAsDataURL(file);
+                    }; wmImgObj.src = wmOriginalDataUrl;
+                }; reader.readAsDataURL(file);
             }
         });
 
         function renderWatermark() {
             if(!wmImgObj) return;
-            // Set canvas size to image size
             wmPreviewCanvas.width = wmImgObj.width; wmPreviewCanvas.height = wmImgObj.height;
-            // Draw original image
             wmCtx.drawImage(wmImgObj, 0, 0);
-
-            const text = wmText.value;
-            if(!text) return;
-
-            const fontSize = parseInt(wmSize.value) * (wmImgObj.width / 1000); // Scale font size based on image width
-            const opacity = parseInt(wmOpacity.value) / 100;
+            const text = wmText.value; if(!text) return;
             
-            // Convert hex color to rgba
+            const fontSize = parseInt(wmSize.value) * (wmImgObj.width / 1000); 
+            const opacity = parseInt(wmOpacity.value) / 100;
             const hex = wmColor.value.replace('#', '');
             const r = parseInt(hex.substring(0,2), 16), g = parseInt(hex.substring(2,4), 16), b = parseInt(hex.substring(4,6), 16);
 
@@ -1226,10 +1445,10 @@
             wmCtx.textAlign = "left"; wmCtx.textBaseline = "top";
 
             const padding = fontSize * 0.5;
-            const textMetrics = wmCtx.measureText(text);
-            const textWidth = textMetrics.width;
+            const textMetrics = wmCtx.measureText(text); const textWidth = textMetrics.width;
             
             let x, y;
+            // UPDATE 10: All Corners + Center positions added
             switch(wmPosition.value) {
                 case 'top-left': x = padding; y = padding; break;
                 case 'top-right': x = wmPreviewCanvas.width - textWidth - padding; y = padding; break;
@@ -1238,23 +1457,16 @@
                 case 'center': x = (wmPreviewCanvas.width - textWidth) / 2; y = (wmPreviewCanvas.height - fontSize) / 2; break;
             }
 
-            // Optional shadow for better visibility
-            wmCtx.shadowColor = `rgba(0, 0, 0, ${opacity * 0.8})`;
-            wmCtx.shadowBlur = fontSize * 0.1;
+            wmCtx.shadowColor = `rgba(0, 0, 0, ${opacity * 0.8})`; wmCtx.shadowBlur = fontSize * 0.1;
             wmCtx.shadowOffsetX = 2; wmCtx.shadowOffsetY = 2;
-
             wmCtx.fillText(text, x, y);
         }
 
         wmDownloadBtn.addEventListener('click', () => {
             if(!wmImgObj) return;
-            // Save from the preview canvas
-            let finalDataUrl = wmPreviewCanvas.toDataURL('image/jpeg', 0.95);
-            // EXIF Fix!
+            let finalDataUrl = wmPreviewCanvas.toDataURL('image/jpeg', 0.90);
             finalDataUrl = transferExif(wmOriginalDataUrl, finalDataUrl, 'image/jpeg');
-
-            triggerDownload(finalDataUrl, wmFileName.replace(/\.[^/.]+$/, "") + "_watermark.jpg");
-            showToast("Watermark Added & Downloaded!");
+            triggerDownload(finalDataUrl, generate10DigitName("jpg")); showToast("Downloaded!");
         });
 
     </script>
