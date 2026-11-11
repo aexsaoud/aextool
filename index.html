@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AEX TOOLS HUB</title>
+    
+    <!-- PWA WebAPK & Manifest Setup for GitHub Hosting -->
+    <link rel="manifest" href="data:application/manifest+json;utf8,%7B%22name%22%3A%22AEX%20Tools%20Hub%22%2C%22short_name%22%3A%22AEX%20Tools%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%238b5cf6%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Cutf8%2C%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%20width%3D'512'%20height%3D'512'%3E%3Crect%20width%3D'512'%20height%3D'512'%20rx%3D'120'%20fill%3D'%238b5cf6'%2F%3E%3Ctext%20x%3D'50%25'%20y%3D'58%25'%20dominant-baseline%3D'middle'%20text-anchor%3D'middle'%20fill%3D'white'%20font-family%3D'sans-serif'%20font-weight%3D'900'%20font-size%3D'190'%3EAEX%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+    <meta name="theme-color" content="#8b5cf6">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'><rect width='512' height='512' rx='120' fill='%238b5cf6'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='900' font-size='190'>AEX</text></svg>">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -50,7 +56,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating Blobs */
+        /* Floating Background Blobs */
         @keyframes float1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(40px, 50px); } }
         @keyframes float2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-50px, 40px); } }
         @keyframes float3 { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -50px); } }
@@ -60,19 +66,19 @@
 
         /* Glass Panels */
         .glass-3d-panel {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.12));
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border-top: 1px solid rgba(255, 255, 255, 0.8);
             border-left: 1px solid rgba(255, 255, 255, 0.6);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 32px;
-            box-shadow: 0 25px 45px rgba(31, 38, 135, 0.1), inset 0 4px 10px rgba(255, 255, 255, 0.4), inset 0 -4px 8px rgba(255, 255, 255, 0.05);
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 25px 45px rgba(31, 38, 135, 0.12), inset 0 4px 10px rgba(255, 255, 255, 0.4), inset 0 -4px 8px rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .dark .glass-3d-panel {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.2));
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.55), rgba(15, 23, 42, 0.3));
             border-top: 1px solid rgba(255, 255, 255, 0.15);
             border-left: 1px solid rgba(255, 255, 255, 0.1);
             border-bottom: 1px solid rgba(0, 0, 0, 0.4);
@@ -80,74 +86,107 @@
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 4px 10px rgba(255, 255, 255, 0.05), inset 0 -4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Glass Buttons */
+        /* 
+           PERFECT FINISHING BUTTON SHADOWS & EDGE LIGHTING 
+           (Recreated from user screenshot reference)
+        */
         .glass-btn-3d {
-            background: linear-gradient(135deg, #d8b4fe, #b07cf0);
-            border-top: 2px solid rgba(255, 255, 255, 0.9);
-            border-left: 2px solid rgba(255, 255, 255, 0.8);
-            border-bottom: 2px solid rgba(176, 124, 240, 0.5);
-            border-right: 2px solid rgba(176, 124, 240, 0.5);
-            color: white;
-            box-shadow: 0 10px 20px rgba(176, 124, 240, 0.35), inset 0 4px 6px rgba(255, 255, 255, 0.6), inset 0 -4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 45%, #7c3aed 100%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.95);
+            border-left: 1.5px solid rgba(255, 255, 255, 0.85);
+            color: #ffffff;
+            /* Soft ambient glow around button matching the exact smooth gradient lighting */
+            box-shadow: 
+                0 10px 25px -4px rgba(139, 92, 246, 0.5),
+                0 4px 12px -2px rgba(124, 58, 237, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.6),
+                inset 0 -3px 6px rgba(0, 0, 0, 0.25);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
         .dark .glass-btn-3d {
-            background: linear-gradient(135deg, #8b5cf6, #5b21b6);
-            border-top: 2px solid rgba(255, 255, 255, 0.3);
-            border-left: 2px solid rgba(255, 255, 255, 0.2);
-            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-            border-right: 2px solid rgba(0, 0, 0, 0.5);
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4), inset 0 4px 6px rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #5b21b6 100%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-left: 1.5px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 12px 30px -4px rgba(147, 51, 234, 0.55),
+                0 6px 15px -2px rgba(91, 33, 182, 0.4),
+                inset 0 2px 4px rgba(255, 255, 255, 0.35),
+                inset 0 -3px 6px rgba(0, 0, 0, 0.5);
         }
-        .glass-btn-3d:active { transform: translateY(2px) scale(0.98); }
+        .glass-btn-3d:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 
+                0 15px 32px -4px rgba(139, 92, 246, 0.65),
+                0 8px 18px -2px rgba(124, 58, 237, 0.45),
+                inset 0 2px 6px rgba(255, 255, 255, 0.8),
+                inset 0 -3px 6px rgba(0, 0, 0, 0.2);
+        }
+        .glass-btn-3d:active { 
+            transform: translateY(1px) scale(0.98);
+            box-shadow: 0 5px 12px rgba(139, 92, 246, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
         /* Glass Insets */
         .glass-inset {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.22);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-bottom: 1.5px solid rgba(255, 255, 255, 0.7);
             border-right: 1.5px solid rgba(255, 255, 255, 0.7);
-            box-shadow: inset 0 6px 12px rgba(31, 38, 135, 0.05), 0 2px 5px rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 4px 10px rgba(31, 38, 135, 0.04), 0 2px 6px rgba(255, 255, 255, 0.4);
         }
         .dark .glass-inset {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(176, 124, 240, 0.6); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.5); border-radius: 6px; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
-        .drop-zone { transition: all 0.3s ease; border: 2px dashed #a78bfa; border-radius: 1.5rem; background: rgba(255,255,255,0.1); }
-        .dark .drop-zone { border-color: #6d28d9; background: rgba(0,0,0,0.2); }
+        .drop-zone { transition: all 0.3s ease; border: 2px dashed #a78bfa; border-radius: 1.5rem; background: rgba(255,255,255,0.15); }
+        .dark .drop-zone { border-color: #6d28d9; background: rgba(0,0,0,0.25); }
         .drop-zone.dragover { background-color: rgba(139, 92, 246, 0.15); border-color: #8b5cf6; transform: scale(1.02); }
         
         input[type=range] { accent-color: #8b5cf6; }
         
-        .loader { border: 4px solid rgba(255,255,255,0.1); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; border-top-color: #8b5cf6; }
+        .loader { border: 4px solid rgba(255,255,255,0.2); border-radius: 50%; width: 42px; height: 42px; animation: spin 0.8s linear infinite; border-top-color: #8b5cf6; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in { animation: fadeIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .animate-fade-in { animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
         /* Tabs Slider Animation */
-        #tabsSlider { transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; }
+        #tabsSlider { transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, padding 0.3s ease; }
         .tabs-closed { max-height: 0; opacity: 0; pointer-events: none; padding-top: 0; padding-bottom: 0; overflow: hidden; }
-        .tabs-open { max-height: 250px; opacity: 1; pointer-events: auto; padding-top: 1rem; padding-bottom: 1rem; overflow: visible; }
+        .tabs-open { max-height: 260px; opacity: 1; pointer-events: auto; padding-top: 1rem; padding-bottom: 1rem; overflow: visible; }
 
+        .tab-btn {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: all 0.25s ease;
+        }
         .tab-btn.active-tab {
-            background: linear-gradient(135deg, #d8b4fe, #8b5cf6);
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
             color: white;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
+            border: 1px solid rgba(255,255,255,0.7);
         }
         .dark .tab-btn.active-tab {
             background: linear-gradient(135deg, #8b5cf6, #5b21b6);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Mirror Camera Flip Utility */
+        .mirror-view {
+            transform: scaleX(-1);
         }
     </style>
 </head>
@@ -157,24 +196,82 @@
     <div class="fixed bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-[#bae6fd]/60 dark:bg-[#1e3a8a]/40 rounded-full mix-blend-multiply filter blur-[100px] z-[0] pointer-events-none blob2"></div>
     <div class="fixed top-[30%] left-[40%] w-[40vw] h-[40vw] bg-[#fbc2eb]/50 dark:bg-[#831843]/40 rounded-full mix-blend-multiply filter blur-[80px] z-[0] pointer-events-none blob3"></div>
 
-    <header class="fixed top-0 left-0 right-0 h-20 z-50 flex items-center justify-between px-4 sm:px-8 bg-white/10 dark:bg-black/10 backdrop-blur-md border-b border-white/20 dark:border-white/5">
+    <header class="fixed top-0 left-0 right-0 h-20 z-50 flex items-center justify-between px-4 sm:px-8 bg-white/20 dark:bg-black/20 backdrop-blur-md border-b border-white/30 dark:border-white/10">
         <div class="flex items-center gap-3">
-            <h1 class="text-3xl tracking-widest font-stylish font-extrabold text-slate-800 dark:text-white drop-shadow-sm">AEX<span class="text-brand-600 dark:text-brand-400">TOOLS</span></h1>
+            <h1 class="text-2xl sm:text-3xl tracking-widest font-stylish font-extrabold text-slate-800 dark:text-white drop-shadow-sm">AEX<span class="text-brand-600 dark:text-brand-400">TOOLS</span></h1>
         </div>
-        <div class="flex items-center gap-3">
-            <button onclick="toggleTheme()" class="glass-inset w-10 h-10 flex items-center justify-center rounded-full text-brand-600 dark:text-brand-300 hover:scale-105 transition-transform shadow-sm">
+
+        <!-- Right Header Action Items: CAMERA IS LEFT OF DAY/NIGHT ICON -->
+        <div class="flex items-center gap-2 sm:gap-3">
+            
+            <!-- Real Time Camera (Left of Theme Button) -->
+            <button onclick="toggleRealCamera()" title="Open Fullscreen Camera" class="glass-inset px-3 h-10 flex items-center gap-2 rounded-full text-brand-600 dark:text-brand-300 hover:scale-105 transition-all shadow-sm">
+                <i class="fa-solid fa-camera text-base"></i>
+                <span class="text-xs font-bold hidden sm:inline">Camera</span>
+            </button>
+
+            <!-- Day and Night Mode Icon -->
+            <button onclick="toggleTheme()" title="Toggle Theme" class="glass-inset w-10 h-10 flex items-center justify-center rounded-full text-brand-600 dark:text-brand-300 hover:scale-105 transition-transform shadow-sm">
                 <i id="sunIcon" class="fa-solid fa-sun hidden text-lg"></i>
                 <i id="moonIcon" class="fa-solid fa-moon text-lg"></i>
             </button>
-            <button onclick="toggleTabs()" class="glass-inset w-10 h-10 flex items-center justify-center rounded-full text-brand-600 dark:text-brand-300 hover:scale-105 transition-transform shadow-sm">
+            
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleTabs()" title="Tools List" class="glass-inset w-10 h-10 flex items-center justify-center rounded-full text-brand-600 dark:text-brand-300 hover:scale-105 transition-transform shadow-sm">
                 <i class="fa-solid fa-grip text-lg"></i>
             </button>
         </div>
     </header>
 
-    <div id="tabsSlider" class="fixed top-20 left-0 right-0 z-40 bg-white/30 dark:bg-slate-900/40 backdrop-blur-xl border-b border-white/30 dark:border-white/5 shadow-lg tabs-closed">
+    <!-- FULLSCREEN CAMERA WINDOW OVERLAY -->
+    <div id="realCameraModal" class="fixed inset-0 z-[200] hidden bg-black flex flex-col justify-between items-center transition-all duration-300">
+        
+        <!-- Top Control Bar (Minimize/Close & Mode Badge) -->
+        <div class="w-full p-4 sm:p-6 flex justify-between items-center z-20 bg-gradient-to-b from-black/80 via-black/40 to-transparent">
+            <div class="flex items-center gap-2 text-white font-bold text-sm">
+                <span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+                <span id="cameraModeLabel">Front Camera</span>
+            </div>
+            
+            <!-- Minimize / Close Icon -->
+            <button onclick="stopRealCamera()" title="Minimize Camera" class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center text-xl hover:bg-white/30 active:scale-95 transition-all">
+                <i class="fa-solid fa-compress"></i>
+            </button>
+        </div>
+
+        <!-- Camera Live Viewfinder -->
+        <div class="relative w-full h-full flex-grow flex items-center justify-center overflow-hidden">
+            <video id="cameraFeed" autoplay playsinline muted class="w-full h-full object-cover mirror-view"></video>
+            <div id="cameraPlaceholder" class="hidden absolute inset-0 text-white text-center flex flex-col items-center justify-center p-6 bg-slate-900">
+                <i class="fa-solid fa-video-slash text-4xl mb-3 text-red-400"></i>
+                <p class="text-sm font-semibold">Camera access blocked or unavailable.</p>
+            </div>
+        </div>
+
+        <!-- Bottom Controls Bar (Capture, Flip Camera, Close) -->
+        <div class="w-full p-6 sm:p-8 flex justify-around items-center z-20 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
+            
+            <!-- Switch Front / Back Camera -->
+            <button onclick="switchCameraMode()" title="Switch Front/Back Camera" class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md text-white flex flex-col items-center justify-center hover:bg-white/30 active:scale-90 transition-all">
+                <i class="fa-solid fa-camera-rotate text-xl"></i>
+            </button>
+
+            <!-- Click Photo Button -->
+            <button onclick="captureCameraPhoto()" title="Take Photo" class="w-20 h-20 rounded-full border-4 border-white p-1 flex items-center justify-center hover:scale-105 active:scale-95 transition-all">
+                <div class="w-full h-full bg-white rounded-full shadow-lg"></div>
+            </button>
+
+            <!-- Minimize Button -->
+            <button onclick="stopRealCamera()" title="Minimize" class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/30 active:scale-90 transition-all">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- TABS SLIDER MENU -->
+    <div id="tabsSlider" class="fixed top-20 left-0 right-0 z-40 bg-white/40 dark:bg-slate-900/50 backdrop-blur-xl border-b border-white/30 dark:border-white/10 shadow-lg tabs-closed">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-rows-2 grid-flow-col gap-x-3 gap-y-3 overflow-x-auto no-scrollbar items-center" style="grid-auto-columns: max-content;">
+            <div class="grid grid-rows-2 grid-flow-col gap-x-3 gap-y-3 overflow-x-auto no-scrollbar items-center py-2" style="grid-auto-columns: max-content;">
                 <button class="tab-btn px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 text-sm font-bold active-tab" data-target="tab-img-comp">
                     <i class="fa-solid fa-compress"></i> Compress
                 </button>
@@ -215,13 +312,14 @@
         </div>
     </div>
 
+    <!-- MAIN APP CONTAINER -->
     <main class="flex-grow pt-28 pb-12 px-3 sm:px-4 max-w-5xl mx-auto w-full relative z-10 flex flex-col items-center justify-center">
         
         <!-- TOOL 1: AUTO PHOTO COMPRESSOR -->
-        <div id="tab-img-comp" class="tab-content glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-img-comp" class="tab-content glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-compress text-brand-500 mr-2 drop-shadow"></i>Auto Compress</h2>
             
-            <div id="comp-drop-zone" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('comp-input').click()">
+            <div id="comp-drop-zone" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('comp-input').click()">
                 <i class="fa-solid fa-images text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Photos</h3>
                 <input type="file" id="comp-input" class="hidden" accept="image/jpeg, image/png, image/webp" multiple>
@@ -251,7 +349,8 @@
                 
                 <div class="flex gap-4 mb-6">
                     <button onclick="document.getElementById('comp-input').click()" class="flex-1 py-3.5 glass-inset font-bold text-slate-800 dark:text-white rounded-2xl shadow-sm hover:scale-[1.02] transition-transform">Add More</button>
-                    <button id="comp-download-all" class="flex-1 py-3.5 glass-btn-3d font-bold text-lg rounded-2xl"><i class="fa-solid fa-download mr-2"></i>Save All</button>
+                    <!-- PERFECT SCREENSHOT STYLED BUTTON -->
+                    <button id="comp-download-all" class="flex-1 py-3.5 glass-btn-3d font-bold text-lg rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Save All</button>
                 </div>
                 
                 <div id="comp-gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
@@ -259,11 +358,11 @@
         </div>
 
         <!-- TOOL 2: ADJUST IMAGE -->
-        <div id="tab-img-adjust" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-img-adjust" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-sliders text-brand-500 mr-2 drop-shadow"></i>Adjust Colors</h2>
             
             <input type="file" id="adj-input" class="hidden" accept="image/*">
-            <div id="adj-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('adj-input').click()">
+            <div id="adj-init-ui" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('adj-input').click()">
                 <i class="fa-solid fa-wand-magic-sparkles text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Image</h3>
             </div>
@@ -272,9 +371,8 @@
                 <div class="w-full lg:w-3/5 glass-inset rounded-3xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center p-4">
                     <img id="adj-preview" src="" class="max-w-full max-h-[500px] object-contain rounded-xl shadow-lg transition-all duration-100">
                 </div>
-                <div class="w-full lg:w-2/5 flex flex-col gap-4">
+                <div class="w-full lg:w-2/3 flex flex-col gap-4">
                     <div class="glass-inset p-6 rounded-3xl flex-grow flex flex-col gap-4">
-                        
                         <div>
                             <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase"><span>Brightness</span><span id="adj-bri-val">100%</span></div>
                             <input type="range" id="adj-bri" min="0" max="200" value="100" class="w-full h-1.5 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
@@ -295,22 +393,21 @@
                             <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase"><span>Sepia</span><span id="adj-sep-val">0%</span></div>
                             <input type="range" id="adj-sep" min="0" max="100" value="0" class="w-full h-1.5 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
                         </div>
-
                     </div>
                     <div class="flex gap-3">
-                        <button onclick="document.getElementById('adj-input').click()" class="flex-1 py-4 glass-inset text-slate-800 dark:text-white rounded-2xl hover:scale-[1.02] transition-transform font-bold text-sm">Change</button>
-                        <button id="adj-download-btn" class="w-2/3 py-4 glass-btn-3d font-bold text-lg rounded-2xl"><i class="fa-solid fa-download mr-2"></i>Save</button>
+                        <button onclick="document.getElementById('adj-input').click()" class="flex-1 py-3.5 glass-inset text-slate-800 dark:text-white rounded-full hover:scale-[1.02] transition-transform font-bold text-sm">Change</button>
+                        <button id="adj-download-btn" class="w-2/3 py-3.5 glass-btn-3d font-bold text-lg rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Save</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- TOOL 3: IMAGE TO PDF -->
-        <div id="tab-img-to-pdf" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-img-to-pdf" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-file-import text-brand-500 mr-2 drop-shadow"></i>Images to PDF</h2>
             
             <input type="file" id="i2p-input" class="hidden" accept="image/*" multiple>
-            <div id="i2p-drop-zone" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('i2p-input').click()">
+            <div id="i2p-drop-zone" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('i2p-input').click()">
                 <i class="fa-solid fa-images text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Images</h3>
             </div>
@@ -329,9 +426,8 @@
                             </select>
                         </div>
                         <div class="flex-1 w-full">
-                            <!-- UPDATE 1: PDF COMPRESSION SLIDER -->
                             <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase tracking-wide flex justify-between">
-                                <span>Image Quality</span><span id="i2p-quality-val" class="text-brand-600 dark:text-brand-300">80%</span>
+                                <span>Quality</span><span id="i2p-quality-val" class="text-brand-600 dark:text-brand-300">80%</span>
                             </label>
                             <input type="range" id="i2p-quality-slider" min="10" max="100" value="80" class="w-full h-2 mt-2 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
                         </div>
@@ -339,18 +435,18 @@
                 </div>
                 
                 <div class="flex gap-4">
-                    <button onclick="document.getElementById('i2p-input').click()" class="px-6 py-4 glass-inset font-bold text-slate-800 dark:text-white rounded-2xl shadow-sm hover:scale-[1.02] transition-transform">Reselect</button>
-                    <button id="i2p-process-btn" class="flex-1 py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-file-pdf mr-2"></i>Create PDF</button>
+                    <button onclick="document.getElementById('i2p-input').click()" class="px-6 py-3.5 glass-inset font-bold text-slate-800 dark:text-white rounded-full hover:scale-[1.02] transition-transform">Reselect</button>
+                    <button id="i2p-process-btn" class="flex-1 py-3.5 glass-btn-3d font-bold text-xl rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-file-pdf"></i> Create PDF</button>
                 </div>
             </div>
         </div>
 
         <!-- TOOL 4: PDF ORGANIZE -->
-        <div id="tab-pdf-org" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-pdf-org" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-file-pdf text-brand-500 mr-2 drop-shadow"></i>Organize Pages</h2>
             
             <input type="file" id="org-input" class="hidden" accept="application/pdf">
-            <div id="org-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('org-input').click()">
+            <div id="org-init-ui" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('org-input').click()">
                 <i class="fa-solid fa-file-pdf text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select PDF</h3>
             </div>
@@ -361,41 +457,41 @@
                         <p class="font-bold text-slate-800 dark:text-white truncate max-w-md text-xl" id="org-file-name">File.pdf</p>
                     </div>
                     <div class="mt-4 md:mt-0 flex gap-4 w-full md:w-auto">
-                        <button onclick="document.getElementById('org-input').click()" class="px-5 py-3 glass-inset text-sm font-bold rounded-2xl hover:scale-[1.02] transition-transform text-slate-800 dark:text-white">Change</button>
-                        <button id="org-process-btn" class="px-6 py-3 glass-btn-3d font-bold text-sm rounded-2xl"><i class="fa-solid fa-save mr-2"></i>Apply Changes</button>
+                        <button onclick="document.getElementById('org-input').click()" class="px-5 py-3 glass-inset text-sm font-bold rounded-full text-slate-800 dark:text-white">Change</button>
+                        <button id="org-process-btn" class="px-6 py-3 glass-btn-3d font-bold text-sm rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-save"></i> Apply Changes</button>
                     </div>
                 </div>
                 <div id="org-page-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-6"></div>
                 
                 <div id="org-result-box" class="hidden glass-inset bg-green-500/10 p-5 rounded-3xl flex justify-between items-center mt-4 border-green-500/30">
                     <p class="font-bold text-green-700 dark:text-green-400">Ready to download!</p>
-                    <button id="org-download-btn" class="px-6 py-3 bg-green-500 text-white rounded-2xl hover:bg-green-600 font-bold shadow-lg transition-all active:scale-95"><i class="fa-solid fa-download mr-2"></i>Download</button>
+                    <button id="org-download-btn" class="px-6 py-3 glass-btn-3d font-bold rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Download</button>
                 </div>
             </div>
         </div>
 
         <!-- TOOL 5: PDF MERGE -->
-        <div id="tab-pdf-merge" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-pdf-merge" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-layer-group text-brand-500 mr-2 drop-shadow"></i>Merge PDFs</h2>
             <input type="file" id="merge-pdf-input" class="hidden" accept="application/pdf" multiple>
-            <div id="merge-pdf-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('merge-pdf-input').click()">
+            <div id="merge-pdf-init-ui" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('merge-pdf-input').click()">
                 <i class="fa-solid fa-layer-group text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select PDFs</h3>
             </div>
             <div id="merge-pdf-workspace" class="hidden">
                 <div class="glass-inset p-6 rounded-3xl flex justify-between items-center mb-8">
                     <p class="font-bold text-slate-800 dark:text-white text-xl" id="merge-pdf-file-name">0 Files</p>
-                    <button onclick="document.getElementById('merge-pdf-input').click()" class="px-6 py-3 glass-inset rounded-2xl font-bold hover:scale-[1.02] text-slate-800 dark:text-white transition-transform">Reselect</button>
+                    <button onclick="document.getElementById('merge-pdf-input').click()" class="px-6 py-3 glass-inset rounded-full font-bold text-slate-800 dark:text-white">Reselect</button>
                 </div>
-                <button id="merge-pdf-process-btn" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-object-group mr-2"></i>Merge</button>
+                <button id="merge-pdf-process-btn" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-object-group"></i> Merge</button>
             </div>
         </div>
 
         <!-- TOOL 6: PDF TO JPG -->
-        <div id="tab-pdf-to-img" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-pdf-to-img" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-file-export text-brand-500 mr-2 drop-shadow"></i>PDF to JPG</h2>
             <input type="file" id="p2i-input" class="hidden" accept="application/pdf">
-            <div id="p2i-drop-zone" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('p2i-input').click()">
+            <div id="p2i-drop-zone" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('p2i-input').click()">
                 <i class="fa-solid fa-file-image text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select PDF</h3>
             </div>
@@ -412,17 +508,17 @@
                     </div>
                 </div>
                 <div class="flex gap-4">
-                    <button onclick="document.getElementById('p2i-input').click()" class="px-6 py-4 glass-inset text-slate-800 dark:text-white rounded-2xl hover:scale-[1.02] transition-transform font-bold">Change</button>
-                    <button id="p2i-process-btn" class="flex-1 py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-gears mr-2"></i>Extract ZIP</button>
+                    <button onclick="document.getElementById('p2i-input').click()" class="px-6 py-4 glass-inset text-slate-800 dark:text-white rounded-full font-bold">Change</button>
+                    <button id="p2i-process-btn" class="flex-1 py-4 glass-btn-3d font-bold text-xl rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-gears"></i> Extract ZIP</button>
                 </div>
             </div>
         </div>
 
         <!-- TOOL 7: PHOTO CROPPER -->
-        <div id="tab-img-crop" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-img-crop" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-crop-simple text-brand-500 mr-2 drop-shadow"></i>Smart Cropper</h2>
             <input type="file" id="crop-input" class="hidden" accept="image/*">
-            <div id="crop-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('crop-input').click()">
+            <div id="crop-init-ui" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('crop-input').click()">
                 <i class="fa-regular fa-image text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Photo</h3>
             </div>
@@ -442,8 +538,8 @@
                             </select>
                         </div>
                         <div class="mt-auto flex flex-col gap-4">
-                            <button id="crop-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-crop mr-2"></i>Crop</button>
-                            <button onclick="document.getElementById('crop-input').click()" class="w-full py-3 glass-inset text-slate-800 dark:text-white rounded-2xl font-bold hover:scale-[1.02] transition-transform">Change</button>
+                            <button id="crop-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-crop"></i> Crop</button>
+                            <button onclick="document.getElementById('crop-input').click()" class="w-full py-3 glass-inset text-slate-800 dark:text-white rounded-full font-bold">Change</button>
                         </div>
                     </div>
                 </div>
@@ -451,10 +547,10 @@
         </div>
 
         <!-- TOOL 8: ROUND CORNERS -->
-        <div id="tab-img-curve" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-img-curve" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-circle-notch text-brand-500 mr-2 drop-shadow"></i>Round Corners</h2>
             <input type="file" id="curve-input" class="hidden" accept="image/*">
-            <div id="curve-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('curve-input').click()">
+            <div id="curve-init-ui" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('curve-input').click()">
                 <i class="fa-solid fa-shapes text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Photo</h3>
             </div>
@@ -471,43 +567,69 @@
                         <input type="range" id="curve-radius" min="0" max="500" value="50" class="w-full h-2 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
                     </div>
                     <div class="mt-auto flex flex-col gap-4">
-                        <button id="curve-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-download mr-2"></i>Save PNG</button>
-                        <button onclick="document.getElementById('curve-input').click()" class="w-full py-3 glass-inset text-slate-800 dark:text-white rounded-2xl hover:scale-[1.02] transition-transform font-bold">Change</button>
+                        <button id="curve-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Save PNG</button>
+                        <button onclick="document.getElementById('curve-input').click()" class="w-full py-3 glass-inset text-slate-800 dark:text-white rounded-full font-bold">Change</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TOOL 9: METADATA EDITOR -->
-        <div id="tab-img-meta" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
-            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-tags text-brand-500 mr-2 drop-shadow"></i>EXIF Metadata</h2>
+        <!-- TOOL 9: METADATA EDITOR (UPDATED: 4 DISTINCT EXIF FIELDS) -->
+        <div id="tab-img-meta" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-tags text-brand-500 mr-2 drop-shadow"></i>EXIF Metadata Editor</h2>
             <input type="file" id="meta-input" class="hidden" accept="image/jpeg">
-            <div id="meta-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('meta-input').click()">
+            <div id="meta-init-ui" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('meta-input').click()">
                 <i class="fa-solid fa-camera-retro text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
-                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select JPEG</h3>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select JPEG Image</h3>
             </div>
             <div id="meta-workspace" class="hidden flex flex-col lg:flex-row gap-6">
-                <div class="w-full lg:w-2/3 glass-inset rounded-3xl overflow-hidden shadow-inner min-h-[400px] flex items-center justify-center p-4">
-                    <img id="meta-preview" class="max-w-full max-h-[500px] object-contain rounded-xl shadow-lg" src="">
+                <div class="w-full lg:w-1/2 glass-inset rounded-3xl overflow-hidden shadow-inner min-h-[350px] flex items-center justify-center p-4">
+                    <img id="meta-preview" class="max-w-full max-h-[450px] object-contain rounded-xl shadow-lg" src="">
                 </div>
-                <div class="w-full lg:w-1/3 flex flex-col gap-5">
-                    <div class="glass-inset p-6 rounded-3xl flex-grow">
-                        <h3 class="font-bold text-slate-800 dark:text-white text-lg mb-6 flex items-center"><i class="fa-regular fa-calendar-days mr-2 text-brand-500"></i>Date & Time</h3>
-                        <input type="datetime-local" step="1" id="meta-datetime" class="w-full px-4 py-3.5 glass-inset focus:outline-none text-slate-800 dark:text-white font-bold transition text-sm">
+                
+                <!-- 4 SPECIFIC EDITABLE METADATA SECTIONS -->
+                <div class="w-full lg:w-1/2 flex flex-col gap-4">
+                    <div class="glass-inset p-5 rounded-3xl flex-grow flex flex-col gap-3">
+                        <h3 class="font-bold text-slate-800 dark:text-white text-base mb-1 flex items-center"><i class="fa-solid fa-sliders mr-2 text-brand-500"></i>EXIF Tags Editor</h3>
+                        
+                        <!-- Field 1: Mobile Brand Name -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase">1. Mobile Brand Name (Make)</label>
+                            <input type="text" id="meta-brand" placeholder="e.g. Samsung, Apple, Xiaomi" class="w-full px-4 py-2.5 glass-inset focus:outline-none text-slate-800 dark:text-white font-medium text-sm">
+                        </div>
+
+                        <!-- Field 2: Model Name -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase">2. Model Name</label>
+                            <input type="text" id="meta-model" placeholder="e.g. Galaxy S24 Ultra, iPhone 15 Pro" class="w-full px-4 py-2.5 glass-inset focus:outline-none text-slate-800 dark:text-white font-medium text-sm">
+                        </div>
+
+                        <!-- Field 3: Time and Dates -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase">3. Date & Time</label>
+                            <input type="datetime-local" step="1" id="meta-datetime" class="w-full px-4 py-2.5 glass-inset focus:outline-none text-slate-800 dark:text-white font-medium text-sm">
+                        </div>
+
+                        <!-- Field 4: Milliseconds -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1 uppercase">4. Millisecond (SubSec Time)</label>
+                            <input type="number" min="0" max="999" id="meta-millisec" placeholder="e.g. 485" class="w-full px-4 py-2.5 glass-inset focus:outline-none text-slate-800 dark:text-white font-medium text-sm">
+                        </div>
                     </div>
-                    <div class="mt-auto flex flex-col gap-4">
-                        <button id="meta-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-floppy-disk mr-2"></i>Save</button>
-                        <button onclick="document.getElementById('meta-input').click()" class="w-full py-3 glass-inset text-slate-800 dark:text-white rounded-2xl hover:scale-[1.02] transition-transform font-bold">Change</button>
+
+                    <div class="flex flex-col gap-3">
+                        <button id="meta-download" class="w-full py-3.5 glass-btn-3d font-bold text-lg rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-floppy-disk"></i> Save EXIF Metadata</button>
+                        <button onclick="document.getElementById('meta-input').click()" class="w-full py-2.5 glass-inset text-slate-800 dark:text-white rounded-full font-bold text-sm">Change Image</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- TOOL 10: CONVERT FORMAT -->
-        <div id="tab-img-conv" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-img-conv" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-shuffle text-brand-500 mr-2 drop-shadow"></i>Convert Format</h2>
             <input type="file" id="img-conv-input" class="hidden" accept="image/*">
-            <div id="img-conv-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('img-conv-input').click()">
+            <div id="img-conv-init-ui" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('img-conv-input').click()">
                 <i class="fa-solid fa-photo-film text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Image</h3>
             </div>
@@ -517,22 +639,21 @@
                 </div>
                 <div class="w-full lg:w-1/3 flex flex-col gap-5">
                     <div class="glass-inset p-6 rounded-3xl flex-grow">
-                        <!-- UPDATE 9: Slider removed entirely as requested, preserving optimal quality instead -->
                         <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-2 uppercase tracking-wide">Target Format</label>
                         <select id="img-conv-format" class="w-full appearance-none py-3.5 px-4 mb-2 glass-inset focus:outline-none text-slate-800 dark:text-white font-bold transition text-sm">
                             <option value="image/jpeg">JPG / JPEG</option>
                             <option value="image/png">PNG</option>
                             <option value="image/webp">WEBP</option>
                         </select>
-                        <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-2">* Converts format without increasing size.</p>
+                        <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-2">* Preserves metadata when converting formats.</p>
                     </div>
-                    <button id="img-conv-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-bolt mr-2"></i>Convert</button>
+                    <button id="img-conv-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-bolt"></i> Convert</button>
                 </div>
             </div>
         </div>
 
         <!-- TOOL 11: PHOTO MERGE -->
-        <div id="tab-img-merge" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-img-merge" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-object-group text-brand-500 mr-2 drop-shadow"></i>Merge Photos</h2>
             <div class="flex flex-col md:flex-row gap-6 mb-6">
                 <div class="flex-1">
@@ -560,10 +681,9 @@
                         <option value="vertical">Vertical</option>
                     </select>
                 </div>
-                <button id="merge-btn" class="w-full sm:w-auto px-10 py-3.5 glass-btn-3d font-bold text-lg rounded-2xl disabled:opacity-50" disabled>Merge</button>
+                <button id="merge-btn" class="w-full sm:w-auto px-10 py-3.5 glass-btn-3d font-bold text-lg rounded-full flex items-center justify-center gap-2 disabled:opacity-50" disabled>Merge</button>
             </div>
             
-            <!-- UPDATE 5: Result container added here -->
             <div id="merge-result-container" class="hidden mt-6 glass-inset p-4 rounded-3xl text-center">
                 <h3 class="font-bold text-slate-800 dark:text-white mb-2">Merged Image</h3>
                 <img id="merge-result-preview" class="max-w-full max-h-[400px] mx-auto rounded-xl shadow-lg object-contain bg-white/10 dark:bg-black/10">
@@ -571,10 +691,10 @@
         </div>
 
         <!-- TOOL 12: WATERMARK -->
-        <div id="tab-img-watermark" class="tab-content hidden glass-3d-panel p-8 w-full animate-fade-in">
+        <div id="tab-img-watermark" class="tab-content hidden glass-3d-panel p-6 sm:p-8 w-full animate-fade-in">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6 font-stylish text-center"><i class="fa-solid fa-copyright text-brand-500 mr-2 drop-shadow"></i>Watermark</h2>
             <input type="file" id="wm-input" class="hidden" accept="image/*">
-            <div id="wm-init-ui" class="drop-zone p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('wm-input').click()">
+            <div id="wm-init-ui" class="drop-zone p-12 sm:p-16 text-center cursor-pointer hover:scale-[1.01]" onclick="document.getElementById('wm-input').click()">
                 <i class="fa-solid fa-pen-nib text-5xl text-brand-500 mb-4 drop-shadow-md"></i>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-white drop-shadow-sm">Select Photo</h3>
             </div>
@@ -611,7 +731,6 @@
                             <input type="range" id="wm-size" min="10" max="200" value="50" class="w-full h-2 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
                         </div>
                         
-                        <!-- OPACITY SLIDER -->
                         <div class="mb-2">
                             <h3 class="font-bold text-slate-600 dark:text-slate-300 mb-2 text-xs uppercase tracking-wider flex justify-between">
                                 <span>Opacity</span><span id="wm-opacity-val" class="text-brand-600 dark:text-brand-300 font-bold">90%</span>
@@ -619,16 +738,17 @@
                             <input type="range" id="wm-opacity" min="10" max="100" value="90" class="w-full h-2 bg-white/50 dark:bg-slate-700 rounded-lg cursor-pointer">
                         </div>
                     </div>
-                    <button id="wm-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-2xl"><i class="fa-solid fa-download mr-2"></i>Download</button>
+                    <button id="wm-download" class="w-full py-4 glass-btn-3d font-bold text-xl rounded-full flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Download</button>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- Global Utilities -->
+    <!-- Global Notifications Toast -->
     <div id="toast-container" class="fixed bottom-10 right-4 sm:right-10 z-[600] flex flex-col gap-3 pointer-events-none"></div>
     
+    <!-- Loader UI -->
     <div id="global-loader" class="fixed inset-0 bg-slate-100/60 dark:bg-slate-900/80 backdrop-blur-md z-[600] flex-col justify-center items-center transition-colors" style="display: none;">
         <div class="loader mb-4" id="spinner-icon"></div>
         <p class="text-xl font-bold text-slate-800 dark:text-white font-stylish tracking-wide drop-shadow-md" id="loader-text">Processing...</p>
@@ -636,6 +756,7 @@
 
     <canvas id="hidden-canvas" class="hidden"></canvas>
 
+    <!-- JS Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -644,6 +765,18 @@
 
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        // --- SERVICE WORKER REGISTRATION (Enable WebAPK Installation on GitHub Pages) ---
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                self.addEventListener('install', (e) => self.skipWaiting());
+                self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));
+                self.addEventListener('fetch', (e) => e.respondWith(fetch(e.request).catch(() => caches.match(e.request))));
+            `;
+            const blob = new Blob([swCode], { type: 'text/javascript' });
+            const swUrl = URL.createObjectURL(blob);
+            navigator.serviceWorker.register(swUrl).catch(() => {});
+        }
 
         // --- THEME ---
         window.isDarkMode = false;
@@ -662,6 +795,83 @@
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             setDarkMode(true);
         } else { setDarkMode(false); }
+
+        // --- REAL TIME FULLSCREEN CAMERA & PHOTO CAPTURE FEATURE ---
+        let cameraStream = null;
+        let currentFacingMode = 'user'; // 'user' = Front, 'environment' = Back
+
+        async function startCameraStream() {
+            const video = document.getElementById('cameraFeed');
+            const placeholder = document.getElementById('cameraPlaceholder');
+            const label = document.getElementById('cameraModeLabel');
+
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+            }
+
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: currentFacingMode, width: { ideal: 1920 }, height: { ideal: 1080 } }, 
+                    audio: false 
+                });
+                video.srcObject = cameraStream;
+                placeholder.classList.add('hidden');
+
+                // Toggle mirror mode based on camera type
+                if (currentFacingMode === 'user') {
+                    video.classList.add('mirror-view');
+                    label.textContent = "Front Camera (Mirror)";
+                } else {
+                    video.classList.remove('mirror-view');
+                    label.textContent = "Back Camera";
+                }
+            } catch (err) {
+                placeholder.classList.remove('hidden');
+            }
+        }
+
+        async function toggleRealCamera() {
+            const modal = document.getElementById('realCameraModal');
+            modal.classList.remove('hidden');
+            await startCameraStream();
+        }
+
+        async function switchCameraMode() {
+            currentFacingMode = (currentFacingMode === 'user') ? 'environment' : 'user';
+            await startCameraStream();
+        }
+
+        function captureCameraPhoto() {
+            const video = document.getElementById('cameraFeed');
+            if (!video || !cameraStream) return;
+
+            globalCanvas.width = video.videoWidth || 1280;
+            globalCanvas.height = video.videoHeight || 720;
+
+            globalCtx.save();
+            // If Front camera, mirror the canvas horizontally so output matches viewfinder
+            if (currentFacingMode === 'user') {
+                globalCtx.translate(globalCanvas.width, 0);
+                globalCtx.scale(-1, 1);
+            }
+            globalCtx.drawImage(video, 0, 0, globalCanvas.width, globalCanvas.height);
+            globalCtx.restore();
+
+            const capturedDataUrl = globalCanvas.toDataURL('image/jpeg', 0.95);
+            triggerDownload(capturedDataUrl, generate10DigitName("jpg"));
+            showToast("Photo captured & saved!");
+        }
+
+        function stopRealCamera() {
+            const modal = document.getElementById('realCameraModal');
+            const video = document.getElementById('cameraFeed');
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+                cameraStream = null;
+            }
+            video.srcObject = null;
+            modal.classList.add('hidden');
+        }
 
         // --- TABS TOGGLE ---
         let isTabsOpen = false;
@@ -722,19 +932,17 @@
         const globalCanvas = document.getElementById('hidden-canvas');
         const globalCtx = globalCanvas.getContext('2d', { willReadFrequently: true });
 
-        // UPDATE 2: EXIF PRESERVATION IMPROVED
+        // EXIF PRESERVATION UTILITY FIX
         function transferExif(originalDataUrl, newDataUrl, targetMime = 'image/jpeg') {
             if (targetMime !== 'image/jpeg' || !originalDataUrl || !newDataUrl) return newDataUrl;
             try {
                 if (!originalDataUrl.startsWith('data:image/jpeg')) return newDataUrl; 
                 const exifObj = piexif.load(originalDataUrl);
-                // Skip if no EXIF present
                 if (Object.keys(exifObj).length === 0 || (!exifObj['0th'] && !exifObj['Exif'])) return newDataUrl; 
                 if (exifObj.thumbnail) delete exifObj.thumbnail; 
                 const exifStr = piexif.dump(exifObj);
                 return piexif.insert(exifStr, newDataUrl);
             } catch (e) {
-                console.warn("EXIF transfer skipped: No valid metadata found.");
                 return newDataUrl;
             }
         }
@@ -776,7 +984,7 @@
         });
 
         // ======================================================================
-        // TOOL 1: AUTO COMPRESSOR
+        // TOOL 1: AUTO COMPRESSOR (FIXED METADATA RETENTION)
         // ======================================================================
         const compDropZone = document.getElementById('comp-drop-zone'), compInput = document.getElementById('comp-input'), compWorkspace = document.getElementById('comp-workspace'), compGallery = document.getElementById('comp-gallery');
         const modeQualityBtn = document.getElementById('mode-quality-btn'), modeSizeBtn = document.getElementById('mode-size-btn'), controlQuality = document.getElementById('control-quality'), controlSize = document.getElementById('control-size'), compSlider = document.getElementById('comp-slider'), compQualityVal = document.getElementById('comp-quality-val'), compTargetKb = document.getElementById('comp-target-kb'), compDownloadAllBtn = document.getElementById('comp-download-all');
@@ -820,7 +1028,7 @@
         }
         
         function createGalleryItemUI(id, src, origSize) {
-            const div = document.createElement('div'); div.id = `card-${id}`; div.className = "bg-white/40 dark:bg-black/30 p-3 rounded-2xl shadow-inner border border-white/20 dark:border-white/5 flex flex-col items-center relative group";
+            const div = document.createElement('div'); div.id = `card-${id}`; div.className = "bg-white/40 dark:bg-black/30 p-3 rounded-2xl shadow-inner border border-white/20 dark:border-white/5 flex flex-col items-center relative group animate-fade-in";
             div.innerHTML = `
                 <button onclick="removeBatchItem('${id}')" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-md z-10 opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-xmark"></i></button>
                 <div class="h-28 w-full bg-white/30 dark:bg-black/30 rounded-xl overflow-hidden flex items-center justify-center mb-3 relative">
@@ -859,7 +1067,6 @@
 
             if(compressMode==='quality'){
                 let q = parseInt(compSlider.value); 
-                // Metadata preservation fix ensures original URL metadata is kept
                 newData = (q===100 && tMime===item.format) ? item.originalDataUrl : gen(1.0, q/100);
             } else {
                 let tb = tKb * 1024; if(item.origSize<=tb) newData = item.originalDataUrl;
@@ -935,7 +1142,6 @@
             globalCtx.filter = `brightness(${adjBri.value}%) contrast(${adjCon.value}%) saturate(${adjSat.value}%) hue-rotate(${adjHue.value}deg) sepia(${adjSep.value}%)`;
             globalCtx.drawImage(adjImgObj, 0, 0);
             
-            // UPDATE 6: Fix bloat size by using 0.85 default quality instead of 1.0
             let dataUrl = globalCanvas.toDataURL(adjMime, 0.85);
             dataUrl = transferExif(adjOriginalDataUrl, dataUrl, adjMime);
             
@@ -950,7 +1156,7 @@
         // ======================================================================
         const i2pInput = document.getElementById('i2p-input'), i2pWorkspace = document.getElementById('i2p-workspace'), i2pDropZone = document.getElementById('i2p-drop-zone');
         const i2pPageSize = document.getElementById('i2p-page-size');
-        const i2pQualitySlider = document.getElementById('i2p-quality-slider'); // NEW SLIDER
+        const i2pQualitySlider = document.getElementById('i2p-quality-slider');
         
         i2pQualitySlider.addEventListener('input', (e) => {
             document.getElementById('i2p-quality-val').textContent = `${e.target.value}%`;
@@ -972,8 +1178,6 @@
                     const img = new Image();
                     img.onload = () => {
                         globalCanvas.width = img.width; globalCanvas.height = img.height;
-                        
-                        // If user wants high quality and it's PNG, keep it PNG
                         if(qualityScore === 1.0 && file.type === 'image/png') {
                             resolve({ dataUrl: e.target.result, isPng: true });
                         } else {
@@ -990,7 +1194,7 @@
             if(!i2pFiles.length) return;
             toggleLoader(true, 'Creating PDF...');
             const formatMode = i2pPageSize.value;
-            const qualityValue = parseInt(i2pQualitySlider.value) / 100; // Update 1
+            const qualityValue = parseInt(i2pQualitySlider.value) / 100;
             const A4_W = 595.28, A4_H = 841.89;
 
             try {
@@ -1118,7 +1322,6 @@
             }
         });
 
-
         // ======================================================================
         // TOOL 5: PDF MERGE
         // ======================================================================
@@ -1128,10 +1331,7 @@
         mergePdfInput.addEventListener('change', (e) => {
             if(!e.target.files.length) return;
             mergePdfFiles = Array.from(e.target.files);
-            
-            // UPDATE 3: Update file count correctly
             document.getElementById('merge-pdf-file-name').innerText = mergePdfFiles.length + " Files";
-            
             mergePdfInitUI.classList.add('hidden'); mergePdfWorkspace.classList.remove('hidden');
         });
 
@@ -1174,8 +1374,7 @@
             if(!p2iFile) return;
             toggleLoader(true, 'Extracting...'); 
             const qualityValue = parseInt(p2iQualitySlider.value);
-            // UPDATE 7: Make scale resolution higher for crisp output
-            const scale = 1.0 + (qualityValue / 50.0); // max scale 3.0
+            const scale = 1.0 + (qualityValue / 50.0);
             
             try {
                 const pdfData = new Uint8Array(await p2iFile.arrayBuffer());
@@ -1188,7 +1387,6 @@
                     globalCtx.fillStyle = '#FFFFFF'; globalCtx.fillRect(0, 0, globalCanvas.width, globalCanvas.height);
                     await page.render({ canvasContext: globalCtx, viewport: viewport }).promise;
                     
-                    // Keep jpeg quality high internally, rely on scale for "quality/size"
                     zip.file(`${generate10DigitName("jpg")}`, globalCanvas.toDataURL('image/jpeg', 0.95).split(',')[1], {base64: true});
                     page.cleanup(); await yieldThread();
                 }
@@ -1221,7 +1419,6 @@
         cropDownloadBtn.addEventListener('click', () => {
             if (!cropper) return;
             const cropCanvas = cropper.getCroppedCanvas();
-            // UPDATE 4: Fix size bloat by using 0.85 default quality
             let dataUrl = cropCanvas.toDataURL(cropOriginalMime, 0.85);
             dataUrl = transferExif(cropOriginalDataUrl, dataUrl, cropOriginalMime);
             let ext = cropOriginalMime.includes('png') ? 'png' : (cropOriginalMime.includes('webp') ? 'webp' : 'jpg');
@@ -1275,46 +1472,103 @@
 
         curveDownloadBtn.addEventListener('click', () => {
             if(!curveImgObj) return;
-            // UPDATE 8: Must remain PNG for transparent corners, but we don't scale it up.
             triggerDownload(curvePreviewCanvas.toDataURL('image/png'), generate10DigitName("png"));
             showToast("Downloaded!");
         });
 
         // ======================================================================
-        // TOOL 9: METADATA
+        // TOOL 9: EXIF METADATA EDITOR (EDIT 4 SPECIFIC EXIF FIELDS)
         // ======================================================================
-        const metaInput = document.getElementById('meta-input'), metaInitUI = document.getElementById('meta-init-ui'), metaWorkspace = document.getElementById('meta-workspace'), metaPreview = document.getElementById('meta-preview'), metaDatetime = document.getElementById('meta-datetime'), metaDownloadBtn = document.getElementById('meta-download');
+        const metaInput = document.getElementById('meta-input'), metaInitUI = document.getElementById('meta-init-ui'), metaWorkspace = document.getElementById('meta-workspace'), metaPreview = document.getElementById('meta-preview');
+        const metaBrand = document.getElementById('meta-brand'), metaModel = document.getElementById('meta-model'), metaDatetime = document.getElementById('meta-datetime'), metaMillisec = document.getElementById('meta-millisec'), metaDownloadBtn = document.getElementById('meta-download');
+        
         let metaCurrentDataUrl = '', metaExifObj = null;
         
         metaInput.addEventListener('change', (e) => {
             if (e.target.files.length) {
-                const file = e.target.files[0]; if(file.type !== "image/jpeg") return showToast("Only JPEG", "error");
+                const file = e.target.files[0]; if(file.type !== "image/jpeg") return showToast("Only JPEG images supported for EXIF edit", "error");
                 const reader = new FileReader();
-                reader.onload = (ev) => { metaCurrentDataUrl = ev.target.result; metaPreview.src = metaCurrentDataUrl; metaInitUI.classList.add('hidden'); metaWorkspace.classList.remove('hidden'); loadExifToForm(metaCurrentDataUrl); };
+                reader.onload = (ev) => { 
+                    metaCurrentDataUrl = ev.target.result; 
+                    metaPreview.src = metaCurrentDataUrl; 
+                    metaInitUI.classList.add('hidden'); 
+                    metaWorkspace.classList.remove('hidden'); 
+                    loadExifToForm(metaCurrentDataUrl); 
+                };
                 reader.readAsDataURL(file);
             }
         });
+
         function loadExifToForm(dataUrl) {
             try {
-                metaExifObj = piexif.load(dataUrl); let dtString = "";
+                metaExifObj = piexif.load(dataUrl);
+                
+                // 1. Mobile Brand
+                metaBrand.value = (metaExifObj["0th"] && metaExifObj["0th"][piexif.ImageIFD.Make]) ? metaExifObj["0th"][piexif.ImageIFD.Make] : "";
+                
+                // 2. Model Name
+                metaModel.value = (metaExifObj["0th"] && metaExifObj["0th"][piexif.ImageIFD.Model]) ? metaExifObj["0th"][piexif.ImageIFD.Model] : "";
+                
+                // 3. Time and Dates
+                let dtString = "";
                 if(metaExifObj["Exif"] && metaExifObj["Exif"][piexif.ExifIFD.DateTimeOriginal]) dtString = metaExifObj["Exif"][piexif.ExifIFD.DateTimeOriginal];
                 else if(metaExifObj["0th"] && metaExifObj["0th"][piexif.ImageIFD.DateTime]) dtString = metaExifObj["0th"][piexif.ImageIFD.DateTime];
-                if(dtString) { let parts = dtString.split(" "); if(parts.length === 2) metaDatetime.value = `${parts[0].replace(/:/g, "-")}T${parts[1]}`; } else metaDatetime.value = "";
-            } catch (err) { metaExifObj = {"0th":{}, "Exif":{}, "GPS":{}, "Interop":{}, "1st":{}, "thumbnail":null}; metaDatetime.value = ""; }
+                
+                if(dtString) { 
+                    let parts = dtString.split(" "); 
+                    if(parts.length === 2) metaDatetime.value = `${parts[0].replace(/:/g, "-")}T${parts[1]}`; 
+                } else metaDatetime.value = "";
+
+                // 4. Milliseconds
+                metaMillisec.value = (metaExifObj["Exif"] && metaExifObj["Exif"][piexif.ExifIFD.SubSecTimeOriginal]) ? metaExifObj["Exif"][piexif.ExifIFD.SubSecTimeOriginal] : "";
+
+            } catch (err) { 
+                metaExifObj = {"0th":{}, "Exif":{}, "GPS":{}, "Interop":{}, "1st":{}, "thumbnail":null}; 
+                metaBrand.value = ""; metaModel.value = ""; metaDatetime.value = ""; metaMillisec.value = "";
+            }
         }
+
         metaDownloadBtn.addEventListener('click', () => {
             if (!metaExifObj) return;
-            if(metaDatetime.value) {
-                let dtVal = metaDatetime.value; if(dtVal.length === 16) dtVal += ":00";
-                let exifDtString = dtVal.replace("T", " ").replace(/-/g, ":");
-                if(!metaExifObj["0th"]) metaExifObj["0th"] = {}; if(!metaExifObj["Exif"]) metaExifObj["Exif"] = {};
-                metaExifObj["0th"][piexif.ImageIFD.DateTime] = exifDtString; metaExifObj["Exif"][piexif.ExifIFD.DateTimeOriginal] = exifDtString; metaExifObj["Exif"][piexif.ExifIFD.DateTimeDigitized] = exifDtString;
+            if (!metaExifObj["0th"]) metaExifObj["0th"] = {};
+            if (!metaExifObj["Exif"]) metaExifObj["Exif"] = {};
+
+            // 1. Set Brand Name
+            if (metaBrand.value.trim()) {
+                metaExifObj["0th"][piexif.ImageIFD.Make] = metaBrand.value.trim();
             }
+
+            // 2. Set Model Name
+            if (metaModel.value.trim()) {
+                metaExifObj["0th"][piexif.ImageIFD.Model] = metaModel.value.trim();
+            }
+
+            // 3. Set Date & Time
+            if(metaDatetime.value) {
+                let dtVal = metaDatetime.value; 
+                if(dtVal.length === 16) dtVal += ":00";
+                let exifDtString = dtVal.replace("T", " ").replace(/-/g, ":");
+                metaExifObj["0th"][piexif.ImageIFD.DateTime] = exifDtString; 
+                metaExifObj["Exif"][piexif.ExifIFD.DateTimeOriginal] = exifDtString; 
+                metaExifObj["Exif"][piexif.ExifIFD.DateTimeDigitized] = exifDtString;
+            }
+
+            // 4. Set Milliseconds
+            if (metaMillisec.value !== "") {
+                let msVal = String(metaMillisec.value).padStart(3, '0');
+                metaExifObj["Exif"][piexif.ExifIFD.SubSecTimeOriginal] = msVal;
+                metaExifObj["Exif"][piexif.ExifIFD.SubSecTimeDigitized] = msVal;
+            }
+
             try {
                 if(metaExifObj.thumbnail) delete metaExifObj.thumbnail;
-                const exifStr = piexif.dump(metaExifObj), newDataUrl = piexif.insert(exifStr, metaCurrentDataUrl);
-                triggerDownload(newDataUrl, generate10DigitName("jpg")); showToast("Saved!");
-            } catch (e) { showToast("Error", "error"); }
+                const exifStr = piexif.dump(metaExifObj);
+                const newDataUrl = piexif.insert(exifStr, metaCurrentDataUrl);
+                triggerDownload(newDataUrl, generate10DigitName("jpg")); 
+                showToast("EXIF Metadata Saved!");
+            } catch (e) { 
+                showToast("Error updating metadata", "error"); 
+            }
         });
 
         // ======================================================================
@@ -1335,7 +1589,6 @@
         imgConvDownloadBtn.addEventListener('click', () => {
             if (!imgConvObj) return;
             const targetFormat = document.getElementById('img-conv-format').value;
-            // UPDATE 9: Standard original optimal quality to avoid bloat
             const outputQuality = 0.85; 
 
             let ext = targetFormat.split('/')[1]; if (ext === 'jpeg') ext = 'jpg';
@@ -1448,7 +1701,6 @@
             const textMetrics = wmCtx.measureText(text); const textWidth = textMetrics.width;
             
             let x, y;
-            // UPDATE 10: All Corners + Center positions added
             switch(wmPosition.value) {
                 case 'top-left': x = padding; y = padding; break;
                 case 'top-right': x = wmPreviewCanvas.width - textWidth - padding; y = padding; break;
