@@ -4,9 +4,9 @@
   "display": "fullscreen",
   "name": "Photo Editor Tools By Saoud Alam",
   "orientation": "any",
-  "scope": "/Tool/",
+  "scope": "/aextool/",
   "short_name": "Tool",
-  "start_url": "/Tool/",
+  "start_url": "/aextool/",
   "theme_color": "#ffffff",
   "id": "https://aexsaoud.github.io/aextool/",
   "icons": [
