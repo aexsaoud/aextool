@@ -4,9 +4,9 @@
   "display": "fullscreen",
   "name": "Tools Hub By Saoud Alam",
   "orientation": "any",
-  "scope": "/aextool/",
+  "scope": "./",
   "short_name": "Tool Hub",
-  "start_url": "/aextool/",
+  "start_url": "./",
   "theme_color": "#ffffff",
   "id": "https://aexsaoud.github.io/aextool/",
   "icons": [
